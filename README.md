@@ -31,6 +31,7 @@ __Tentative topics__
   - [FSM simulator](https://ivanzuzak.info/noam/webapps/fsm_simulator/)
     - [noam](https://github.com/izuzak/noam)
   - [Automata simulator online](https://web.cs.ucdavis.edu/~doty/automata/)
+  - [Automata and Regular language in Sage](https://www.i2m.univ-amu.fr/perso/paul.mercat/RauzyFractals/html/language_automaton.html)
   - [Automata simulator in Java](http://www.cburch.com/proj/autosim/index.html)
   - [Automata Playground](https://github.com/ErnestThePoet/Automata-Playground)
 - *CFGs: context-free grammars*

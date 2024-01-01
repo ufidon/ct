@@ -3,23 +3,34 @@ Formal languages and automata
 
 __Tentative topics__
 
-
+- [mod1: Regular languages and finite automata](./mod1/README.md)
+- [mod2: Context-free languages and pushdown automata](./mod2/README.md)
+- [mod3: Language decidability and Turing machine](./mod3/README.md)
 
 
 # Referenced textbooks
+- [ialc: Introduction to Automata Theory, Languages, and Computation](http://infolab.stanford.edu/~ullman/ialc.html)
 - [Introduction to the Theory of Computation, 3rd edition](https://math.mit.edu/~sipser/book.html)
-  - [mit 18.404/6.5400: Introduction to the Theory of Computation](https://math.mit.edu/~sipser/18404/)
+  - [18.404/6.5400: Introduction to the Theory of Computation](https://math.mit.edu/~sipser/18404/)
+  - [18.404j: Theory of Computation](https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/)
 - [Introduction to Theoretical Computer Science](https://introtcs.org/public/index.html)
   - [CS-121 / CSCI-E121: Introduction to Theoretical Computer Science](https://cs121.boazbarak.org/)
 - [Computational Complexity: A Modern Approach](https://theory.cs.princeton.edu/complexity/)
-- [Introduction to Automata Theory, Languages, and Computation](http://infolab.stanford.edu/~ullman/ialc.html)
 - [Theory of Computation](https://mfleck.cs.illinois.edu/cs373-notes.pdf)
 
 # Referenced classes
-- [CS 154: Introduction to the Theory of Computation](https://omereingold.wordpress.com/cs-154-introduction-to-automata-and-complexity-theory/)
-  - [github](https://orionquest.github.io/courses/cs154/index.html)
+- _CS 154: Introduction to the Theory of Computation_
+  - [Ullman](http://i.stanford.edu/~ullman/ialc/spr10/spr10.html)
+  - [Reingold](https://omereingold.wordpress.com/cs-154-introduction-to-automata-and-complexity-theory/)
+    - [github](https://orionquest.github.io/courses/cs154/index.html)
 - [ECS 120: Theory of Computation](https://web.cs.ucdavis.edu/~doty/)
+- [CMSC 28000: Introduction to Formal Languages](https://people.cs.uchicago.edu/~timng/280/)
+- [CPT S 317: AUTOMATA AND FORMAL LANGUAGES](https://eecs.wsu.edu/~ananth/CptS317/)
 - [CS 390: Introduction to computation theory](https://www.cs.odu.edu/~zeil/cs390)
+- [CS 162 - Formal Languages and Automata Theory](https://ics.uci.edu/~goodrich/teach/cs162/)
+- [15-453 Formal Languages, Automata, and Computation](https://www.cs.cmu.edu/~fp/courses/flac/)
+- ---
+- [CS 344: Design and Analysis of Computer Algorithms sp21](https://people.cs.rutgers.edu/~sa1497/courses/cs344-s21/)
 
 # Online resources
 - *regular expression*

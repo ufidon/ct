@@ -72,6 +72,13 @@ Formal languages
   - Further reference [The Not So Short Introduction to $\LaTeX$ 2ε](https://mirror.mwt.me/ctan/info/lshort/english/lshort.pdf)
 
 
+💡 Demo
+---
+- frequently-used symbols in computation theory
+- `α, β, γ, δ, ϵ, λ, σ, Σ, ≠, ≤, ≥, →, ⇒, ∧, ∨, ∈, ∩, ∪, ⊂, ⊆, ∀, ∃, N, Z, Q, R, C`
+
+
+
 String concatenation
 ---
 - the *concatenation* of string $a$ and $b$ is $ab$

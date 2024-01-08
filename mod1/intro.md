@@ -59,7 +59,7 @@ Formal languages
   - How about in $L_2=\{ a^{2n+1} | n ∈ N \}$?
   - and, in $L_3=\{ a^{2n} | n ∈ N \}$?
 - Is the empty string in the above language?
-  - No.
+  - No for $L_2$, yes for $L3$.
 
 
 

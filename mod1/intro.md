@@ -119,8 +119,6 @@ The power operation on languages
 💡 Demo
 ---
 - Given $L=\{a,ϵ\}$, find $L^k$ for k=0,1,2,3
-- When will $L^* = L^+$?
-  - ans: when $ϵ ∉ L$
 - Is $L^* = (L^*)^* = L^{**}$ true for any language $L$?
   - ans: Yes. It is a theorem
 

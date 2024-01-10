@@ -96,7 +96,7 @@ String concatenation
 
 💡 Demo
 ---
-- Given $w=dog$, find all its prefixes, suffixes and factors
+- Given $w=dog$, find all its *prefixes, suffixes and factors*
   - prefixes: $\{ϵ, d, do, dog\}$
   - suffixes: $\{ϵ, g, og, dog\}$
   - factors: $\{ϵ,d, do, g, og,dog \}$
@@ -106,7 +106,8 @@ The power operation on languages
 ---
 - given two languages $L_1, L_2$, 
   - $L_1L_2$ denotes the language $L_3$ formed by concatenating any word in $L_1$ with any word in $L_2$
-  - $L_3$ can be called the *Cartesian product* of $L_1$ and $L_2$
+  - $L_3 = \{ab | a∈L_1, b∈L_2 \}$
+  - $L_3$ can be called the [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of $L_1$ and $L_2$
 - the $k^{th}$ *power* of a language $L$ is cartesian-multiplying $L$ $k$ times
   - $L^0 = ∅ = \{ϵ\}$
     - ⚠️ Don't be confused with the mathematical power of 0
@@ -115,7 +116,7 @@ The power operation on languages
   - $\displaystyle L^* = L^0∪L^1∪L^2∪⋯ = ∪_{k=0}^∞L^k$
   - also called *Kleene closure*
 - $\displaystyle L^+ = L^1∪L^2∪⋯ = ∪_{k=1}^∞L^k$
-  - the plus operation is also called *positive closure*
+  - the *plus operation* is also called *positive closure*
 
 
 💡 Demo
@@ -159,9 +160,12 @@ Closure of an alphabet
 ---
 - the universal set of all languages defined on the alphabet $Σ$
   - denoted as $Σ^*$
+  - $\displaystyle Σ^* = Σ^0∪Σ^1∪Σ^2∪⋯ = ∪_{k=0}^∞Σ^k$
     - includes $ϵ$
   - this notation is also called the *Kleene star*
   - usually listed in *lexicographic* order
+- similarly, the positive closure of $Σ$
+  - $\displaystyle Σ^+ = Σ^1∪Σ^2∪⋯ = ∪_{k=1}^∞Σ^k$
 
 
 

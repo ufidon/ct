@@ -59,9 +59,10 @@ Define the set of polynomials of variable $x$ recursively
   - A polynomial is a finite sum of terms
   - Each term is of the form a real number times a power of $x$
 - Recursive definition:
-  - Rule 1: $a ∈ R → a∈ P_x$, i.e. any number is in $P_x$
-  - Rule 2: $x ∈ P_x$
-  - Rule 3: $p, q∈P_x → p+q, p-q, (p), pq ∈ P_x$
+  - Rule 1 (seeds): 
+    - $a ∈ R → a∈ P_x$, i.e. any number is in $P_x$
+    - $x ∈ P_x$
+  - Rule 2 (generators): $p, q∈P_x → p+q, p-q, (p), pq ∈ P_x$
 
 
 💡 Demo
@@ -85,7 +86,7 @@ Define the set of polynomials of variable $x$ recursively
 
 💡 Recursive definitions for languages
 ---
-- Decimal integers $D$
+- Positive decimal integers $D$
   - Rule 1: $1,2,3,4,5,6,7,8,9 ∈ D$
   - Rule 2: $i∈D → i0,i1,i2,i3,i4,i5,i6,i7,i8,i9 ∈ D$
 - Kleene closure of language $L$

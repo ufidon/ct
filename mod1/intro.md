@@ -113,12 +113,16 @@ The power operation on languages
   - $L^k = L^{k-1}L$
 - $L^*$, denotes the *closure of the power operation*, is defined as
   - $\displaystyle L^* = L^0∪L^1∪L^2∪⋯ = ∪_{k=0}^∞L^k$
-- $L^+ = L^*-\{ϵ\}$, i.e. $L^*$ without the empty string
+  - also called *Kleene closure*
+- $\displaystyle L^+ = L^1∪L^2∪⋯ = ∪_{k=1}^∞L^k$
+  - the plus operation is also called *positive closure*
 
 
 💡 Demo
 ---
 - Given $L=\{a,ϵ\}$, find $L^k$ for k=0,1,2,3
+- Is $L^+ = L^*$?
+  - ans: Yes. If $L$ contains $ϵ$
 - Is $L^* = (L^*)^* = L^{**}$ true for any language $L$?
   - ans: Yes. It is a theorem
 
@@ -165,9 +169,13 @@ Closure of an alphabet
 ---
 - Find the Kleene closures for the following alphabets
   - $Σ=\{0,1\}$
+    - ans: $Σ^* = \{ϵ, 0, 1, 00, 01, 10, 11, 000, 001, ⋯\}$
   - $Σ=\{u\}$
+    - ans: $Σ^* = \{ϵ, u, uu, uuu, ⋯\}$
   - $Σ=\{a,b,c\}$
+    - ans: $Σ^* = \{ϵ, a,b,c,aa, ab, ac, ba,bb,bc, ca,cb, cc, aaa, ⋯\}$
   - $Σ=\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$
+    - ans: $Σ^* = \{ϵ, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 00, 01, 02,  ⋯\}$
   - $Σ=∅$
     - ans: $Σ^* = \{ϵ\}$
 
@@ -183,3 +191,62 @@ String reverse and palindrome
 💡 Demo
 ---
 - Given $Σ = \{a,b\}$, find all palindromes of length 0,1,2,3,4,5
+
+| length | palindromes |
+|:---:|:---:|
+| 0 | ϵ |
+| 1 | a, b |
+| 2 | aa, bb |
+| 3 | aaa,aba, bbb, bab |
+| 4 | aaaa, abba, bbbb, baab |
+| 5 | aaaaa, aabaa, abbba, ababa, bbbbb, bbabb, baaab, babab |
+
+
+💡 Demo: Kleene closure on languages
+---
+Describe the Kleene closures of the following languages in plain English
+- $S_1=\{aa,b\}$
+  - $S_1^* =$ {ϵ and any word including aa and b as factors}
+  - = {ϵ and all strings of a's and b's where the a's occur in even groups}
+  - = {ϵ, b, aa, bb, aab, baa, bbb, aaaa, aabb,baab, bbaa, bbbb, aaaab, ⋯}
+- $S_2=\{a,ab\}$
+  - $S_2^*=$ {ϵ and any word composed of factors of a and ab}
+  - = {ϵ and all strings of a's and b's except those that start with b and those that contain a double b}
+  - = {ϵ,a,aa,ab,aaa,aab,aba,aaaa,aaab,aaba, abaa,abab, aaaaa,aaaab,⋯}
+
+
+Factoring of strings in $S^*$
+---
+- A word in $S^*$ can be written as a concatenate of words from $S$
+  - e.x. `abaaba` ∈ $S_2*$ since
+  - `abaaba = (ab)(a)(ab)(a)`
+  - this factoring is unique
+- $S_3=\{xx,xxx\}, S_3^*$=
+  - {ϵ and all strings of more than one x} 
+  - {$x^n$ for $n=0,2,3,4,5,⋯$}
+  - {ϵ, xx, xxx, xxxx,xxxxx,xxxxxx,⋯}
+
+
+💡Demo
+---
+- Factoring xxxxxx=$x^6 ∈ S_3^*$
+  - the factoring is non-unique
+    - (xx)(xx)(xx)=$x^2x^2x^2$
+    - (xxx)(xxx)=$x^3x^3$
+  - prove $S_3^*$ contains string of x's except one x
+    - by constructive algorithm and strong induction
+
+
+Special cases for Kleene closure
+---
+- $Σ=∅ → Σ^*=\{ϵ\}$
+- $L=\{ϵ\} → L^*=\{ϵ\}$
+- if two languages have identical base set of words, then their Kleene closures are equal
+  - ex. $T_1=\{x,y,xy\} T_2=\{x,y,xx\} T_3=\{x,y,yy\}, T_4=\{x,y,xxxyyyx\}$
+  - show that $T_1^* = T_2^* = T_3^* = T_4^*$
+
+
+💡 Demo 
+---
+Find the Positive closure of $S=\{w_1,w_2,w_3\}$
+- ans: $S^+ = \{w_1,w_2,w_3,w_1w_1, w_1w_2, w_1w_3,w_2w_1,w_2w_2,w_2w_3,w_3w_1, w_3w_2,w_3w_3,w_1w_1w_1,⋯\}$

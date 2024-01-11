@@ -59,7 +59,7 @@ Formal languages
   - How about in $L_2=\{ a^{2n+1} | n ∈ N \}$?
   - and, in $L_3=\{ a^{2n} | n ∈ N \}$?
 - Is the empty string in the above language?
-  - No for $L_2$, yes for $L3$.
+  - No for $L_2$, yes for $L_3$.
 
 
 
@@ -144,7 +144,20 @@ The power operation on languages
 📝 Practice
 ---
 - Given $L=\{x,y\}$, find $L^k$ for k=0,1,2,3
+  - $L^0 = \{ϵ\}$
+  - $L^1 = L = \{x,y\}$
+  - $L^2 = L^1L = \{ x,y \}×\{ x,y \} = \{xx,xy,yx,yy\}$
+  - $L^3 = L^2L = \{xx,xy,yx,yy\}×\{ x,y \}=\{xxx,xyx,yxx,yyx,xxy,xyy,yxy,yyy\}$
+    - =$\{xxx,xxy,xyx,xyy,yxx,yxy,yyx,yyy\}$ in *lexicographical order*
 - Given $L=\{u,v,ϵ\}$, find $L^k$ for k=0,1,2,3
+  - $L^0 = \{ϵ\}$
+  - $L^1 = L = \{ϵ,u,v\}$
+  - $L^2 = L^1L = \{ϵ,u,v\}×\{ϵ,u,v\}=\{ϵϵ,ϵu,ϵv,uϵ,uu,uv,vϵ,vu,vv\}$
+    - simplify with that any string concatenates with ϵ is that string
+    - = $\{ϵ,u,v,uu,uv,vu,vv\}$ 
+  - $L^3 = L^2L = \{ϵ,u,v,uu,uv,vu,vv\}×\{ϵ,u,v\}$
+    - = $\{ϵϵ,ϵu,ϵv,uϵ,uu,uv,vϵ,vu,vv, uuϵ,uvϵ,vuϵ,vvϵ, uuu,uvu,vuu,vvu,uuv,uvv,vuv,vvv\}$
+    - = $\{ϵ,u,v,uu,uv,vu,vv,uuu,uuv,uvu,uvv,vuu,vuv,vvu,vvv\}$
 
 
 ❓ Questions

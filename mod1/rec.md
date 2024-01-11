@@ -17,7 +17,7 @@ Define the set of even numbers $E$ *recursively*
 
 An alternative construction of $E$
 ---
-- Basic elements: $0 ∈ E$
+- Basic elements: $2 ∈ E$
 - Recursive step: if $m,n ∈ E$, then $m±n ∈ E$
 - To prove an element belongs to a set defined recursively
   - prove by construction, i.e.

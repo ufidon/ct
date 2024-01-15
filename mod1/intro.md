@@ -117,6 +117,10 @@ The power operation on languages
   - also called *Kleene closure*
 - $\displaystyle L^+ = L^1∪L^2∪⋯ = ∪_{k=1}^∞L^k$
   - the *plus operation* is also called *positive closure*
+- ⚠️ Special case:
+  - $Φ$ denotes a language contains no words
+    - i.e. empty language
+    - $Φ^*$ and $Φ^+$ are meaningless
 
 
 💡 Demo

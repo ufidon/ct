@@ -30,6 +30,7 @@ __Tentative topics__
 - [CS 390: Introduction to computation theory](https://www.cs.odu.edu/~zeil/cs390)
 - [CS 341  Automata Theory](https://www.cs.utexas.edu/~ear/cs341/)
 - [CS 162 - Formal Languages and Automata Theory](https://ics.uci.edu/~goodrich/teach/cs162/)
+- [CS 4810 Introduction to the Theory of Computing](https://www.cs.cornell.edu/courses/cs4810/2022sp/)
 - [15-453 Formal Languages, Automata, and Computation](https://www.cs.cmu.edu/~fp/courses/flac/)
 - ---
 - [CS 344: Design and Analysis of Computer Algorithms sp21](https://people.cs.rutgers.edu/~sa1497/courses/cs344-s21/)

@@ -250,3 +250,6 @@ Complex REs
   - the number of a's and b's do not have to be the same
 - first several words
   - {ϵ, aa, bb, aaaa, aabb,abab, abba, baab, baba, bbaa,bbbb, aaaaaa,aaaabb,aaabab, ⋯}
+
+# References
+- [regex simplifier](https://ivanzuzak.info/noam/webapps/regex_simplifier/)

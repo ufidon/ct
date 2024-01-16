@@ -36,7 +36,7 @@ Regular expression (re) of a language
 ---
 1. Are these re equivalent?
    - $\mathbf{aa^*, a^*a, aa^*a^*, a^*aa^*, a^+a^*, a^*a^+,a^*a^*a^*aa^*, a^+a^*a^*a^+}$
-     - ans: yes. all define the language $a^+$
+     - ans: yes. all define the language $a^+$ except $\mathbf{a^+a^*a^*a^+}$ defines all words of at least two a's
 2. Given languages defined by each of the res $\mathbf{xy^*x, x^*y^*, (xy)^*, x^*y^*x^*}$,
    1. Describe each language in plain English
    2. List the shortest 5 words of each language
@@ -133,11 +133,12 @@ Represent the  language of all words that have at least one `a` and at least one
 - wrong: $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*}$
   - (any words)(a)(any words)(b)(any words)
   - how about word `ba`, `bbbaaa`, etc.?
-- $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+(a+b)^*b(a+b)^*a(a+b)^*}$, or
-- $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+bb^*aa^*}$
-- extension: all words do not contain both an a and a b in them are
-  - (all a's) + (all b's) + ϵ
-  - so, $\mathbf{(a+b)^* = (a+b)^*a(a+b)^*b(a+b)^*+bb^*aa^* + a^*+b^*}$
+- right: $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+(a+b)^*b(a+b)^*a(a+b)^*}$, or
+  - $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+bb^*aa^*}$
+
+Extension: all words do not contain both an a and a b in them are
+- (all a's) + (all b's) + ϵ
+- so, $\mathbf{(a+b)^* = (a+b)^*a(a+b)^*b(a+b)^*+bb^*aa^* + a^*+b^*}$
 
 
 ❓ Questions

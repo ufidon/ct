@@ -273,10 +273,8 @@ Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
   - all words contains even number of a's, they may disperse in the word anywhere
     - $\mathbf{(b^*ab^*ab^*)^+}$
   - all words contains odd number of a's in one group, this group may appear anywhere in the word
-    - $\mathbf{(b^*(a+aaa+aaaaa+⋯)b^*)^+}$
+    - $\mathbf{b^*(a+aaa+aaaaa+⋯)b^*}$
     - =$\mathbf{b^*a^{2n+1}b^*}, n∈\mathcal{N}$
-  - all words contains odd number of a's in any number of group, these group may appear anywhere in the word
-    - $\mathbf{(b^+a^{2n+1}b^+)^+}, n∈\mathcal{N}$
 
 
 RE laws

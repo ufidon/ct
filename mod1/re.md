@@ -185,6 +185,30 @@ The regular language $L(\mathbf{r})$ associated with RE $\mathbf{r}$ over alphab
 - ⚠️ There are languages can NOT be defined by RE
 
 
+Review *,+ and ?
+---
+Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$:
+
+- $\displaystyle L^* = L^0∪L^1∪L^2∪⋯ = ∪_{k=0}^∞L^k$ in REs
+  - $\displaystyle \mathcal{R}(L^0)=\mathbf{ϵ}$
+  - $\displaystyle \mathcal{R}(L^1)=\mathcal{R}(L)=\mathbf{w_1+w_2+⋯+w_n}$
+  - $\displaystyle \mathcal{R}(L^2)=\mathbf{(w_1+w_2+⋯+w_n)(w_1+w_2+⋯+w_n)=(w_1+w_2+⋯+w_n)^2}$
+  - $\displaystyle \mathcal{R}(L^n)=\mathcal{R}(L)=\mathbf{(w_1+w_2+⋯+w_n)^n}$
+  - $\displaystyle \mathcal{R}(L^*)=\mathbf{Σ_{i=0}^∞}\mathcal{R}(L^n)=\mathbf{Σ_{i=0}^∞(w_1+w_2+⋯+w_n)^n}$
+- $\displaystyle \mathcal{R}(L^+)=\mathbf{Σ_{i=1}^∞}\mathcal{R}(L^n)=\mathbf{Σ_{i=1}^∞(w_1+w_2+⋯+w_n)^n}$
+  - $\displaystyle \mathcal{R}(L^*)=\mathcal{R}(L^+)+\mathcal{R}(L^0)=\mathcal{R}(L^+)+\mathbf{ϵ}$
+  - $\displaystyle \mathcal{R}(L^?)=\mathcal{R}(L^1)+\mathcal{R}(L^0)=\mathcal{R}(L)+\mathbf{ϵ}$
+- $\displaystyle Σ^* = Σ^0∪Σ^1∪Σ^2∪⋯ = ∪_{k=0}^∞Σ^k$ in REs
+  - $\displaystyle \mathcal{R}(Σ^0)=\mathbf{ϵ}$
+  - $\displaystyle \mathcal{R}(Σ^1)=\mathcal{R}(Σ)=\mathbf{a_1+a_2+⋯+a_n}$
+  - $\displaystyle \mathcal{R}(Σ^2)=\mathbf{(a_1+a_2+⋯+a_n)(a_1+a_2+⋯+a_n)=(a_1+a_2+⋯+a_n)^2}$
+  - $\displaystyle \mathcal{R}(Σ^n)=\mathcal{R}(Σ)=\mathbf{(a_1+a_2+⋯+a_n)^n}$
+  - $\displaystyle \mathcal{R}(Σ^*)=\mathbf{Σ_{i=0}^∞}\mathcal{R}(Σ^n)=\mathbf{Σ_{i=0}^∞(a_1+a_2+⋯+a_n)^n}$
+- $\displaystyle \mathcal{R}(Σ^+)=\mathbf{Σ_{i=1}^∞}\mathcal{R}(Σ^n)=\mathbf{Σ_{i=1}^∞(a_1+a_2+⋯+a_n)^n}$
+  - $\displaystyle \mathcal{R}(Σ^*)=\mathcal{R}(Σ^+)+\mathcal{R}(Σ^0)=\mathcal{R}(Σ^+)+\mathbf{ϵ}$
+  - $\displaystyle \mathcal{R}(Σ^?)=\mathcal{R}(Σ^1)+\mathcal{R}(Σ^0)=\mathcal{R}(Σ)+\mathbf{ϵ}$
+
+
 RE laws
 ---
 - Two REs are equivalent if their regular languages are equal

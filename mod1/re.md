@@ -269,7 +269,7 @@ Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
   - all words end with a double such as aa, bb
     - $\mathbf{(a+b)^*aa+(a+b)^*bb=(a+b)^*(aa+bb)}$
   - all words do not begin with a double
-    - $\mathbf{(ab+ba)(a+b)^*}$
+    - $\mathbf{(ab+ba)(a+b)^*+a+b+ϵ}$
   - all words contains even number of a's, they may disperse in the word anywhere
     - $\mathbf{(b^*ab^*ab^*)^+}$
   - all words contains odd number of a's in one group, this group may appear anywhere in the word

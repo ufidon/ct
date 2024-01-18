@@ -193,7 +193,7 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
   - $\displaystyle \mathcal{R}(L^0)=\mathbf{ϵ}$
   - $\displaystyle \mathcal{R}(L^1)=\mathcal{R}(L)=\mathbf{w_1+w_2+⋯+w_n}$
   - $\displaystyle \mathcal{R}(L^2)=\mathbf{(w_1+w_2+⋯+w_n)(w_1+w_2+⋯+w_n)=(w_1+w_2+⋯+w_n)^2}$
-  - $\displaystyle \mathcal{R}(L^n)=\mathcal{R}(L)=\mathbf{(w_1+w_2+⋯+w_n)^n}$
+  - $\displaystyle \mathcal{R}(L^n)=\mathbf{(w_1+w_2+⋯+w_n)^n}$
   - $\displaystyle \mathcal{R}(L^*)=\mathbf{Σ_{i=0}^∞}\mathcal{R}(L^n)=\mathbf{Σ_{i=0}^∞(w_1+w_2+⋯+w_n)^n}$
 - $\displaystyle \mathcal{R}(L^+)=\mathbf{Σ_{i=1}^∞}\mathcal{R}(L^n)=\mathbf{Σ_{i=1}^∞(w_1+w_2+⋯+w_n)^n}$
   - $\displaystyle \mathcal{R}(L^*)=\mathcal{R}(L^+)+\mathcal{R}(L^0)=\mathcal{R}(L^+)+\mathbf{ϵ}$
@@ -202,7 +202,7 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
   - $\displaystyle \mathcal{R}(Σ^0)=\mathbf{ϵ}$
   - $\displaystyle \mathcal{R}(Σ^1)=\mathcal{R}(Σ)=\mathbf{a_1+a_2+⋯+a_n}$
   - $\displaystyle \mathcal{R}(Σ^2)=\mathbf{(a_1+a_2+⋯+a_n)(a_1+a_2+⋯+a_n)=(a_1+a_2+⋯+a_n)^2}$
-  - $\displaystyle \mathcal{R}(Σ^n)=\mathcal{R}(Σ)=\mathbf{(a_1+a_2+⋯+a_n)^n}$
+  - $\displaystyle \mathcal{R}(Σ^n)=\mathbf{(a_1+a_2+⋯+a_n)^n}$
   - $\displaystyle \mathcal{R}(Σ^*)=\mathbf{Σ_{i=0}^∞}\mathcal{R}(Σ^n)=\mathbf{Σ_{i=0}^∞(a_1+a_2+⋯+a_n)^n}$
 - $\displaystyle \mathcal{R}(Σ^+)=\mathbf{Σ_{i=1}^∞}\mathcal{R}(Σ^n)=\mathbf{Σ_{i=1}^∞(a_1+a_2+⋯+a_n)^n}$
   - $\displaystyle \mathcal{R}(Σ^*)=\mathcal{R}(Σ^+)+\mathcal{R}(Σ^0)=\mathcal{R}(Σ^+)+\mathbf{ϵ}$

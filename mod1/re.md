@@ -285,7 +285,7 @@ RE laws
 
 | law | equation |
 |:--:|:--:|
-| simple | $\mathbf{r+Φ = r}$<br>$\mathbf{r+r=r}$<br>$\mathbf{ϵr=rϵ=r}$<br>$\mathbf{Φr=rΦ=Φ}$<br>$\mathbf{rr^*=r^*r=r^+}$<br>$\mathbf{ϵ+r^+=r^*}$ <br> $\underbrace{\mathbf{rr⋯r}}_{n\mathbf{r}'s}=\mathbf{r^n}$ <br>$\mathbf{r^0=ϵ}$ <br> $\mathbf{(r^*)^*=r^*r^*=r^*}$ |
+| basic | $\mathbf{r+Φ = r}$<br>$\mathbf{r+r=r}$<br>$\mathbf{ϵr=rϵ=r}$<br>$\mathbf{Φr=rΦ=Φ}$<br>$\mathbf{rr^*=r^*r=r^+}$<br>$\mathbf{ϵ+r^+=r^*}$ <br> $\underbrace{\mathbf{rr⋯r}}_{n\mathbf{r}'s}=\mathbf{r^n}$ <br>$\mathbf{r^0=ϵ}$ <br> $\mathbf{(r^*)^*=r^*r^*=r^*}$ |
 | communication | $\mathbf{r_1+r_2=r_2+r_1}$ |
 | association | $\mathbf{r_1+(r_2+r_3)=(r_1+r_2)+r_3}$<br>$\mathbf{r_1(r_2r_3)=(r_1r_2)r_3}$ |
 | distribution | $\mathbf{r_1(r_2+r_3)=r_1r_2+r_1r_3}$<br>$\mathbf{(r_1+r_2)r_3=r_1r_3+r_2r_3}$ |

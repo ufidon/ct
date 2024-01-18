@@ -185,7 +185,7 @@ The regular language $L(\mathbf{r})$ associated with RE $\mathbf{r}$ over alphab
 - ⚠️ There are languages can NOT be defined by RE
 
 
-Review *,+ and ?
+Rewrite *,+ and ? in REs
 ---
 Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$:
 
@@ -207,6 +207,76 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
 - $\displaystyle \mathcal{R}(Σ^+)=\mathbf{Σ_{i=1}^∞}\mathcal{R}(Σ^n)=\mathbf{Σ_{i=1}^∞(a_1+a_2+⋯+a_n)^n}$
   - $\displaystyle \mathcal{R}(Σ^*)=\mathcal{R}(Σ^+)+\mathcal{R}(Σ^0)=\mathcal{R}(Σ^+)+\mathbf{ϵ}$
   - $\displaystyle \mathcal{R}(Σ^?)=\mathcal{R}(Σ^1)+\mathcal{R}(Σ^0)=\mathcal{R}(Σ)+\mathbf{ϵ}$
+
+
+💡 Demo
+---
+- Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
+  - denote the total number of words of length $l$ as $N_l$
+    - $N_l = |Σ|^l$
+  - the words of length 0 ($N_0=2^0=1$): 
+    - $\displaystyle \mathcal{R}(Σ^0)=\mathbf{(a+b)^0=ϵ}$
+  - the words of length 1 ($N_0=2^1=2$):
+    - $\displaystyle \mathcal{R}(Σ^1)=\mathbf{(a+b)^1=a+b}$
+  - the words of length 2 ($N_0=2^2=4$):
+    - $\displaystyle \mathcal{R}(Σ^2)=\mathbf{(a+b)^2=aa+ab+ba+bb}$
+  - the words of length 3 ($N_0=2^3=8$):
+    - $\displaystyle \mathcal{R}(Σ^3)=\mathbf{(a+b)^3=aaa+aab+aba+abb+baa+bab+bba+bbb}$
+  - all words over $Σ$
+    - $\displaystyle \mathcal{R}(Σ^*)=\mathbf{(a+b)^*}$
+      - =$\mathbf{(a+b)^0+(a+b)^1+(a+b)^2+(a+b)^3+⋯+(a+b)^n+⋯+(a+b)^∞}$
+      - = $\mathbf{ϵ+a+b+aa+ab+ba+bb+aaa+⋯}$
+  - all words contains at least one a or one b
+    - $\displaystyle \mathcal{R}(Σ^+)=\mathbf{(a+b)^+=a+b+aa+ab+ba+bb+aaa+⋯}$
+  - all words of one a or one b or nothing
+    - $\displaystyle \mathcal{R}(Σ^?)=\mathbf{(a+b)^0+(a+b)^1=ϵ+a+b}$
+  - all words of even length
+    - $\displaystyle \mathcal{R}(Σ^{2n})=\mathbf{(a+b)^{2n}}, n∈\mathcal{N}$
+  - all words of odd length
+    - $\displaystyle \mathcal{R}(Σ^{2n+1})=\mathbf{(a+b)^{2n+1}}, n∈\mathcal{N}$
+
+
+📝 Practice
+---
+- Given alphabet $Σ=\{a\}$, write the following language (word pattern) in RE:
+  - denote the total number of words of length $l$ as $N_l$
+    - $N_l = |Σ|^l$
+  - the words of length 0 ($N_0=1^0=1$): 
+    - $\displaystyle \mathcal{R}(Σ^0)=\mathbf{a^0=ϵ}$
+  - the words of length 1 ($N_0=1^1=1$):
+    - $\displaystyle \mathcal{R}(Σ^1)=\mathbf{a^1=a}$
+  - the words of length 2 ($N_0=1^2=1$):
+    - $\displaystyle \mathcal{R}(Σ^2)=\mathbf{a^2=aa}$
+  - the words of length 3 ($N_0=1^3=1$):
+    - $\displaystyle \mathcal{R}(Σ^3)=\mathbf{a^3=aaa}$
+  - all words over $Σ$
+    - $\displaystyle \mathcal{R}(Σ^*)=\mathbf{a^*}$
+      - =$\mathbf{a^0+a^1+a^2+a^3+⋯+a^n+⋯+a^∞}$
+      - = $\mathbf{ϵ+a+aa+aaa+⋯}$
+    - $\displaystyle \mathcal{R}(Σ^+)=\mathbf{a^+=a+aa+aaa+⋯}$
+    - $\displaystyle \mathcal{R}(Σ^?)=\mathbf{a^0+a^1=ϵ+a}$
+  - all words of even length
+    - $\displaystyle \mathcal{R}(Σ^{2n})=\mathbf{a^{2n}}, n∈\mathcal{N}$
+  - all words of odd length
+    - $\displaystyle \mathcal{R}(Σ^{2n+1})=\mathbf{a^{2n+1}}, n∈\mathcal{N}$
+
+
+💡 Demo
+---
+Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
+  - all words begin with two a's
+    - $\mathbf{aa(a+b)^*}$
+  - all words end with a double such as aa, bb
+    - $\mathbf{(a+b)^*aa+(a+b)^*bb=(a+b)^*(aa+bb)}$
+  - all words do not begin with a double
+    - $\mathbf{(ab+ba)(a+b)^*}$
+  - all words contains even number of a's, they may disperse in the word anywhere
+    - $\mathbf{(b^*ab^*ab^*)^+}$
+  - all words contains odd number of a's in one group, this group may appear anywhere in the word
+    - $\mathbf{(b^*(a+aaa+aaaaa+⋯)b^*)^+}$
+    - =$\mathbf{b^*a^{2n+1}b^*}, n∈\mathcal{N}$
+  - all words contains odd number of a's in any number of group, these group may appear anywhere in the word
+    - $\mathbf{(b^+a^{2n+1}b^+)^+}, n∈\mathcal{N}$
 
 
 RE laws

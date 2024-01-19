@@ -13,7 +13,7 @@ Introduction
 
 🍎 Demo
 ---
-Run the FA with input strings `a, aa, aaa, aaaa` over $Σ=\{a\}$ separately:
+Run the FA with input strings `a, aa, aaa, aaaa` over $Σ=\lbrace a \rbrace$ separately:
 ```mermaid
 flowchart LR
   q0(("-"))
@@ -63,7 +63,7 @@ Related terms
 
 💡 Demo
 ---
-Let $Σ=\{a,b\}, Q=\{x,y,z\}$, and $δ:Q×Σ→Q$ be defined in the table below
+Let $Σ=\lbrace a,b\rbrace, Q=\lbrace x,y,z\rbrace$, and $δ:Q×Σ→Q$ be defined in the table below
 
 | input | a | b |
 |:---:|:---:|:---:|
@@ -138,7 +138,7 @@ flowchart LR
   q0-->|"a,b"|q0
 ```
 
-- all words over alphabet $Σ=\{a,b\}$ with even number of letter
+- all words over alphabet $Σ=\lbrace a,b\rbrace$ with even number of letter
 
 ```mermaid
 flowchart LR

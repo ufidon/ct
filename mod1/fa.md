@@ -13,7 +13,7 @@ Introduction
 
 🍎 Demo
 ---
-Run the FA with input strings `a, aa, aaa, aaaa` over $Σ={\{a\}}$ separately:
+Run the FA with input strings `a, aa, aaa, aaaa` over $Σ=\{a\}$ separately:
 ```mermaid
 flowchart LR
   q0(("-"))

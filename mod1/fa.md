@@ -455,21 +455,23 @@ flowchart LR
   q2((2))
   q3((3))
   q4((4))
-
   q1-->|b|q2
   q1-->|a|q3
-  q2-->|a|q4
   q2-->|b|q1
+  q2-->|a|q4  
   q3-->|a|q1
   q3-->|b|q4
   q4-->|a|q2
-  q4-->|b|q3
+  q4-->|b|q3  
 ```
 - EVEN-EVEN: all words with  an even number of a's as well as an even number of b's
   - all words with an even number of b's will stop at state 1 and 3
-  - all words with an even number of a's will stop at state 2 and 4
-  - All words that end in state 3 have an even number of b's but an odd number of a's
+  - all words with an even number of a's will stop at state 1 and 2
+  - All words that end in state 1 have an even number of a's but an even number of b's
+  - All words that end in state 2 have an even number of a's but an odd number of b's
+  - All words that end in state 3 have an odd number of a's but an even number of b's
   - All words that end in state 4 have an odd number of a's and an odd number of b's
+- $\mathbf{(aa+bb+(ab+ba)(aa+bb)^*(ab+ba))^*}$
 
 
 Build a FA that can locate an English word or substring

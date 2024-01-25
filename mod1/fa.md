@@ -298,6 +298,7 @@ flowchart LR
   q2-->|b|d
   q3-->|b|d
   q4-->|"a,b"|d
+  d-->|"a,b"|d
 ```
 - L={baa}
 

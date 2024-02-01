@@ -73,6 +73,7 @@ Let $Σ=\lbrace a,b\rbrace, Q=\lbrace x,y,z\rbrace$, and $δ:Q×Σ→Q$ be defin
 
 The transition function can be represented with the *transition graphs* below in three conventions:
 
+- convention 1
 ```mermaid
 flowchart LR
   q0(("x-"))
@@ -85,7 +86,7 @@ flowchart LR
   q1-->|b|q2
   q2-->|"a,b"|q2
 ```
-
+- convention 2
 ```mermaid
 flowchart LR
   q0(("x"))
@@ -99,7 +100,7 @@ flowchart LR
   q1-->|b|q2
   q2-->|"a,b"|q2
 ```
-
+- convention 3
 ```mermaid
 flowchart LR
   q0(("-"))
@@ -130,6 +131,7 @@ flowchart LR
   q1-->|"a,b"|q1
 ```
 
+- ---
 - $\mathbf{(a+b)^*}$
   - `±` means the state is both initial and final
 ```mermaid
@@ -137,7 +139,7 @@ flowchart LR
   q0(("±"))
   q0-->|"a,b"|q0
 ```
-
+- ---
 - all words over alphabet $Σ=\lbrace a,b\rbrace$ with even number of letter
 
 ```mermaid
@@ -148,7 +150,7 @@ flowchart LR
   q0-->|"a,b"|q1  
   q1-->|"a,b"|q0
 ```
-
+- ---
 - $\mathbf{a(a+b)^*}$
 
 ```mermaid
@@ -162,7 +164,7 @@ flowchart LR
   q0-->|a|q2
   q2-->|"a,b"|q2
 ```
-- or with two states
+- or with two final states
 
 ```mermaid
 flowchart LR
@@ -197,7 +199,7 @@ flowchart LR
   q4-->|a|q3
   q4-->|b|q2
 ```
-
+- ---
 -  L = {`aaa`, `bbb`}
   - ⚠️ any finite languages can be built similarly
 
@@ -219,7 +221,7 @@ flowchart LR
   f-->|"a,b"|d
   d-->|"a,b"|d
 ```
-
+- ---
 - all words containing a triple letter, either `aaa` or `bbb`
 
 ```mermaid
@@ -268,6 +270,7 @@ flowchart LR
 - strings have a double letter in them
   - $\mathbf{(a+b)^*(aa+bb)(a+b)^*}$
 
+- ---
 - FA2
 ```mermaid
 flowchart LR
@@ -285,6 +288,7 @@ flowchart LR
   - $\mathbf{(aab+abb+bab+bbb)(a+b)^*}$, or
   - $\mathbf{(a+b)^2b(a+b)^*}$
 
+- ---
 - FA3
 ```mermaid
 flowchart LR
@@ -302,6 +306,7 @@ flowchart LR
 ```
 - L={baa}
 
+- ---
 - FA4
 ```mermaid
 flowchart LR
@@ -323,6 +328,7 @@ flowchart LR
 ```
 - L={baa,ab}
 
+- ---
 - FA5
 ```mermaid
 flowchart LR
@@ -356,7 +362,7 @@ flowchart LR
   q3-->|a|q3
   q3-->|b|q1
 ```
-
+- ---
 - FA6
 ```mermaid
 flowchart LR
@@ -368,6 +374,7 @@ flowchart LR
 ```
 - L = {ϵ}
 
+- ---
 - FA7
 ```mermaid
 flowchart LR
@@ -382,6 +389,7 @@ flowchart LR
 - $\mathbf{(a+b)^*a}$
   - has no ϵ
 
+- ---
 - FA8
 ```mermaid
 flowchart LR
@@ -396,6 +404,7 @@ flowchart LR
 - all words not end in b
   - $\mathbf{(a+b)^*a+ϵ}$
 
+- ---
 - FA9
 ```mermaid
 flowchart LR
@@ -410,6 +419,7 @@ flowchart LR
 - all words with an odd number of a 's
   - $\mathbf{b^*ab^*(ab^*ab^*)^*}$
 
+- ---
 - FA10
 ```mermaid
 flowchart LR
@@ -426,6 +436,7 @@ flowchart LR
 - all words with a double a in them somewhere
   - $\mathbf{(a + b)^*aa(a + b)^*}$
 
+- ---
 - FA11
 ```mermaid
 flowchart LR
@@ -449,6 +460,7 @@ flowchart LR
 - all words that have different first and last letters
   - $\mathbf{a(a + b)^*b+b(a + b)^*a}$
 
+- ---
 - FA12
 ```mermaid
 flowchart LR

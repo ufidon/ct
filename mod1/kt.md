@@ -427,7 +427,7 @@ Proof of Part ❸
 ---
 - $∀L: L\coloneqq RE → L\coloneqq FA$
 - Prove by recursive definition of RE and constructive algorithm for FA side by side
-- RE is recursively generated from the seeds letters from an alphabet Σ and the empty string ϵ by  addition, concatenation, and closure
+- RE is recursively generated from the seeds such as letters from an alphabet Σ and the empty string ϵ by  addition, concatenation, and closure
   - σ is an arbitrary letter in Σ
 
 
@@ -451,4 +451,172 @@ q1-->|"σ1"|e
 q1-->|"all σ except σ1"|d
 d-->|"all σ"|d
 e-->|"all σ"|d
+```
+
+Step ➁: Concatenate FAs
+---
+- FA1 accepts L(r1), FA2 accepts L(r2), then there is a FA3 accepts L(r1+r2). Let's denote this as FA3 = FA1+FA2.
+
+
+🍎 Example
+---
+Given FA1 and FA2, build FA3 = FA1+FA2.
+- FA1: all words with a double a in them somewhere
+```mermaid
+flowchart LR
+  q1(("-x1"))
+  q2(("x2"))
+  q3(("+x3"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+
+- FA2: EVEN-EVEN
+```mermaid
+flowchart LR
+  q1(("±y1"))
+  q2((y2))
+  q3((y3))
+  q4((y4))
+  q1-->|b|q2
+  q1-->|a|q3
+  q2-->|b|q1
+  q2-->|a|q4  
+  q3-->|a|q1
+  q3-->|b|q4
+  q4-->|a|q2
+  q4-->|b|q3  
+```
+
+- Transition table of FA1
+
+| state\input | a | b |
+|:---:|:---:|:---:|
+| -x1  | x2 | x1 |
+| x2 | x3 | x1 |
+| +x3 | x3 | x3 |
+
+- Transition table of FA2
+
+| state\input | a | b |
+|:---:|:---:|:---:|
+| ±y1 | y3 | y2 |
+|  y2 | y4 | y1 |
+| y3 | y1 | y4 |
+| y4 | y2 | y3 |
+
+- FA3 tracks the transition on both FA1 and FA2, each state in FA3 will combine the states from FA1 and FA2 based on their transitions
+  - $z_{start}=x_{start} \text{ or } y_{start}$
+  - $z_{next}$ after letter σ = ($x_{next}$ after letter σ) or ($y_{next}$ after letter σ) 
+  - +z contains at least one final state from FA1 or FA2
+
+- Transition table of FA3
+
+| FA3 | FA1+FA2 | a | b |
+|:---:|:---:|:---:|:---:|
+| ±z1 | -x1 or ±y1 | z2 | z3 |
+| z2  | x2 or y3 | z4 | z5 |
+| z3  | -x1 or y2 | z6 | z1 |
+| +z4 | +x3 or ±y1 | z7 | z8 |
+| z5  | -x1 or y4 | z9 | z10 |
+| z6  | x2 or y4 | z8 | z10 |
+| +z7 | +x3 or y3 | z4 | z11 |
+| +z8 | +x3 or y2 | z11 | z4 |
+| z9  | x2 or y2 | z11 | z1 |
+| z10 | -x1 or y3 | z12 | z5 |
+| +z11| +x3 or y4 | z8 | z7 |
+| +z12| x2 or ±y1 | z7 | z3 |
+
+
+📝 Practice
+---
+P1: Find the FA3 = FA1 + FA2
+
+- FA1: 
+```mermaid
+flowchart LR
+  q1(("-x1"))
+  q2(("x2"))
+  q3(("+x3"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+- FA2:
+```mermaid
+flowchart LR
+  q1(("-y1"))
+  q2(("+y2"))
+
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+- FA3:
+  - -z1 = x1 or y1
+  - z2 = x2 or y1
+  - z3+ = x1 or y2+
+  - z4+ = x3+ or y1
+  - z5+ = x3+ or y2+
+```mermaid
+flowchart LR
+  z1(("z1-"))-->|a|z2(("z2"))
+  z1-->|b|z3(("z3+"))
+  z2-->|b|z3
+  z3-->|a|z2
+  z3-->|b|z3
+  z2-->|a|z4(("z4+"))
+  z4-->|a|z4
+  z4-->|b|z5(("z5+"))
+  z5-->|b|z5
+  z5-->|a|z4
+```
+- ---
+P2: Find the FA3 = FA1 + FA2
+
+- FA1:  all words that end in a
+```mermaid
+flowchart LR
+  q2(("x1-"))
+  q1(("x2+"))
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+
+- FA2: all words with an odd number of letters
+```mermaid
+flowchart LR
+  q1(("-y1"))
+  q2(("+y2"))
+  q1-->|"a,b"|q2
+  q2-->|"a,b"|q1
+```
+
+- FA3:  all words that either have
+an odd number of letters or end in a
+
+```mermaid
+flowchart LR
+  q11(("z1-=<br>x1- or y1-"))
+  q22(("z2+=<br>x2+ or y2+"))
+  q12(("z3+=<br>x1- or y2+"))
+  q21(("z4+=<br>x2+ or y1-"))
+  q11-->|a|q22
+  q22-->|b|q11
+  q11-->|b|q12
+  q12-->|b|q11
+  q12-->|a|q21
+  q21-->|b|q12
+  q21-->|a|q22
+  q22-->|a|q21
 ```

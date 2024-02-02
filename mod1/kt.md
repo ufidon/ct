@@ -427,7 +427,7 @@ Proof of Part ❸
 ---
 - $∀L: L\coloneqq RE → L\coloneqq FA$
 - Prove by recursive definition of RE and constructive algorithm for FA side by side
-- RE is recursively generated from the seeds such as letters from an alphabet Σ and the empty string ϵ by  addition, concatenation, and closure
+- RE is recursively generated from the seeds such as letters from an alphabet Σ and the empty string ϵ by  __addition, concatenation, and closure__
   - σ is an arbitrary letter in Σ
 
 
@@ -453,7 +453,7 @@ d-->|"all σ"|d
 e-->|"all σ"|d
 ```
 
-Step ➁: Concatenate FAs
+Step ➁: Unite FAs
 ---
 - FA1 accepts L(r1), FA2 accepts L(r2), then there is a FA3 accepts L(r1+r2). Let's denote this as FA3 = FA1+FA2.
 
@@ -620,3 +620,346 @@ flowchart LR
   q21-->|a|q22
   q22-->|a|q21
 ```
+
+- ---
+P3: Find the FA3 = FA1 + FA2
+- Let's solve it in two methods
+  - ⓵ build new states of FA3 as needed
+  - ⓶ build all FA3 states beforehand
+
+- FA1:  all words that end in a
+```mermaid
+flowchart LR
+  q2(("x1-"))
+  q1(("x2+"))
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+
+- FA2: all words that end in b
+```mermaid
+flowchart LR
+  q1(("-y1"))
+  q2(("+y2"))
+  q1-->|"b"|q2
+  q1-->|a|q1
+  q2-->|"a"|q1
+  q2-->|b|q2
+```
+
+- FA3:   all words ending in a or b, that is, all words except ϵ
+  - ⓵ a new state in FA3 is built when it's needed
+
+```mermaid
+flowchart LR
+  q11(("z1-=<br>x1- or y1-"))
+  q12(("z2+=<br>x1- or y2+"))
+  q21(("z3+=<br>x2+ or y1-"))
+  q11-->|b|q12
+  q12-->|b|q12
+  q11-->|a|q21
+  q21-->|a|q21
+  q12-->|a|q21
+  q21-->|b|q12
+```
+- ---
+- ⓶ All the states in FA3 can also be built beforehand as the Cartesian product of all FA1 states and all FA2 states
+  - create all the transitions
+  - remove all unreachable states and their edges
+    - such as state z4
+
+```mermaid
+flowchart LR
+  q11(("z1-=<br>x1- or y1-"))
+  q12(("z2+=<br>x1- or y2+"))
+  q21(("z3+=<br>x2+ or y1-"))
+  q22(("z4+=<br>x2+ or y2+"))
+  q11-->|b|q12
+  q12-->|b|q12
+  q11-->|a|q21
+  q21-->|a|q21
+  q12-->|a|q21
+  q21-->|b|q12
+  q22-->|a|q21
+  q22-->|b|q12
+```
+
+Step ③: Concatenate FAs
+---
+- FA1 accepts L(r1), FA2 accepts L(r2), then there is a FA3 accepts L(r1r2). Let's denote this as FA3 = FA1FA2.
+
+
+💡 Demo
+---
+What could go wrong?
+
+Given FA1: all words with b as the second letter
+```mermaid
+flowchart LR
+  q1(("q1-"))
+  q2(("q2"))
+  q3(("q3+"))
+  q4(("q4"))
+
+  q1-->|"a,b"|q2
+  q2-->|b|q3
+  q3-->|"a,b"|q3
+  q2-->|a|q4
+  q4-->|"a,b"|q4
+```
+and FA2: all words that have an odd number of a's
+```mermaid
+flowchart LR
+  q1(("-"))
+  q2(("+"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+
+- An intuitive but wrong construction of FA3=FA1FA2:
+  - suppose we can jump somehow from q3+ to x1-
+```mermaid
+flowchart LR
+  q1(("q1-"))
+  q2(("q2"))
+  q3(("q3+"))
+  q4(("q4"))
+
+  q1-->|"a,b"|q2
+  q2-->|b|q3
+  q3-->|"a,b"|q3
+  q2-->|a|q4
+  q4-->|"a,b"|q4
+
+  q3-->|"↷"|qs1
+
+  qs1(("x1-"))
+  qs2(("x2+"))
+
+  qs1-->|b|qs1
+  qs1-->|a|qs2
+  qs2-->|b|qs2
+  qs2-->|a|qs1  
+```
+
+- Run the strings below on FA3
+- ababbaa = (ab)(abbaa)
+  - (ab) ∈ FA1, (abbaa) ∈ FA2
+  - ∴ (ab)(abbaa)=ababbaa ∈ FA3
+  - (ab) on FA1 stops at q3
+  - then jump to x1 to run (abbaa)
+  - and it is accepted
+- ababbab = (abab)(bab)
+  - (abab) ∈ FA1, (bab) ∈ FA2
+  - ∴ (abab)(bab)=ababbab ∈ FA3
+  - (ab) on FA1 stops at q3, 
+  - if now we jump to FA2, (abbab) will be rejected
+  - if we run (abab) on FA1, then (bab) will be accepted on FA2
+- However, an FA must be deterministic without operator's choice.
+
+
+💡 Demo
+---
+Another idea.
+
+Given FA1: 
+
+- all words with a double a in them somewhere
+- $\mathbf{(a + b)^*aa(a + b)^*}$
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3+"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+
+and FA2:
+- all words end in b
+  - $\mathbf{(a+b)^*b}$
+```mermaid
+flowchart LR
+  q1(("y1-"))
+  q2(("y2+"))
+
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+
+FA3:
+- z1- = x1-
+- z2 = x2
+- z3 = x3+ or y1-
+- z4+ = x3+ or y1- or y2+
+```mermaid
+flowchart LR
+  q1(("z1-"))
+  q2(("z2"))
+  q3(("z3"))
+  q4(("z4+"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a"|q3
+  q3-->|b|q4
+  q4-->|a|q3
+  q4-->|b|q4
+```
+
+Algorithm for constructing FA_3 = FA1FA2
+---
+- make a z-state for every nonfinal x-state in FA1 before hitting its final states
+- for every FA1 final state, a z-state of is created = this FA1 final state or y1- in FA2, then trace the running of the remain string from there, so a z-state is
+  - in one and only one x-somestate or a set of y-somestates
+- the accepted string must stop at a FA2 final state
+  - so a z-final state must contain a y-final state
+
+
+📝 Practice
+---
+Given FA1 and FA2 below, find FA3=FA1FA2
+
+- FA1: all words that start with b
+- all words start with b
+  - $\mathbf{b(a+b)^*}$
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|"a,b"|q2
+  q3-->|"a,b"|q3
+```
+
+- FA2: all words that end with b
+- all words end in b
+  - $\mathbf{(a+b)^*b}$
+```mermaid
+flowchart LR
+  q1(("y1-"))
+  q2(("y2+"))
+
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|b|q2
+  q2-->|a|q1
+```
+- FA3 = FA1FA2: all words begin with b and end with b
+  - z1 = x1-
+  - z2 = x2
+  - z3 = x3 or y1
+  - z4 = x3 or y1 or y2
+
+```mermaid
+flowchart LR
+  q1(("z1-"))
+  q2(("z2"))
+  q3(("z3"))
+  q4(("z4+"))
+
+  q1-->|b|q3
+  q1-->|a|q2
+  q2-->|"a,b"|q2
+  q3-->|"a"|q3
+  q3-->|b|q4
+  q4-->|a|q3
+  q4-->|b|q4
+```
+
+- FA3' = FA2FA1: all words with a double b in them
+- z1- = y1-
+- z2 = y2 or x1-
+- z3 = y1- or x2
+- z4 = y2+ or x1- or x3+
+- z5 = y2+ or x1- or x2
+- z6 = y1- or x2 or x3+
+- z7 = y2 or x1- or x2 or x3+
+ 
+```mermaid
+flowchart LR
+  q1(("z1-"))
+  q2(("z2"))
+  q3(("z3"))
+  q4(("z4+"))
+  q5(("z5"))
+  q6(("z6+"))
+  q7(("z7+"))
+
+  q1-->|b|q2
+  q1-->|a|q1
+  q2-->|"b"|q4
+  q2-->|a|q3
+  q3-->|"a"|q3
+  q3-->|b|q5
+  q5-->|a|q3
+  q5-->|b|q7
+  q4-->|a|q6
+  q4-->|b|q4
+  q6-->|b|q7
+  q6-->|a|q6
+  q7-->|a|q6
+  q7-->|b|q7
+```
+
+📝 Practice
+---
+Given FA1 and FA2 below, find FA3=FA1FA2
+
+- FA1: all words that do not contain the substring aa.
+
+```mermaid
+flowchart LR
+  q1(("x1±"))
+  q2(("x2+"))
+  q3(("x3"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+- FA2:  all words with an odd number of letters
+```mermaid
+flowchart LR
+  q1(("y1-"))
+  q2(("y2+"))
+  q1-->|"a,b"|q2
+  q2-->|"a,b"|q1
+```
+- FA3 = FA1FA2:  all words but ϵ
+```mermaid
+flowchart LR
+  q1(("x1±"))
+  q2(("x2+"))
+  q3(("x3"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|b|q1
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+
+
+Step ④: Star-close FAs
+---
+- FA1 accepts L(r), then there is a FA2 accepts L(r*). Let's denote this as FA2 = FA1*.

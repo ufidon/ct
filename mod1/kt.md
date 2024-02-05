@@ -946,20 +946,399 @@ flowchart LR
   q2-->|"a,b"|q1
 ```
 - FA3 = FA1FA2:  all words but ϵ
+  - if  a word w has an odd number of letters, factor it as (ϵ)(w)
+    - ϵ ∈ FA1, w ∈ FA2
+  - if w has an even (>0) number of letters, factor its as (first letter)(the rest)
+    - first letter ∈ FA1, the rest ∈ FA2
 ```mermaid
 flowchart LR
-  q1(("x1±"))
-  q2(("x2+"))
-  q3(("x3"))
+  q1(("z1-=<br>x1 or y1"))
+  q2(("z2+=<br>x2 or y1 or y2"))
+  q3(("z3+=<br>x1 or y1 or y2"))
+  q4(("z4+=<br>x3 or y1 or y2"))
 
-  q1-->|b|q1
   q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
+  q1-->|b|q3
+  q2-->|a|q4
+  q2-->|b|q3
+  q3-->|"a"|q2
+  q3-->|"b"|q3
+  q4-->|"a,b"|q4
 ```
-
 
 Step ④: Star-close FAs
 ---
 - FA1 accepts L(r), then there is a FA2 accepts L(r*). Let's denote this as FA2 = FA1*.
+  - ϵ ∈ r*, so FA2 must have a ㊏ state
+
+🍎 Example
+---
+❶ Given the language L defined by $\mathbf{r=a^*+aa^*b}$ is all strings of only a ' s and the strings of some (not 0) a 's ending in a single b, FA1 below accepts L:
+
+```mermaid
+flowchart LR
+  q1(("x1±"))
+  q2(("x2+"))
+  q3(("x3+"))
+  q4(("x4"))
+
+  q1-->|a|q2
+  q1-->|b|q4
+  q2-->|a|q2
+  q2-->|b|q3
+  q3-->|"a,b"|q4
+  q4-->|"a,b"|q4
+```
+
+- Build FA2 accepts $\mathbf{r^*=(a^*+aa^*b)^*}$:
+  - z1± = x1±
+  - z2 = x4
+  - z3+ = x1± or x2+
+  - z4+ = x1± or x3+ or x4
+  - z5+ = x1± or x2+ or x4
+  - key point 1: each time we reach a final state it is possible that we have to
+start over again at x1
+
+```mermaid
+flowchart LR
+  q1(("z1±=<br>x1±"))
+  q2(("z2=<br>x4"))
+  q3(("z3+=<br>x1± or x2+"))
+  q4(("z4=<br>x1± or x3+ or x4"))
+  q5(("z5+=<br>x1± or x2+ or x4"))
+
+  q1-->|a|q3
+  q1-->|b|q2
+  q3-->|a|q3
+  q3-->|b|q4
+  q2-->|"a,b"|q2
+  q4-->|b|q2
+  q4-->|a|q5
+  q5-->|a|q5
+  q5-->|b|q4
+```
+- ---
+
+❷ Find the FA* for the below FA that accepts all strings that end in a 
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|a|q2
+  q2-->|b|q1
+```
+
+- build the FA*
+
+```mermaid
+flowchart LR
+  q0(("z1±"))
+  q1(("z2=<br>x1-"))
+  q2(("z3+=<br>x1- or x2+"))
+
+  q0-->|b|q1
+  q0-->|a|q2
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|a|q2
+  q2-->|b|q1
+```
+
+- key point 2: always begin the FA *-machine with a special ± start state that exists in addition to all the states that are subsets of x's
+  - This start state should have exit­ ing a- and b-edges going to the same x's that the old start state did
+  - but has no incoming edges at all
+
+__Algorithm: build FA*__
+
+Given an FA whose states are x1, x2, ... , the FA* can be built as follows:
+1. Create a state for every subset of x's. Cancel any subset that contains a final x-state, but does not contain the start state
+2. For all the remaining nonempty states, draw an a-edge and a b-edge to the col­lection of x-states reachable in FA from the component x's by a- and b-edges, respectively
+3. Call the null subset a ± state and connect it to whatever states the original start state is connected to by a- and b-edges, even possibly the start state itself
+4. Finally, put + signs in every state containing an x-component that is a final state of FA
+
+---
+
+🍎 Example
+---
+Given an RE: $\mathbf{r=aa^*bb^*}$ that defines the language of all words where all the a's (of which there is at least one) come before all the b's (of which there is at least one).
+
+One FA1 that accepts this language is
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|a|q2
+  q2-->|b|q4
+  q3-->|"a,b"|q3
+  q4-->|a|q3
+  q4-->|b|q4
+```
+
+Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ intuitively,
+- z1- = x1-
+- z2 = x2
+- z3 = x3
+- z4+ = x1- or x4+
+
+```mermaid
+flowchart LR
+  q1(("z1-=<br>x1-"))
+  q2(("z2=<br>x2"))
+  q3(("z3=<br>x3"))
+  q4(("z4+=<br>x1- or x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|a|q2
+  q2-->|b|q4
+  q3-->|"a,b"|q3
+  q4-->|a|q2
+  q4-->|b|q4
+```
+- but this FA1* does NOT accept ϵ
+
+Build an FA1* following the algorithm, two more states are needed
+- z5 = x2 or x3
+- z6 = x1 or x3 or x4
+
+```mermaid
+flowchart LR
+  q1(("z1-=<br>x1-"))
+  q2(("z2=<br>x2"))
+  q3(("z3=<br>x3"))
+  q4(("z4+=<br>x1- or x4+"))
+  q5(("z5=<br>x2 or x3"))
+  q6(("z6+=<br>x1- or x3 or x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|a|q2
+  q2-->|b|q4
+  q3-->|"a,b"|q3
+  q4-->|a|q5
+  q4-->|b|q6
+  q5-->|a|q5
+  q5-->|b|q6
+  q6-->|a|q5
+  q6-->|b|q6
+```
+- but again this FA1* does NOT accept ϵ
+
+To fix the problem of not accepting ϵ, z1 is changed to be ±
+- requirement:  the state x1 on FA1 can never be reentered
+```mermaid
+flowchart LR
+  q1(("z1±=<br>x1-"))
+  q2(("z2=<br>x2"))
+  q3(("z3=<br>x3"))
+  q4(("z4+=<br>x1- or x4+"))
+  q5(("z5=<br>x2 or x3"))
+  q6(("z6+=<br>x1- or x3 or x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|a|q2
+  q2-->|b|q4
+  q3-->|"a,b"|q3
+  q4-->|a|q5
+  q4-->|b|q6
+  q5-->|a|q5
+  q5-->|b|q6
+  q6-->|a|q5
+  q6-->|b|q6
+```
+
+- ---
+For an FA accepting ϵ and its x1 is re-enterable, to build its FA*, two separate start states are needed,
+- One of them will be x1 and a final state, 
+- whereas the other will be x1 and a nonfinal state
+
+🍎 Example
+---
+Given FA1 that accepts the language of all words with an odd number of b's
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+
+  q1-->|a|q1
+  q1-->|b|q2
+  q2-->|a|q2
+  q2-->|b|q1
+```
+
+Build FA1*, which accepts all words but not words of only a's
+- z1± = x1- and a final state
+- z2 = x1- and a nonfinal state
+- z3+ = x1- or x2+
+
+```mermaid
+flowchart LR
+  q1(("z1±=<br>x1-"))
+  q2(("z2=<br>x1-"))
+  q3(("z3+=<br>x1- or x2+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|a|q2
+  q2-->|b|q3
+  q3-->|"a,b"|q3
+```
+
+Nondeterministic finite automaton (NFA)
+---
+- a TG with a unique start state
+  - each of its edge labels is a single alphabet letter
+- the regular deterministic finite automata are referred as DFAs
+- A NFA can also be considered as an FA that 
+  - allows arbitrarily many a- and b-edges coming out of each state
+  - and it accepts a string if there exists a path to +
+
+🍎 Example
+---
+Three NFAs,
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3+"))
+
+  q1-->|"a,b"|q1
+  q1-->|a|q2
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+```
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3+"))
+  q4(("x4"))
+
+  q1-->|"a"|q2
+  q1-->|b|q4
+  q2-->|a|q3
+  q2-->|"a,b"|q2
+  q4-->|"a,b"|q4
+  q4-->|b|q3
+```
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+  q3(("x3"))
+  q4(("x4"))
+  q5(("x5+"))
+
+  q1-->|"a"|q2
+  q1-->|a|q3
+  q1-->|a|q4
+  q4-->|a|q5
+```
+
+🍎 Example
+---
+One possible use of the NFA is to eliminate all loop states in a given FA:
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+  q3(("x3"))
+  q4(("x4"))
+  q5(("x5+"))
+  q6(("x6"))
+  q7(("x7"))
+
+  q1-->q4
+  q2-->q4
+  q3-->q4
+  q4-->|a|q4
+  q4-->q5
+  q4-->q6
+  q4-->q7
+```
+- after the loop is removed
+  - the new state introduced indicates the looping occurred
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+  q3(("x3"))
+  q4(("x4"))
+  q4p(("x4'"))
+  q5(("x5+"))
+  q6(("x6"))
+  q7(("x7"))
+
+  q1-->q4
+  q2-->q4
+  q3-->q4
+  q4-->|a|q4p
+  q4p-->|a|q4
+  q4-->q5
+  q4-->q6
+  q4-->q7
+  q4p-->q5
+  q4p-->q6
+  q4p-->q7  
+```
+
+
+🍎 Example
+---
+- An NFA accepts all words with a double a followed by a double b
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4"))
+  q5(("x5+"))
+
+  q1-->|"a,b"|q1
+  q1-->|a|q2
+  q2-->|a|q3
+  q3-->|"a,b"|q3
+  q3-->|b|q4
+  q4-->|b|q5
+  q5-->|"a,b"|q5
+```
+- ambiguity: a double a followed by a double b can occur at state 1, 3, 5 as well
+
+A more strict language: all words begin with a double a followed by a double b:
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4"))
+  q5(("x5+"))
+  p1(("y1"))
+  p2(("y2"))
+
+  q1-->|a|q2
+  q1-->|"b"|p1
+  q2-->|a|q3
+  q2-->|b|p1
+  p1-->|a|q2
+  p1-->|b|p2
+  q3-->|"a,b"|q3
+  q3-->|b|q4
+  q4-->|b|q5
+  q5-->|"a,b"|q5
+```

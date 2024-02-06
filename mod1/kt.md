@@ -430,7 +430,7 @@ Proof of Part ❸
 - $∀L: L\coloneqq RE → L\coloneqq FA$
 - Prove by recursive definition of RE and constructive algorithm for FA side by side
 - RE is recursively generated from the seeds such as letters from an alphabet Σ and the empty string ϵ by  __addition, concatenation, and closure__
-  - σ is an arbitrary letter in Σ
+  - Let's denote σ,σi as an arbitrary letter in Σ
 
 
 Step ➀: Build FAs for the seeds
@@ -443,7 +443,7 @@ d(("☠️"))
 q1-->|"all σ"|d
 d-->|"all σ"|d
 ```
-- A FA accepts only the specified letter σ1∈Σ 
+- A FA accepts only one specified letter σ1∈Σ 
 ```mermaid
 flowchart LR
 q1(("q1-"))
@@ -532,6 +532,10 @@ flowchart LR
 | z10 | -x1 or y3 | z12 | z5 |
 | +z11| +x3 or y4 | z8 | z7 |
 | +z12| x2 or ±y1 | z7 | z3 |
+
+- If a string traces through this machine and ends up at a final state, it means that it would also
+  - end at a final state either on machine FA1 or on machine FA2 
+  - Also, any string accepted by ei­ther FA1 or FA2 will be accepted by this FA3
 
 
 📝 Practice
@@ -695,7 +699,7 @@ Step ③: Concatenate FAs
 
 💡 Demo
 ---
-What could go wrong?
+What could go wrong? 
 
 Given FA1: all words with b as the second letter
 ```mermaid
@@ -805,7 +809,11 @@ FA3:
 - z1- = x1-
 - z2 = x2
 - z3 = x3+ or y1-
+  - *Every time we hit a final state on FA1,*
+    - *we jump onto the start states of FA2 to get ready to process the remained string*
+    - from this point, the remained string is running on both FAs
 - z4+ = x3+ or y1- or y2+
+  - *pay attention to the y1- again*
 ```mermaid
 flowchart LR
   q1(("z1-"))
@@ -826,7 +834,7 @@ flowchart LR
 Algorithm for constructing FA_3 = FA1FA2
 ---
 - make a z-state for every nonfinal x-state in FA1 before hitting its final states
-- for every FA1 final state, a z-state of is created = this FA1 final state or y1- in FA2, then trace the running of the remain string from there, so a z-state is
+- for every hitting FA1 final state, a z-state of is created = this FA1 final state or y1- in FA2, then trace the running of the remain string from there on both FAs, so a z-state is
   - in one and only one x-somestate or a set of y-somestates
 - the accepted string must stop at a FA2 final state
   - so a z-final state must contain a y-final state
@@ -837,7 +845,6 @@ Algorithm for constructing FA_3 = FA1FA2
 Given FA1 and FA2 below, find FA3=FA1FA2
 
 - FA1: all words that start with b
-- all words start with b
   - $\mathbf{b(a+b)^*}$
 ```mermaid
 flowchart LR
@@ -852,7 +859,6 @@ flowchart LR
 ```
 
 - FA2: all words that end with b
-- all words end in b
   - $\mathbf{(a+b)^*b}$
 ```mermaid
 flowchart LR

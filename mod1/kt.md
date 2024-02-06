@@ -3,7 +3,6 @@ __Kleen's Theorem__
 _ict chapter 7_
 
 
-
 Theorem: Equal capability of RE,FA and TG
 ---
 Any language that can be defined by
@@ -14,8 +13,11 @@ Any language that can be defined by
 can be defined by all three methods.
 
 $∀L: L \coloneqq FA → L \coloneqq TG → L \coloneqq RE → L\coloneqq FA$
+- `:=` denotes `defined by`
 
+Since they are sets of words,
 
+$(FA⊆TG⊆RE⊆FA) ≡ (FA=TG=RE)$
 
 Proof
 ---
@@ -42,7 +44,7 @@ Proof of Part ❷:
   - work for every conceivable TG
   - complete in a finite number of steps
 - steps 
-  - ➀ Simplify 
+  - ➀ collect the start and final states into one state for each by ε-edges
     - the start states to be one state without incoming edges and 
     - the final states to be one unique final state without outgoing edges
   - ➁ parallel edges are union-ed
@@ -89,7 +91,7 @@ f1-->|ϵ|f(("+"))
 f2-->|ϵ|f(("+"))
 ```
 - ---
-- Simplify combined state and final states
+- Simplify combined start and final states
 ```mermaid
 flowchart LR
 q1(("1"))-->|r1|f1(("±"))
@@ -1342,3 +1344,264 @@ flowchart LR
   q4-->|b|q5
   q5-->|"a,b"|q5
 ```
+
+䷀ Theorem
+---
+For every NFA, there is some FA that accepts exactly the same language.
+
+
+Proof 1:
+---
+- convert the NFA into an RE by state bypass operations
+- construct an FA that accepts the same language as the regular expression
+
+
+Proof 2:
+---
+- Construct an FA from the NFA
+- use the method of constructing an FA* from an FA in Kleene's theorem
+  - the states in the target FA are collections of states from the NFA
+  - The start state of the target FA is the same start state of the NFA
+  - transitions in the FA follow those in the NFA
+  - unspecified transitions lead to the null collection Φ —— the dead state
+
+🍎 Examples
+---
+- ➀ convert the NFA below
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|b|q4
+  q3-->|a|q4
+```
+- to an FA
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+  d((Φ))
+
+  q1-->|a|q2
+  q1-->|b|q3
+  q2-->|b|q4
+  q3-->|a|q4
+  q2-->|a|d
+  q3-->|b|d
+  q4-->|"a,b"|d
+  d-->|"a,b"|d
+```
+
+- ---
+
+- ➁ convert the NFA below
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+
+  q1-->|b|q2
+  q2-->|b|q3
+  q2-->|b|q4
+  q3-->|b|q4
+```
+- to an FA
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3 or x4+"))
+  q4(("x4+"))
+  d((Φ))
+
+  q1-->|b|q2
+  q2-->|b|q3
+  q3-->|b|q4
+  q1-->|a|d
+  q2-->|a|d
+  q3-->|a|d
+  q4-->|a|d  
+  d-->|"a,b"|d
+```
+
+- ---
+
+- ➂ convert the NFA below
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3+"))
+
+  q1-->|b|q2
+  q1-->|"a,b"|q1
+  q2-->|b|q3
+  q3-->|b|q4
+  q3-->|"a,b"|q3
+```
+- to an FA
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(["x1 or x2"])
+  q3(["x2 or x3+<br>+"])
+
+  q1-->|b|q2
+  q1-->|a|q1
+  q2-->|b|q3
+  q2-->|a|q1
+  q3-->|"a,b"|q3
+```
+
+- ---
+
+- ➃ convert the NFA below
+
+```mermaid
+flowchart LR
+  q1(("1-"))
+  q2(("2"))
+  q3(("3"))
+  q4(("4+"))
+  q5(("5"))
+  q6(("6"))
+
+  q1-->|a|q2
+  q1-->|"a,b"|q1
+  q1-->|b|q5
+  q2-->|a|q3
+  q3-->|a|q4
+  q4-->|"a,b"|q4
+  q5-->|b|q6
+  q6-->|b|q4
+```
+- to an FA
+
+```mermaid
+flowchart LR
+  q1(("1-"))
+  q2(["1 or 2"])
+  q3(["1 or 2 or 3"])
+  q4(["1 or 2 or 3<br>+"])
+  q5(["1 or 5"])
+  q6(["1 or 3 or 6"])
+  q7(["1 or 4<br>+"])
+
+  q1-->|a|q2
+  q1-->|b|q5
+  q2-->|a|q3
+  q2-->|b|q5
+  q3-->|a|q4
+  q3-->|b|q5
+  q4-->|"a,b"|q4
+  q5-->|a|q2
+  q5-->|b|q6
+  q6-->|a|q2
+  q6-->|b|q7
+  q7-->|"a,b"|q7
+```
+
+NFAs and Kleene's theorem Part ❸
+---
+The proofs that FA1+FA2, FA1FA2, and FA1* are all equivalent to other FAs can be done differently by employing NFAs in the process. Once done, convert the result NFAs to FAs.
+
+
+Step ➀: Build NFAs for the seeds
+---
+- A NFA accepts only the empty string ϵ 
+```mermaid
+flowchart LR
+q1(("q1±"))
+```
+- A NFA accepts only the specified letter σ∈Σ 
+```mermaid
+flowchart LR
+q1(("-"))
+e(("+"))
+q1-->|"σ1"|e
+```
+
+Step ➁: Unite NFAs
+---
+- NFA1 accepts L(r1), NFA2 accepts L(r2), then there is a NFA3 accepts L(r1+r2). Let's denote this as NFA3 = NFA1+NFA2.
+  -  Introduce a new and unique start state with two outgoing a-edges and two out­going b-edges but no incoming edges. Connect them to the states that the start states of FA1 and FA2 are already connected to. Do not eliminate the start states of FA1 and FA2 , but erase their - signs, leaving all their edges intact. The new machine is an NFA that clearly accepts exactly language(FA1 ) + lan­guage(FA2)
+  - convert the NFA into an FA
+
+💡 Demo
+---
+Given FA1 and FA2 below,
+
+- FA1
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q4
+  q2-->|b|q2
+  q2-->|a|q3
+  q3-->|a|q4
+  q3-->|b|q2
+  q4-->|b|q4
+  q4-->|a|q1
+```
+- FA2
+```mermaid
+flowchart LR
+  p1(("y1-"))
+  p2(("y2+"))
+
+  p1-->|a|p1
+  p1-->|b|p2
+  p2-->|"a,b"|p2
+```
+
+Construct a NFA = FA1+FA2,
+```mermaid
+flowchart LR
+  q1(("x1"))
+  q2(("x2"))
+  q3(("x3"))
+  q4(("x4+"))
+
+  q1-->|a|q2
+  q1-->|b|q4
+  q2-->|b|q2
+  q2-->|a|q3
+  q3-->|a|q4
+  q3-->|b|q2
+  q4-->|b|q4
+  q4-->|a|q1
+
+  p1(("y1"))
+  p2(("y2+"))
+
+  p1-->|a|p1
+  p1-->|b|p2
+  p2-->|"a,b"|p2
+
+  s(("-"))-->|a|p1
+  s-->|b|p2
+  s-->|a|q2
+  s-->|b|q4
+```
+
+---
+Step ➂ ➃ can be done similarly.

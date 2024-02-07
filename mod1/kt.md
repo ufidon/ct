@@ -1211,9 +1211,25 @@ flowchart LR
   q3-->|"a,b"|q3
 ```
 
+- To make an FA2 that does not accept ϵ, we can concatenate the FA1 accepts ϵ to this FA2.
+
+🎆 Summary
+---
+- Let's denote FA(r) as the FA that accepts the language defined by RE r, we can build an FA recursively for any given RE which can be disassembled recursively,
+  - seeds: FA($\boldsymbol{ϵ}$), FA($\boldsymbol{σ}$)
+  - generators: FA($\mathbf{r_1+r_2}$), FA($\mathbf{r_1r_2}$), FA($\mathbf{r^*}$), 
+
+🍎 Example
+---
+Build FA($\mathbf{(ab)^*a(ab + a^*)^*}$) top-down then bottom-up
+- FA($\mathbf{(ab)^*a(ab + a^*)^*}$) = FA1($\mathbf{(ab)^*a}$)FA2($\mathbf{(ab + a^*)^*}$)
+- FA2($\mathbf{(ab + a^*)^*}$) = FA3($\mathbf{(ab + a^*)}$)*
+- etc.
+
+
 Nondeterministic finite automaton (NFA)
 ---
-- a TG with a unique start state
+- A NFA is a TG with a unique start state
   - each of its edge labels is a single alphabet letter
 - the regular deterministic finite automata are referred as DFAs
 - A NFA can also be considered as an FA that 
@@ -1288,7 +1304,7 @@ flowchart LR
   q4-->q7
 ```
 - after the loop is removed
-  - the new state introduced indicates the looping occurred
+  - the new state x4' introduced indicates the looping occurred
 ```mermaid
 flowchart LR
   q1(("x1-"))
@@ -1365,6 +1381,7 @@ For every NFA, there is some FA that accepts exactly the same language.
 
 Proof 1:
 ---
+Use RE as the intermediary between NFA and FA,
 - convert the NFA into an RE by state bypass operations
 - construct an FA that accepts the same language as the regular expression
 
@@ -1416,7 +1433,7 @@ flowchart LR
 
 - ---
 
-- ➁ convert the NFA below
+- ➁ convert the NFA that accepts the language {bb,bbb}  below
 
 ```mermaid
 flowchart LR
@@ -1452,7 +1469,7 @@ flowchart LR
 
 - ---
 
-- ➂ convert the NFA below
+- ➂ convert the NFA that accepts all inputs with a bb in them below
 
 ```mermaid
 flowchart LR
@@ -1463,7 +1480,6 @@ flowchart LR
   q1-->|b|q2
   q1-->|"a,b"|q1
   q2-->|b|q3
-  q3-->|b|q4
   q3-->|"a,b"|q3
 ```
 - to an FA
@@ -1482,7 +1498,7 @@ flowchart LR
 
 - ---
 
-- ➃ convert the NFA below
+- ➃ convert the NFA that accepts all inputs with a triple letter below
 
 ```mermaid
 flowchart LR
@@ -1551,7 +1567,10 @@ q1-->|"σ1"|e
 Step ➁: Unite NFAs
 ---
 - NFA1 accepts L(r1), NFA2 accepts L(r2), then there is a NFA3 accepts L(r1+r2). Let's denote this as NFA3 = NFA1+NFA2.
-  -  Introduce a new and unique start state with two outgoing a-edges and two out­going b-edges but no incoming edges. Connect them to the states that the start states of FA1 and FA2 are already connected to. Do not eliminate the start states of FA1 and FA2 , but erase their - signs, leaving all their edges intact. The new machine is an NFA that clearly accepts exactly language(FA1 ) + lan­guage(FA2)
+  -  Introduce a new and unique start state with two outgoing a-edges and two out­going b-edges but no incoming edges. 
+     -  Connect them to the states that the start states of FA1 and FA2 are already connected to. 
+     -  Do not eliminate the start states of FA1 and FA2 , but erase their - signs, leaving all their edges intact. 
+     -  The new machine is an NFA that clearly accepts exactly language(FA1 ) + lan­guage(FA2)
   - convert the NFA into an FA
 
 💡 Demo

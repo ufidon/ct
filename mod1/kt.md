@@ -54,7 +54,7 @@ Proof of Part ❷:
 
 Step ➀: uniquefy start and final states
 ---
-- Simplify the start states to be one start states *without incoming edges*
+- Simplify the start states to be one start state *without incoming edges*
 ```mermaid
 flowchart LR
 s1((1-))-->|r1|q2((" "))-->f(("+"))
@@ -810,7 +810,7 @@ FA3:
 - z2 = x2
 - z3 = x3+ or y1-
   - *Every time we hit a final state on FA1,*
-    - *we jump onto the start states of FA2 to get ready to process the remained string*
+    - *we jump onto the start state of FA2 to get ready to process the remained string*
     - from this point, the remained string is running on both FAs
 - z4+ = x3+ or y1- or y2+
   - *pay attention to the y1- again*
@@ -831,7 +831,7 @@ flowchart LR
   q4-->|b|q4
 ```
 
-Algorithm for constructing FA_3 = FA1FA2
+Algorithm for constructing FA3 = FA1FA2
 ---
 - make a z-state for every nonfinal x-state in FA1 before hitting its final states
 - for every hitting FA1 final state, a z-state of is created = this FA1 final state or y1- in FA2, then trace the running of the remain string from there on both FAs, so a z-state is
@@ -891,6 +891,7 @@ flowchart LR
   q4-->|a|q3
   q4-->|b|q4
 ```
+- ---
 
 - FA3' = FA2FA1: all words with a double b in them
 - z1- = y1-
@@ -977,7 +978,7 @@ flowchart LR
 Step ④: Star-close FAs
 ---
 - FA1 accepts L(r), then there is a FA2 accepts L(r*). Let's denote this as FA2 = FA1*.
-  - ϵ ∈ r*, so FA2 must have a ㊏ state
+  - ∵ ϵ ∈ r*, ∴ FA2 must have a ㊏ state
 
 🍎 Example
 ---
@@ -1002,6 +1003,10 @@ flowchart LR
   - z1± = x1±
   - z2 = x4
   - z3+ = x1± or x2+
+    - Note: same idea as in concatenation here
+    - Every time hitting a final sate, we jump to x1 to get ready for processing the remain string
+    - from then on, the remain string traces on the final state and x1
+    - follow this pattern recursively
   - z4+ = x1± or x3+ or x4
   - z5+ = x1± or x2+ or x4
   - key point 1: each time we reach a final state it is possible that we have to
@@ -1059,6 +1064,7 @@ flowchart LR
 - key point 2: always begin the FA *-machine with a special ± start state that exists in addition to all the states that are subsets of x's
   - This start state should have exit­ ing a- and b-edges going to the same x's that the old start state did
   - but has no incoming edges at all
+  -  The old start state, say, it was x 1 , still appears in the new machine but not as a start state, just once as itself alone and many times in combination with other x's
 
 __Algorithm: build FA*__
 
@@ -1144,6 +1150,7 @@ flowchart LR
 
 To fix the problem of not accepting ϵ, z1 is changed to be ±
 - requirement:  the state x1 on FA1 can never be reentered
+  - i.e. no edges go into x1
 ```mermaid
 flowchart LR
   q1(("z1±=<br>x1-"))

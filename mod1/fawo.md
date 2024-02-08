@@ -222,6 +222,8 @@ Prove by construction
   - just remove the output character if there is no incoming edges
   - leave the outgoing edges along, they will be relabeled by their destination states
 
+🍎 Example 1
+---
 Given a Mo,
 ```mermaid
 flowchart LR
@@ -255,13 +257,261 @@ q2-->|"a/1"|q0
 q2-->|"b/1"|q3
 ```
 
+🍎 Example 2
+---
+Given a Mo,
+```mermaid
+flowchart LR
+s((" "))-->q0(["-q0/0"])
+q1(["q1/1"])
+q2(["q2/0"])
+q3(["q3/1"])
+q0-->|a|q1
+q0-->|b|q2
+q1-->|a|q3
+q1-->|b|q2
+q3-->|"a,b"|q3
+q2-->|a|q2
+q2-->|b|q3
+```
+Construct the equivalent Me,
+```mermaid
+flowchart LR
+s((" "))-->q0(["-q0"])
+q1(["q1"])
+q2(["q2"])
+q3(["q3"])
+q0-->|"a/1"|q1
+q0-->|"b/0"|q2
+q1-->|"a/1"|q3
+q1-->|"b/0"|q2
+q3-->|"a/1,b/1"|q3
+q2-->|"a/0"|q2
+q2-->|"b/1"|q3
+```
+- from Mo to Me, the number of states and number of edges do not change
 
 ---
 - ❶ Given Me, build an equivalent Mo
+  - three cases:
+
+① Multiple outputs on the incoming edges: Make copies of state the number of outputs to avoid conflict in the state
+```mermaid
+flowchart LR
+ia0((" "))
+ib0((" "))
+ib1((" "))
+oa1((" "))
+ob0((" "))
+q1(["q"])
+
+ia0-->|"a/0"|q1
+ib0-->|"b/0"|q1
+ib1-->|"b/1"|q1
+q1-->|"a/0"|oa1
+q1-->|"b/0"|ob0
+```
+Here are two types of inputs, separate the inputs into two groups, push the output into the state, and copy everything else
+
+```mermaid
+flowchart LR
+ia0((" "))
+ib0((" "))
+ib1((" "))
+oa1((" "))
+ob0((" "))
+q1(["q₁/0"])
+q2(["q₂/1"])
+
+ia0-->|"a"|q1
+ib0-->|"b"|q1
+q1-->|"a/0"|oa1
+q1-->|"b/0"|ob0
 
 
+ib1-->|"b"|q2
+q2-->|"a/0"|oa1
+q2-->|"b/0"|ob0
+```
 
 ---
+② single output on the incoming edges, just move the output into the state
+
+```mermaid
+flowchart LR
+ia0((" "))
+ib0((" "))
+ib20((" "))
+oa1((" "))
+ob0((" "))
+q1(["q"])
+
+ia0-->|"a/0"|q1
+ib0-->|"b/0"|q1
+ib20-->|"b/0"|q1
+q1-->|"a/1"|oa1
+q1-->|"b/0"|ob0
+```
+- →
+```mermaid
+flowchart LR
+ia0((" "))
+ib0((" "))
+ib20((" "))
+oa1((" "))
+ob0((" "))
+q1(["q/0"])
+
+ia0-->|"a"|q1
+ib0-->|"b"|q1
+ib20-->|"b"|q1
+q1-->|"a/1"|oa1
+q1-->|"b/0"|ob0
+```
+---
+③  a loop in Me may become two edges in Mo
+- one edge is a loop and the other is not
+
+```mermaid
+flowchart LR
+ia0((" "))
+ob0((" "))
+q1(["q"])
+
+ia0-->|"a/0"|q1
+q1-->|"b/1"|q1
+q1-->|"b/0"|ob0
+```
+- →
+```mermaid
+flowchart LR
+ia0((" "))
+ob0((" "))
+q1(["q₁/0"])
+q2(["q₂/1"])
+
+ia0-->|"a"|q1
+q1-->|"b"|q2
+q2-->|b|q2
+q1-->|"b/0"|ob0
+q2-->|"b/0"|ob0
+```
+
+
+④ If there is a state without incoming edges, then it can be assigned any printing instruc­tion, such as the start state
+
+Note:
+- the conversion of Me into Mo is not unique if we have to make copies of the start state in Me, the the Mo may have automatic start symbol 0 or 1
+  - we can designate whichever of the copies of the Me start state as Mo's start state
+- from Me to Mo, both the number of states and the number of edges could increase drastically
+---
+
+
+🍎 Example 3
+---
+Create a equivalent Mo for the Me below
+
+```mermaid
+flowchart LR
+q0(("-q0"))
+q1(("q1"))
+q2(("q2"))
+q3(("q3"))
+
+q0-->|"a/1"|q2
+q0-->|"b/0"|q3
+q1-->|"a/0"|q0
+q1-->|"b/1"|q1
+q2-->|"a/1"|q1
+q2-->|"b/0"|q2
+q3-->|"a/0"|q2
+q3-->|"b/1"|q0
+```
+- handle q0 incoming edges: →
+```mermaid
+flowchart LR
+q00(("-q0/0"))
+q01(("q0/1"))
+q1(("q1"))
+q2(("q2"))
+q3(("q3"))
+
+q00-->|"a/1"|q2
+q00-->|"b/0"|q3
+q01-->|"a/1"|q2
+q01-->|"b/0"|q3
+q1-->|"a"|q00
+q1-->|"b/1"|q1
+q2-->|"a/1"|q1
+q2-->|"b/0"|q2
+q3-->|"a/0"|q2
+q3-->|"b"|q01
+```
+- handle q1 incoming edges: →
+```mermaid
+flowchart LR
+q00(("-q0/0"))
+q01(("q0/1"))
+q1(("q1/1"))
+q2(("q2"))
+q3(("q3"))
+
+q00-->|"a/1"|q2
+q00-->|"b/0"|q3
+q01-->|"a/1"|q2
+q01-->|"b/0"|q3
+q1-->|"a"|q00
+q1-->|"b"|q1
+q2-->|"a"|q1
+q2-->|"b/0"|q2
+q3-->|"a/0"|q2
+q3-->|"b"|q01
+```
+- handle q3 incoming edges: →
+```mermaid
+flowchart LR
+q00(("-q0/0"))
+q01(("q0/1"))
+q1(("q1/1"))
+q2(("q2"))
+q3(("q3/0"))
+
+q00-->|"a/1"|q2
+q00-->|"b"|q3
+q01-->|"a/1"|q2
+q01-->|"b"|q3
+q1-->|"a"|q00
+q1-->|"b"|q1
+q2-->|"a"|q1
+q2-->|"b/0"|q2
+q3-->|"a/0"|q2
+q3-->|"b"|q01
+```
+- handle q2 incoming edges: →
+  - ⚠️ pay attention to its loop
+```mermaid
+flowchart LR
+q00(("-q0/0"))
+q01(("q0/1"))
+q1(("q1/1"))
+q20(("q2/0"))
+q21(("q2/1"))
+q3(("q3/0"))
+
+q00-->|"a"|q21
+q00-->|"b"|q3
+q01-->|"a"|q21
+q01-->|"b"|q3
+q1-->|"a"|q00
+q1-->|"b"|q1
+q20-->|"a"|q1
+q21-->|"a"|q1
+q21-->|"b"|q20
+q20-->|"b"|q20
+q3-->|"a"|q20
+q3-->|"b"|q01
+```
+
 
 Comparison of Automata
 ---

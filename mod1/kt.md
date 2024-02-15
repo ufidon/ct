@@ -1000,7 +1000,7 @@ flowchart LR
 ```
 
 - Build FA2 accepts $\mathbf{r^*=(a^*+aa^*b)^*}$:
-  - z1± = x1±
+  - `z1± = x1±` (**Case 1: x1 is a ± state**)
   - z2 = x4
   - z3+ = x1± or x2+
     - Note: same idea as in concatenation here
@@ -1009,7 +1009,7 @@ flowchart LR
     - follow this pattern recursively
   - z4+ = x1± or x3+ or x4
   - z5+ = x1± or x2+ or x4
-  - key point 1: each time we reach a final state it is possible that we have to
+  - **key point 1**: each time we reach a final state it is possible that we have to
 start over again at x1
 
 ```mermaid
@@ -1017,7 +1017,7 @@ flowchart LR
   q1(("z1±=<br>x1±"))
   q2(("z2=<br>x4"))
   q3(("z3+=<br>x1± or x2+"))
-  q4(("z4=<br>x1± or x3+ or x4"))
+  q4(("z4+=<br>x1± or x3+ or x4"))
   q5(("z5+=<br>x1± or x2+ or x4"))
 
   q1-->|a|q3
@@ -1030,48 +1030,14 @@ flowchart LR
   q5-->|a|q5
   q5-->|b|q4
 ```
-- ---
 
-❷ Find the FA* for the below FA that accepts all strings that end in a 
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
-
-- build the FA*
-
-```mermaid
-flowchart LR
-  q0(("z1±"))
-  q1(("z2=<br>x1-"))
-  q2(("z3+=<br>x1- or x2+"))
-
-  q0-->|b|q1
-  q0-->|a|q2
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
-
-- key point 2: always begin the FA *-machine with a special ± start state that exists in addition to all the states that are subsets of x's
-  - This start state should have exit­ ing a- and b-edges going to the same x's that the old start state did
-  - but has no incoming edges at all
-  -  The old start state, say, it was x 1 , still appears in the new machine but not as a start state, just once as itself alone and many times in combination with other x's
 
 __Algorithm: build FA*__
 
 Given an FA whose states are x1, x2, ... , the FA* can be built as follows:
-1. Create a state for every subset of x's. Cancel any subset that contains a final x-state, but does not contain the start state
-2. For all the remaining nonempty states, draw an a-edge and a b-edge to the col­lection of x-states reachable in FA from the component x's by a- and b-edges, respectively
-3. Call the null subset a ± state and connect it to whatever states the original start state is connected to by a- and b-edges, even possibly the start state itself
+1. Create a state for every subset of x's. Cancel any subset that contains a final x-state but does not contain the start state
+2. For all the remaining nonempty states, draw an a-edge and a b-edge to the col­lection of x-states reachable in FA from the component x's by a- and b-edges  respectively
+3. Call `the null subset a ± state` and connect it to whatever states the original start state is connected to by a- and b-edges, even possibly the start state itself
 4. Finally, put + signs in every state containing an x-component that is a final state of FA
 
 ---
@@ -1098,59 +1064,14 @@ flowchart LR
   q4-->|b|q4
 ```
 
-Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ intuitively,
-- z1- = x1-
+Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ ,
+- z1± = x1- (**case 2: the start state x1 has NO incoming edges**)
 - z2 = x2
 - z3 = x3
 - z4+ = x1- or x4+
-
-```mermaid
-flowchart LR
-  q1(("z1-=<br>x1-"))
-  q2(("z2=<br>x2"))
-  q3(("z3=<br>x3"))
-  q4(("z4+=<br>x1- or x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q2
-  q2-->|b|q4
-  q3-->|"a,b"|q3
-  q4-->|a|q2
-  q4-->|b|q4
-```
-- but this FA1* does NOT accept ϵ
-
-Build an FA1* following the algorithm, two more states are needed
 - z5 = x2 or x3
-- z6 = x1 or x3 or x4
+- z6+ = x1 or x3 or x4+
 
-```mermaid
-flowchart LR
-  q1(("z1-=<br>x1-"))
-  q2(("z2=<br>x2"))
-  q3(("z3=<br>x3"))
-  q4(("z4+=<br>x1- or x4+"))
-  q5(("z5=<br>x2 or x3"))
-  q6(("z6+=<br>x1- or x3 or x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q2
-  q2-->|b|q4
-  q3-->|"a,b"|q3
-  q4-->|a|q5
-  q4-->|b|q6
-  q5-->|a|q5
-  q5-->|b|q6
-  q6-->|a|q5
-  q6-->|b|q6
-```
-- but again this FA1* does NOT accept ϵ
-
-To fix the problem of not accepting ϵ, z1 is changed to be ±
-- requirement:  the state x1 on FA1 can never be reentered
-  - i.e. no edges go into x1
 ```mermaid
 flowchart LR
   q1(("z1±=<br>x1-"))
@@ -1174,7 +1095,7 @@ flowchart LR
 ```
 
 - ---
-For an FA accepting ϵ and its x1 is re-enterable, to build its FA*, two separate start states are needed,
+**Case 3: For an FA NOT accepting ϵ and its x1 has incoming edges**, to build its FA*, two separate start states are needed,
 - One of them will be x1 and a final state, 
 - whereas the other will be x1 and a nonfinal state
 
@@ -1211,7 +1132,41 @@ flowchart LR
   q3-->|"a,b"|q3
 ```
 
-- To make an FA2 that does not accept ϵ, we can concatenate the FA1 accepts ϵ to this FA2.
+- ---
+
+❷ Find the FA* for the below FA that accepts all strings that end in a 
+
+```mermaid
+flowchart LR
+  q1(("x1-"))
+  q2(("x2+"))
+
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|a|q2
+  q2-->|b|q1
+```
+
+- build the FA*
+
+```mermaid
+flowchart LR
+  q0(("z1±"))
+  q1(("z2=<br>x1-"))
+  q2(("z3+=<br>x1- or x2+"))
+
+  q0-->|b|q1
+  q0-->|a|q2
+  q1-->|b|q1
+  q1-->|a|q2
+  q2-->|a|q2
+  q2-->|b|q1
+```
+
+- **key point 2**: always begin the FA *-machine with a `special ± start state` that exists in addition to all the states that are subsets of x's
+  - This start state should have exit­ing a- and b-edges going to the same x's that the old start state did
+    - but has no incoming edges at all
+  - The old start state, say, it was x 1 , still appears in the new machine but not as a start state, `just once as itself alone` and many times in combination with other x's
 
 🎆 Summary
 ---
@@ -1636,4 +1591,5 @@ flowchart LR
 ```
 
 ---
-Step ➂ ➃ can be done similarly.
+- Optional
+  - For step ➂ ➃, refer to Q7 and Q9.

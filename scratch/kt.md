@@ -30,3 +30,12 @@ flowchart LR
   q2-->|a|q2
   q3-->|"a,b"|q3
 ```
+
+---
+FA1+FA2:
+
+| z | a |b |
+|:--:|:--:|:--:|
+|z1- = x1- or w1- | z2 = x2 or w2+ | z1- = x1- or w1- |
+| z2 = x2 or w2+ | z2 = x2 or w2+ | z3 = x3+ or w1- |
+| z3 = x3+ or w1- | 

@@ -24,12 +24,19 @@ Proof 2 by TGs
 ---
 - Let TG1 accept L1 and TG2 accept L2,
   - suppose or make TG1 and TG2 each have a unique start state and a unique separate final state
+```mermaid
+flowchart LR
+p1(("-"))-.-|TG1|p2(("+"))
+p1-.-p2
+q1(("-"))-.-|TG2|q2(("+"))
+q1-.-q2
+```
 
 - TS = TG1+TG2
 ```mermaid
 flowchart LR
-s(("-"))-->|ε|p1(("-"))
-s-->|ε|q1(("-"))
+s(("-"))-->|ε|p1((" "))
+s-->|ε|q1((" "))
 p1-.-|TG1|p2(("+"))
 p1-.-p2
 q1-.-|TG2|q2(("+"))
@@ -94,7 +101,7 @@ flowchart LR
 s(("-"))
 s-->|ε|p1
 s-->|ε|q1
-p1(("1-"))
+p1(("1"))
 p2(("2"))
 p3(("3+"))
 p4(("4"))
@@ -105,9 +112,9 @@ p2-->|a|p3
 p4-->|b|p3
 p4-->|"a,b"|p4
 
-q1(("1-"))
+q1(("1'"))
 q1-->|"a,b"|q1
-q2(("2+"))
+q2(("2'+"))
 q2-->|"a,b"|q2
 q1-->|"aba"|q2
 ```
@@ -127,9 +134,9 @@ p2-->|a|p3
 p4-->|b|p3
 p4-->|"a,b"|p4
 p3-->|ε|q1
-q1(("1"))
+q1(("1'"))
 q1-->|"a,b"|q1
-q2(("2+"))
+q2(("2'+"))
 q2-->|"a,b"|q2
 q1-->|"aba"|q2
 ```

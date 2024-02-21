@@ -37,7 +37,7 @@ FA1*
 |:--:|:--:|:--:|
 | z1± = w1+  | z3 = w2 or w1 | z2 = w1|
 | z2 = w1 | z3 = w2 or w1 | z2 = w1 |
-| z3 = w2 or w1 | z3 = w2 or w1 | z2 = w1 |
+| z3+ = w2+ or w1 | z3 = w2 or w1 | z2 = w1 |
 
 
 ---

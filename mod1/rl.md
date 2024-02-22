@@ -119,7 +119,7 @@ q2-->|"a,b"|q2
 q1-->|"aba"|q2
 ```
 ---
-- L1L2 in REs: $\mathbf{r1+r2 = [a(a+b)^*a+b(a+b)^*b] [(a+b)^*aba(a+b)^*]}$
+- L1L2 in REs: $\mathbf{r1r2 = [a(a+b)^*a+b(a+b)^*b] [(a+b)^*aba(a+b)^*]}$
 - in TG
 ```mermaid
 flowchart LR
@@ -141,7 +141,7 @@ q2-->|"a,b"|q2
 q1-->|"aba"|q2
 ```
 ---
-- L1* in REs: $\mathbf{r1+r2 = [a(a+b)^*a+b(a+b)^*b]^*}$
+- L1* in REs: $\mathbf{r1^* = [a(a+b)^*a+b(a+b)^*b]^*}$
 - in TG
 ```mermaid
 flowchart LR
@@ -172,7 +172,7 @@ Complements and intersections
     - L is RE → FA(L), 
     - flip FA's states —— final to non-final and non-final to final
       - ⚠️ - is flipped to be ±, ± is flipped to be -
-    - then, w ∈ FA → w ∉ FA' and w ∉ FA' → w ∈ FA, i.e. all words of L' are in FA'
+    - then, w ∉ FA → w ∈ FA' and w ∈ FA → w ∉ FA', i.e. all words of L' are in FA'
     - ∴ L' is also a regular language
 
 
@@ -329,9 +329,12 @@ q1-->|"ab*"|e
 ```
 - ∴ $\mathbf{r_2'=(b+ab^*a)^*(ab^*)}$
 - $\mathbf{r_1'+r_2'=(b+ab)^*(a+ϵ)+(b+ab^*a)^*(ab^*)}$
-
+- From which, its is challenging to build an FA = $\mathbf{(r_1'+r_2')'}$ 
+  - even though it can be done with Kleene's theorem
+  - and the state flipping technique above
 ---
 ❷ Find FA1'+FA2' without RE as the intermediary
+- from FA1' and FA2' below
 
 ```mermaid
 flowchart LR

@@ -398,12 +398,12 @@ q2-->|"b/0"|ob0
 ```
 
 
-④ If there is a state without incoming edges, then it can be assigned any printing instruc­tion, such as the start state
+④ If there is a state without incoming edges, then it can be assigned any printing instruc­tion
 
 Note:
-- the conversion of Me into Mo is not unique if we have to make copies of the start state in Me, the the Mo may have automatic start symbol 0 or 1
-  - we can designate whichever of the copies of the Me start state as Mo's start state
-- from Me to Mo, both the number of states and the number of edges could increase drastically
+- the conversion of Me into Mo is not unique if we have to make copies of the start state in Me, then the Mo may have automatic start symbol 0 or 1
+  - ∵ we can designate whichever of the copies of the Me start state as Mo's start state
+- from Me to Mo, both the number of states and the number of edges could increase drastically due to copies
 ---
 
 

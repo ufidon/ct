@@ -122,6 +122,32 @@ flowchart LR
 - ---
 ```mermaid
 flowchart LR
+  p1(("±"))
+  p1-->|"a,b"|p1
+```
+```mermaid
+flowchart LR
+  p1(("±"))
+  p2(("+"))
+  p1-->|a|p2
+  p1-->|b|p2
+  p2-->|"a,b"|p2
+```
+```mermaid
+flowchart LR
+  p1(("±"))
+  p2(("+"))
+  p3(("+"))
+  p1-->|a|p2
+  p1-->|b|p3
+  p2-->|"a,b"|p2
+  p3-->|"a,b"|p3
+```
+
+- all the three FAs accept all words
+- ---
+```mermaid
+flowchart LR
   m(("-"))
   p1((" "))
   p2((" "))

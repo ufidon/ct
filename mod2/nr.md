@@ -31,6 +31,7 @@ Proof
   - let x=the string from the FA's start state to the first-touched state A on the circuit,
   - z=the string from the FA's final state backtracing to the first-touched state B on the circuit
   - y=the string loops n times on the circuit starting from A and ending at B, n=1,2,3,...
+- ⚠️ A loop is a special circuit contains only one state
 
 
 Using the pumping lemma to show L is nonregular

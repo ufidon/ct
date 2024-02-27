@@ -87,11 +87,11 @@ Q9
 Given TG accepts all words that begin and end with different letters
 ```mermaid
 flowchart LR
-  m(("-"))
-  p1((" "))
-  p2((" "))
-  f1(("+"))
-  f2(("+"))
+  m(("-1"))
+  p1(("2"))
+  p2(("3"))
+  f1(("4+"))
+  f2(("5+"))
   m-->|a|p1
   m-->|b|p2
   p1-->|"a,b"|p1
@@ -101,10 +101,20 @@ flowchart LR
 ```
 - List several words that `fail` the TG
   - words that end at non-final states
-  - such as aa,aaa, bbb, etc.
+  - such as a, b, aa, bb, aaa, bbb, etc.
 - List several words that `crash` the TG
   - words that end at a state without specified where to go next for the remain letters
   - such as bab, aba, etc.
+- Note: `bab` can 
+  - fail the TG by path: `1-3-3-3`
+  - crash the TG by path: `1-3-5-`
+  - we will be conservative and think it crashes the TG
+- Note: when a string can fail and crash a TG by some paths but `it can also be accepted by the TG in other paths, it is defined as accepted by the TG`.
+  - consider `abab`:
+    - fail the TG by path: `1-2-2-2-2`
+    - crash the TG by path: `1-2-3-`
+    - accepted by the TG through path: `1-2-2-2-3`
+
 
 Q10
 ---
@@ -190,10 +200,10 @@ flowchart LR
 ```
 - remove or bypass state 1 →
   - two in s and 2, two out 2 and f passing through 1
-  - s2: ε(a+b)*aa=(a+b)*aa
-  - sf: ε(a+b)*ε=(a+b)*
-  - 22: bb(a+b)*aa
-  - 2f: bb(a+b)*ε=bb(a+b)*
+  - s2: `ε(a+b)*aa=(a+b)*aa`
+  - sf: `ε(a+b)*ε=(a+b)*`
+  - 22: `bb(a+b)*aa`
+  - 2f: `bb(a+b)*ε=bb(a+b)*`
 
 ```mermaid
 flowchart LR

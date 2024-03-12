@@ -5,4 +5,6 @@ __Context-free languages and pushdown automata__
 - [Grammatical format](./gf.md)
 - [Pushdown automata](./pda.md)
 - [CFG=PDA](./cfgeqpda.md)
+- [Non-context-free languages](./nfl.md)
+- [Context-free language](./cfl.md)
 - [Context-free language decidability](./cfld.md)

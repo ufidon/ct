@@ -5,7 +5,7 @@ __Tentative topics__
 
 - [mod1: Regular languages and finite automata](./mod1/README.md)
 - [mod2: Context-free languages and pushdown automata](./mod2/README.md)
-- [mod3: Language decidability and Turing machine](./mod3/README.md)
+- [mod3: Turing languages and machines](./mod3/README.md)
 
 
 # Referenced textbooks

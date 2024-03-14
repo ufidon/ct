@@ -172,7 +172,7 @@ Context-free language (CFL)
 - the CFL6 generated from CFG6
   - apply ❷ and ❸ in any order and any number of times: X ⇒ $\mathbf{(a+b)^+}$X
   - with ❹: X ⇒ $\mathbf{(a+b)^*}$
-  - then apply ❷
+  - then apply ❶
 - ∴ CFL6 = $\mathbf{(a+b)^*aa(a+b)^*}$
 
 ---

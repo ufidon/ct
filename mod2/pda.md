@@ -3,9 +3,40 @@ __Pushdown Automata__
 _ict chapter 14_
 
 
+Input tape
+---
+- (p1) a type of program storage: 
+  - infinite, indexed, loaded with a string a time, blank cells are loaded with blanks noted as `Δ`
+- the machine moves on the TAPE from left to right and never go back to a cell that was read before
+- it reads one letter at a time and eliminates each as it is used 
+- when ti reaches the first blank cell, it stops
+- it is presumed that once the first blank is encountered
+   - the rest of the TAPE is also blank
+
+
+A `new pictorial` representation for FA
+---
+- (p2①) three landmark states: `START`, `ACCEPT` and `REJECT`
+  - The START state is like a - state connected to another state in a TG by a ε-edge
+    - has no arrows coming into it
+    - read no input letter and proceed immediately to the next state
+  - (p2②) An ACCEPT state is a dead-end final state
+    - once entered, it cannot be left
+  - A REJECT state is also a dead-end state that is NOT final
+  - the new ACCEPT and REJECT states are called `halt states`
+    - they can't be traversed
+- every function a state performs is done by a separate box in the picture such as
+  - (p2③) an FA state reads an input letter and branches to other states depending on what letter has been read
+    - transformed to `READ` states
+  - that `Δ` is read means out of input letters and the processing of the input string is done. The Δ-edge will leads to
+    - ACCEPT is the stopped state is a `final` state
+    - REJECT is the stopped state is `NOT` a final state
+- this merely new pictorial representation for an FA has not altered the power of the FA
+
+
 🍎 Example 1: another pictorial notation of FA
 ---
-- ❶ 
+- ❶ (p3)
 ```mermaid
 flowchart LR
   p1(("-"))
@@ -30,7 +61,7 @@ flowchart LR
 ```
 
 ---
-- ❷
+- ❷ (p4)
 ```mermaid
 flowchart LR
   p1(("-"))
@@ -61,8 +92,28 @@ flowchart LR
 ```
 
 
+Adding a pushdown stack to a machine
+---
+- a pushdown stack is also called a pushdown store
+  - is a place where input letters (or other information) can be stored and retrieved
+  - is empty before the machine begins to process an input string
+    - i.e. it contains blanks initially
+  - supports two operations
+    - (p5①) `PUSH` adds a new letter to its top
+      - all the other letters are pushed down accordingly
+    - `POP` remove the top letter of the STACK
+      - all the other letters are moved up accordingly
+  - called a `LIFO` file, which stands for `last in first out`
+- add a `PUSHDOWN STACK` and the operations `PUSH and POP` to the new drawings of FAs
+  - the ensemble is called a `pushdown automata (PDA)`
+  - branching can occur at POP states but not at PUSH states
+  - a PUSH state can be entered from any direction
+    - but can only be left by one indicated route
+
+
 🍎 Example 2: A PDA
 ---
+- (p6)
 ```mermaid
 flowchart LR
   s(["START"])
@@ -100,11 +151,11 @@ flowchart LR
 |b|Δ|
 |Δ|Δ|
 
-- the string `aaabbb` is recorded on the TAPE
+- (p7) the string `aaabbb` is recorded on the TAPE
   - run it on the PDA
   - show the growth and shrinkage of the STACK
-- the language accepted by this PDA is {aⁿbⁿ, n=0,1,2,⋯}
-- with a different stack alphabet Γ={X}, this PDA can be simplified to be
+- (p8) the language accepted by this PDA is {aⁿbⁿ, n=0,1,2,⋯}
+- (p9) with a different stack alphabet Γ={X}, this PDA can be simplified to be
 ```mermaid
 flowchart LR
   s(["START"])
@@ -179,7 +230,7 @@ Running a string on a PDA
 
 A hierarchy of languages
 ---
-- Languages accepted by nPDA ⊃ Languages accepted by dPDA ⊃ Languages accepted by FA or NFA or TG
+- (p10)Languages accepted by nPDA ⊃ Languages accepted by dPDA ⊃ Languages accepted by FA or NFA or TG
 
 
 🍎 Example 3
@@ -213,6 +264,7 @@ flowchart LR
   po2-->|a|r2
   po3-->|b|r2
 ```
+- (p11) run `abbXbba`
 
 
 🍎 Example 4
@@ -220,7 +272,7 @@ flowchart LR
 A PDA accepts the language 
 - ODDPALINDROME = {a,b,aaa,aba,bab,bbb, ⋯}
 - These words are just like the words in PALINDROMEX except that the middle letter X has been changed into a or b
-- so we can reuse the previous PDA by changing X into "a,b", 
+- (p12) so we can reuse the previous PDA by changing X into "a,b", 
   - now it becomes nondeterministic
   - For every word in ODDPALINDROME, if we make the right choices, the path does lead to acceptance
 ```mermaid
@@ -248,18 +300,19 @@ flowchart LR
   po2-->|a|r2
   po3-->|b|r2
 ```
+- (p13) find a path for `aba`
 
 
 🍎 Example 5
 ---
 A PDA accepts the language 
-- EVENPALINDROME = {s reverse(s), where s is in $\mathbf{(a + b)^*}$}
+- (p14) EVENPALINDROME = {s reverse(s), where s is in $\mathbf{(a + b)^*}$}
   - = {ε, aa, bb, aaaa, abba, baab, bbbb, aaaaaa ⋯}
 - again, a nondeterministic PDA
 - given string `babbab`, find a path leads to
-  - accept
+  - accept (p15)
   - reject
-  - crash
+  - crash (p16)
 ```mermaid
 flowchart LR
   s(["START"])
@@ -287,6 +340,9 @@ flowchart LR
   po2-->|b|r2
   po3-->|Δ|ac  
 ```
+- another crash by looping around the circuit READ1→PUSH 6 times
+- the path accepts ε
+  - START→READ1→POP3→ACCEPT
 
 
 🍎 Example 6

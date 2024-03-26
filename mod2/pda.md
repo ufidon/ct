@@ -53,9 +53,9 @@ flowchart LR
   ac(["ACCEPT"])
   s-->r1
   r1-->|a|r2
-  r1-->|b|s
-  r2-->|a|r1
-  r2-->|b|s
+  r1-->|b|r1
+  r2-->|a|r2
+  r2-->|b|r1
   r1-->|Δ|rj
   r2-->|Δ|ac
 ```
@@ -82,9 +82,9 @@ flowchart LR
   ac(["ACCEPT"])
   s-->r1
   r1-->|a|r2
-  r1-->|b|s
+  r1-->|b|r1
   r2-->|a|r3
-  r2-->|b|s
+  r2-->|b|r1
   r3-->|"a,b"|r3
   r1-->|Δ|rj1
   r2-->|Δ|rj2

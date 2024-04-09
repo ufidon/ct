@@ -132,7 +132,7 @@ Then `L₁+L₂` can be generated with
   - can be accepted by a `dPDA` (p14)
   - to construct a PDA (p15) that accepts exactly those input strings that this machine rejects, we need to reverse the status of the halt states from ACCEPT to REJECT and vice versa
   - ⚠️ this trick can't be used on `nPDA` due to its `nondeterminism`
-- ❸ ❹ ❺
+
 ---
 🅑`L' may NOT` be context-free
 - ❶ by an indirect argument: suppose the complement of every CFL were context-free.
@@ -187,7 +187,7 @@ Then `L₁+L₂` can be generated with
 - ❶ The `union` of a `context-free` language and a `regular` language must be `context-free`
   - because a RL is also a CFL
 - but `may be regular or non-regular`
-  - ex 0. if L₁⊂L₂, then L₁ ∩ L₂ = L₂, so its regularity depends on L₂
+  - ex 0. if L₁⊂L₂, then L₁ ∪ L₂ = L₂, so its regularity depends on L₂
   - ex 1. PALINDROME is `nonregular context-free` and ${ \mathbf{(a+b)^*} }$ is regular
     - their union is regular since PALINDROME ⊂ ${ \mathbf{(a+b)^*} }$
   - ex 2. PALINDROME is `nonregular context-free` and ${ \mathbf{a^*} }$ is regular

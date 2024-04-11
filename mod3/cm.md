@@ -3,3 +3,78 @@ __Computers__
 _ict chapter 25_
 
 
+Input & output
+---
+- FAs are only language-acceptors
+- Transducers, such as  Mealy and Moore machines, have output capabilities
+- PDAs are not only language-acceptors
+  - but also transducers by considering what is put into, popped from, or left in the STACK as output
+- TMs always have as a natural output whatever is left on its TAP
+  - when the processing of the TM terminates
+
+
+Encoding numbers
+---
+- TMs can work as calculators by first encoding numbers as words in Σ*
+- ex. a natural number `n` can be encoded as a `string of n a's` 
+  - e(0) = ε, e(1) = a, e(3) = aaa, etc.
+  - this is called `unary encoding` because it uses one symbol
+- If Σ={a,b}, then every word in Σ* can be interpreted as a sequence of numbers (strings of a's) separated internally by b's
+  - ex. babbaaa = (0 a)b(1 a)b(0 a)b(3 a's) represents 0,1,0,3
+  - he we assume that there is a group of a's at the beginning of the string and at the end even though these may be groups of `0 a`
+- in this way, a TM can work as a calculator
+  - `input numbers` represented by a string in Σ*
+  - `calculation` represented by a TM program
+  - `output numbers` represented by another string in Σ* left on the TAPE when the TM program terminates
+
+
+🍎 Example
+---
+- (p1) an ADDER accepts input aⁿbaᵐ representing n+m
+  - inputs other than aⁿbaᵐ crashes the TM
+  - n, m ∈ ℕ
+- the result is aⁿ⁺ᵐ representing n+m
+
+
+🍎 Example
+---
+Build a TM that 
+- adds two numbers presented in binary notation
+- leaves the answer on the TAPE in binary notation
+
+through
+- (p2❶) an incrementer that accepts $(0+1)* representing n
+  - leaves n+1 in $(0+1)* notation
+- (p2❷) a decrementer that accepts $(0+1)* representing n
+  - leaves n-1 in $(0+1)* notation
+- (p3) the binary ADDER that accepts $(0+1)*$(0+1)* representing n+m
+  - leaves n+m in $0*$(n+m) in binary
+  - 🏃 trace `$10$0110` which leaves `$00$1000` on the tape
+
+
+Computer
+---
+a TM has the property that for every word it accepts, at the time it halts, it leaves one solid string of Σ* on its TAPE starting in cell 0 
+- The input string is called the `input` (a sequence of `nonnegative integers`)
+- The string left on the TAPE is called the `output` (a sequence of nonnegative integers)
+
+
+Computable functions
+---
+A computer has acted like a mathematical `function`
+- if it takes `a sequence of numbers as input` and leaves only `one number as output`
+
+Any operation that is defined on `all sequences of K numbers` (K≥1) and that can be performed by a TM is called `Turing-computable` or just `computable`
+
+
+☯ Theorem 1
+---
+The following operations are computable
+- addition: x+y
+- (p5) simple subtraction: x ∸ y = x-y if x≥ y else 0
+- (p6-9) MAX(x,y) = x if x≥y else y
+- (p10.t) IDENTITY(n) = n
+- (p10.b) SUCCESSOR(n)=n+1
+- (p11) select-the-iᵗʰ-out-of-n-numbers function: SELECT/i/n(a₁,a₂,⋯,aᵢ,⋯,aₙ)
+- (p12-16) multiplication: n×m=nm
+- (p17) SQRT

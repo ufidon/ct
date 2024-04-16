@@ -157,7 +157,7 @@ Idea:
 
 Prove by construction: 
 - ➀ Eliminate all productions involving useless nonterminals
-- ➁ Test each of the remaining nonterminals to decide its self-embeddedness. 
+- ➁ Test `each of the remaining nonterminals` to decide its self-embeddedness. 
   - To test X:
   - ❶ Change all X's on the left side of productions into `X'`
     - but leave all X's on the right side of productions alone
@@ -165,7 +165,7 @@ Prove by construction:
   - ❸ Mark all Y's if Y is any nonterminal on the LHS of any production with marked nonterminals on its RHS
   - ❹ repeat ❸ until nothing new is marked
   - if `X'` is marked, then X is self-embedded otherwise it is not.
-- ➂ If none of the remaining nonterminals is self-embedded, L is infinite otherwise L is finite.
+- ➂ If none of the remaining nonterminals is self-embedded, L is finite otherwise L is infinite.
 
 
 🍎 Example 3

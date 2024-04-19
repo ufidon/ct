@@ -82,6 +82,7 @@ is a collection of three things:
 - ❷ A set of symbols called `nonterminals`, one of which is the symbol `S`, standing for "start here"
 - ❸ A finite set of `productions` of the form:
   - one nonterminal → finite string of terminals and/or nonterminals
+    - i.e. one nonterminal → (terminal + nonterminal)*
   - at least one production has `S` as its left side
   - the right side of a production could even be the empty string ε
 

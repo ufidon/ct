@@ -267,12 +267,17 @@ flowchart LR
   - i.e. (L1∩L2')+(L1'∩L2) = Φ
 - ∴ $\mathbf{r1 ≡ r2}$
 
-☯ The equivalence of two regular language is decidable
+
+☯ The emptiness of a regular language is decidable
 ---
 There is an effective procedure to decide whether:
 1. A given FA accepts any words.
-2. Two FAs are equivalent.
-3. Two regular expressions are equivalent.
+
+☯ The equivalence of two regular language is decidable
+---
+There is an effective procedure to decide whether:
+1. Two FAs are equivalent.
+2. Two regular expressions are equivalent.
 
 
 ☯ The finiteness of a regular language L defined by an RE
@@ -294,7 +299,7 @@ There is an effective procedure to decide whether:
 - There is an `effective procedure` to decide whether a given FA accepts a finite or an infinite language
 
 **Proof**:
-- If the machine has `N` states and the alphabet has `m=|Σ`| letters, then in total there are
+- If the machine has `N` states and the alphabet has `m=|Σ|` letters, then in total there are
   - $\displaystyle \sum_{i=N}^{2N-1}m^i$ 
 - different input strings in the range
   - N ≤ length of the string < 2N

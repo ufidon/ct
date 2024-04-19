@@ -82,7 +82,7 @@ Proof by construction a TM from an FA accepts the RL:
 - Change the edge labels a and b to (a, a, R) and (b, b, R) respectively
 - Change the `-` state to the word `START`
 - Erase the `+` sign in each final state F
-  - then add to F an outgoing edge labeled (A, A, R) to a `HALT` state
+  - then add to F an outgoing edge labeled (Δ, Δ, R) to a `HALT` state
 
 
 🍎 Example 2

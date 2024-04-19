@@ -190,9 +190,9 @@ Eliminating ϵ-productions
 Prove by construction
 - given a CFG1 with N → ϵ, a no-ϵ-equivalent CFG2 can be constructed by 
 - deleting all ϵ-productions
-- adding a new production P' for each production P in CFG1 that contains `nullable nonterminals`, 
-  - by removing all these nullable nonterminals from P, i.e.
-  - P' = P without `nullable nonterminals`
+- for each production P in CFG1 that contains `nullable nonterminals`, 
+  - remove all `possible subsets` of these nullable nonterminals from P one subset a time
+  - add a P' = P without `nullable nonterminals` for each removal
 
 
 🍎 Example 4

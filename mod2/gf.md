@@ -13,20 +13,21 @@ CFGs can generate
 ☯ Theorem: All regular languages are context-free languages
 ---
 Given any FA, there is a CFG that generates exactly the language accepted by the FA.
+- `(sᵢ, σ, sⱼ)` denotes the edge from state `sᵢ` to `sⱼ` with letter `σ` on it
 
 Prove by constructing a CFG for any given FA:
 - ① Create a nonterminal for each state of the FA
   - the start state is the `S (start here)` nonterminal
-- ② Create a production for every edge `(s1, σ, s2)`, e.x.
-  - X → aX for (x,a,y)
+- ② Create a production `Sᵢ→σSⱼ` for every edge `(sᵢ, σ, sⱼ)`, e.x.
+  - X → aY for (x,a,y)
   - X → bX for (x,b,x)
 - ③ F → ϵ for every final state f
 
 Then show that
 - ❶ every word w=σ₁σ₂⋯σₙ⋯σₑ accepted by the FA can be generated from the CFG
   - (p1) there is a `semiword` for every `semipath`
-    - `semiword` = (terminal)⁺(nonterminal)
-    - `semipath` = (σ)⁺(s)
+    - `semiword` = (terminal)*(nonterminal)
+    - `semipath` = (σ)*(s)
 
 
 🍎 Example 1
@@ -85,7 +86,7 @@ flowchart LR
 ☯ Theorem: CFGs that generate RLs
 ---
 If all the productions in a given CFG has only the two forms:
-- ❶ nonterminal → semiword=(word)⁺nonterminal
+- ❶ nonterminal → semiword=(terminal)*nonterminal
   - e.x. Nᵤ → wᵢNᵥ
 - ❷ nonterminal → word
   - e.x. Nₖ → wⱼ

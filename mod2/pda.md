@@ -9,9 +9,8 @@ Input tape
   - infinite, indexed, loaded with a string a time, blank cells are loaded with blanks noted as `Δ`
 - the machine moves on the TAPE from left to right and never go back to a cell that was read before
 - it reads one letter at a time and eliminates each as it is used 
-- when ti reaches the first blank cell, it stops
-- it is presumed that once the first blank is encountered
-   - the rest of the TAPE is also blank
+- when it reaches the first blank cell, it stops
+  - it is presumed that once the first blank is encountered, the rest of the TAPE is also blank
 
 
 A `new pictorial` representation for FA
@@ -20,9 +19,9 @@ A `new pictorial` representation for FA
   - The START state is like a - state connected to another state in a TG by a ε-edge
     - has no arrows coming into it
     - read no input letter and proceed immediately to the next state
-  - (p2②) An ACCEPT state is a dead-end final state
+  - (p2②) An `ACCEPT` state is a `dead-end` final state
     - once entered, it cannot be left
-  - A REJECT state is also a dead-end state that is NOT final
+  - A `REJECT` state is also a dead-end state that is NOT final
   - the new ACCEPT and REJECT states are called `halt states`
     - they `can't be traversed` even there are remaining letters from the input string
 - every function a state performs is done by a separate box in the picture such as

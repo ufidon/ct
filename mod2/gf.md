@@ -234,8 +234,8 @@ Prove by construction
   - Z → aX | YYY  ❷ 
 - the marking sequence ❶ ❷ ❸ shows that all the nonterminals are nullable, 
 - so the no-ϵ-equivalent CFG can be constructed
-  - S → XaY | YY | aX |ZYZ | aY | `aY | Xa | Y | a | YZ | ZZ | ZY | Z`
-  - X → Za | bZ | ZZ | Yb | `a | b | Z | b`
+  - S → XaY | YY | aX |ZYZ | aY | `a | Y | Z | Xa | YZ | ZY | ZZ`
+  - X → Za | bZ | ZZ | Yb | `a | b | Z`
   - Y → Ya | XY | `a | X | Y`
   - Z → aX | YYY | `a | Y | YY`
 
@@ -290,7 +290,7 @@ Prove by construction
 
 🍎 Example 10
 ---
-Remove unitproductions from the CFG below
+Remove unit productions from the CFG below
 - S→A | bb
 - A→B | b
 - B→S | a
@@ -303,7 +303,7 @@ Remove unitproductions from the CFG below
 |A→B |A→b|
 |B→S| B→a |
 
-❷ list all unit productions and sequences of unit productions `without loops`
+❷ list all unit productions and `chains` of unit productions `without loops`
 - create new pro­ductions by removing unit productions
 - S→A gets S→b
 - S→A→B gets S→a
@@ -313,9 +313,9 @@ Remove unitproductions from the CFG below
 - B→S→A gets B→b
   
 ∴ the new CFG is
-- S→ bb | `b | a`
+- S→ bb | `a | b`
 - A→ b | `a | bb`
-- B→ a | `bb | b`
+- B→ a | `b | bb`
 
 
 ☯ Theorem: nonterminals and terminals are separable
@@ -349,6 +349,7 @@ get the CNF of the CFG
 - A→a
 - B→b
 
+⚠️ Above introduced 2 unit productions
 
 🍎 Example 12
 ---
@@ -360,7 +361,7 @@ become
 - N→a|b
 - A→a
 
-
+⚠️ N→a can NOT be used to turn S→Na into S→NN since it generates bb where the old CFG does not. So, a new rule A→a is needed.
 
 Chomsky Normal Form (CNF)
 ---
@@ -440,10 +441,14 @@ into CNF.
   - `A→a`
 - S→AAAA can be separated by
   - S→DD
-  - D→AA
+  - D→AA 
+  - or follow the algorithm
+  - S→AX₁; X₁→AX₂; X₂→AA
 - S→AAAAS i.e. S→DDS can be separated by
   - S→DR₁
   - R₁→DS
+  - or follow the algorithm
+  - S→AY₁; Y₁→AY₂; Y₂→AY₃; Y₃→AS
 
 
 Leftmost derivations

@@ -182,16 +182,16 @@ Procedure:
   - S→ABa | b
   - A→Xb 
   - B→bAA
-  - X→ aaa
+  - X→ bA | aaa
 - ➁ Test X
   - S→ABa | b
   - A→Xₘb (❷)
   - B→bAA
-  - X'→ aaa (❶)
-  - ❸❹
-  - Sₘ→AₘBₘa | b
+  - X'→ bA | aaa (❶)
+  - 
+  - Sₘ→AₘBₘa | b (❹)
   - Aₘ→Xₘb (❷)
-  - Bₘ→bAₘAₘ
+  - Bₘ→bAₘAₘ (❸)
   - X'ₘ→ bAₘ | aaa (❶) 
 - X' is marked so X is self-embedded, ∴ L is infinite
 

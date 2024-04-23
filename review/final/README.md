@@ -24,7 +24,7 @@ Q1: determine RLs' equivalence, emptiness, finiteness, and membership
     - throw half of ${\boldsymbol{σ_1+σ_2}}$ to be ${\boldsymbol{σ_1}}$
     - remove all parenthesis
     - turn ${\boldsymbol{σ}}$ into σ, ${\boldsymbol{ε}}$ into ε
-    - if the result is a word other than ε, then L ≠ Φ
+    - if the result is a word, maybe ε, then L ≠ Φ
   - L is defined by an FA:
     - 🅰 Convert the FA into a regular expression with Kleene's theorem
       - Every regular expression other than $\boldsymbol{Φ}$ defines some words

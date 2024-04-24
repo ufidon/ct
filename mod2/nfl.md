@@ -187,6 +187,11 @@ word `abab` can be derived from G (p14①)
   - (u,vⁿ,x,yⁿ,z)=(a,ε,b,(ab)ⁿ,ε)
 
 
+Ways to break w into uvxyz
+---
+For each self-embedded nonterminal X appeared n≥2 times in a derivation tree of w, there are ${\displaystyle {n\choose 2} = \dfrac{n(n-1)}{2}}$ ways to break w into uvxyz.
+
+
 🏃 Application 1
 ---
 Prove language L = {aⁿbⁿaⁿ, n=1,2,3,⋯} is non-context-free

@@ -496,3 +496,7 @@ The total language tree (TLT)
 - X is a bad mistake; it leads to no words 
 - the TLT is infinite causing by X
   - but the language has only finitely many words 
+
+
+# References
+- [Railroad diagram generator](https://www.bottlecaps.de/rr/ui)

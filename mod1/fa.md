@@ -107,10 +107,11 @@ The transition function can be represented with the *transition graphs* below in
 Two types of FAs that accept NO languages
 ---
 - FAs that have no final states
- ![no1](./img/no1.png)
+  - ![no1](./img/no1.png)
 - FAs whose final states cannot be reached from the start sate
- ![no21](./img/no21.png)
- ![no22](./img/no22.png)
+  - ![no21](./img/no21.png)
+- or
+  - ![no22](./img/no22.png)
 
 - ---
 - all words over alphabet $Σ=\lbrace a,b\rbrace$ with even number of letter

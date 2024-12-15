@@ -258,7 +258,7 @@ Two types of FAs that accept NO languages
   - All words that end in state 2 have an even number of a's but an odd number of b's
   - All words that end in state 3 have an odd number of a's but an even number of b's
   - All words that end in state 4 have an odd number of a's and an odd number of b's
-- $\mathbf{(aa+bb+(ab+ba)(aa+bb)^*(ab+ba))^*}$
+- $`\mathbf{(aa+bb+(ab+ba)(aa+bb)^*(ab+ba))^*}`$
 
 
 Build a FA that can locate an English word or substring

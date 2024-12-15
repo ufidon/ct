@@ -1,0 +1,11 @@
+digraph G {
+  rankdir=LR;
+  
+  // Nodes definition
+  q0 [label="-", shape=circle];
+  q1 [label="+", shape=circle];
+  
+  // Edges definition
+  q0 -> q1 [label="a"];
+  q1 -> q1 [label="a"];
+}

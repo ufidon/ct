@@ -1,0 +1,5 @@
+digraph {
+  rankdir="TB"
+  q0 [label="±" shape=doublecircle]
+  q0 -> q0 [label="a,b"]
+}

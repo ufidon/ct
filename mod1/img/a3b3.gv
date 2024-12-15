@@ -1,0 +1,17 @@
+digraph finite_automaton {
+    rankdir=LR;
+    node [shape=doublecircle]; f;
+    node [shape=circle];
+    s -> a0 [label="a"];
+    a0 -> a1 [label="a"];
+    a0 -> d [label="b"];
+    a1 -> f [label="a"];
+    a1 -> d [label="b"];
+    s -> b0 [label="b"];
+    b0 -> b1 [label="b"];
+    b0 -> d [label="a"];
+    b1 -> f [label="b"];
+    b1 -> d [label="a"];
+    f -> d [label="a,b"];
+    d -> d [label="a,b"];
+}

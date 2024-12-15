@@ -14,13 +14,9 @@ Introduction
 🍎 Demo
 ---
 Run the FA with input strings `a, aa, aaa, aaaa` over $Σ=\lbrace a \rbrace$ separately:
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1(("+"))
-  q0-->|a|q1
-  q1-->|a|q1
-```
+
+![a⁺](./img/s20.png)
+
 - `⊖` is the start state, `⊕` is the final state
 - if a string $s$ runs the $FA$ into its final state we say
   - FA accepts, or recognizes $s$, denoted as $s∈FA$
@@ -74,172 +70,78 @@ Let $Σ=\lbrace a,b\rbrace, Q=\lbrace x,y,z\rbrace$, and $δ:Q×Σ→Q$ be defin
 The transition function can be represented with the *transition graphs* below in three conventions:
 
 - convention 1
-```mermaid
-flowchart LR
-  q0(("x-"))
-  q1(("y"))
-  q2(("z+"))  
-  
-  q0-->|a|q1  
-  q1-->|a|q0
-  q0-->|b|q2
-  q1-->|b|q2
-  q2-->|"a,b"|q2
-```
+
+![conv1](./img/c1.png)
+
 - convention 2
-```mermaid
-flowchart LR
-  q0(("x"))
-  q1(("y"))
-  q2((("z")))  
-  
-  s-->q0
-  q0-->|a|q1  
-  q1-->|a|q0
-  q0-->|b|q2
-  q1-->|b|q2
-  q2-->|"a,b"|q2
-```
+
+![conv2](./img/c2.png)
+
 - convention 3
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1((" "))
-  q2(("+"))  
-  
-  q0-->|a|q1  
-  q1-->|a|q0
-  q0-->|b|q2
-  q1-->|b|q2
-  q2-->|"a,b"|q2
-```
+
+![conv3](./img/c3.png)
+
+- or simply,
+
+![conv4](./img/c4.png)
 
 - Run the FA with `aaaabba, bbaabbbb`
-- This FA accepts $\mathbf{(a+b)^*b(a+b)^*}$
+- This FA accepts $`\mathbf{(a+b)^*b(a+b)^*}`$
 
 🍎 Building FAs given REs or languages
 ---
 - $\mathbf{(a+b)^+}$
+  - the set of all strings except $\mathbf{ϵ}$
 
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1(("+"))
-  
-  q0-->|a|q1  
-  q0-->|b|q1
-  q1-->|"a,b"|q1
-```
+![abp](./img/abp.png)
 
 - ---
 - $\mathbf{(a+b)^*}$
   - `±` means the state is both initial and final
-```mermaid
-flowchart LR
-  q0(("±"))
-  q0-->|"a,b"|q0
-```
+
+![all](./img/all.png)
+
+
+---
+
+Two types of FAs that accept NO languages
+---
+- FAs that have no final states
+ ![no1](./img/no1.png)
+- FAs whose final states cannot be reached from the start sate
+ ![no21](./img/no21.png)
+ ![no22](./img/no22.png)
+
 - ---
 - all words over alphabet $Σ=\lbrace a,b\rbrace$ with even number of letter
 
-```mermaid
-flowchart LR
-  q0(("±"))
-  q1((" "))
-  
-  q0-->|"a,b"|q1  
-  q1-->|"a,b"|q0
-```
+  ![even](./img/even.png)
+
 - ---
 - $\mathbf{a(a+b)^*}$
+  - all words begin with $a$
 
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1((" "))
-  q2(("+"))  
-  
-  q0-->|b|q1  
-  q1-->|"a,b"|q1
-  q0-->|a|q2
-  q2-->|"a,b"|q2
-```
+![aall](./img/aall.png)
+
 - or with two final states
 
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1((" "))
-  q2(("+"))
-  q3(("+"))  
-  
-  q0-->|b|q1  
-  q1-->|"a,b"|q1
-  q0-->|a|q3
-  q3-->|"a,b"|q2
-  q2-->|"a,b"|q2
-```
+![two finals](./img/f2.png)
 
 - or with more final states
   - ⚠️ there is no unique FA for a given language
 
-```mermaid
-flowchart LR
-  q0(("-"))
-  q1((" "))
-  q2(("+"))
-  q3(("+")) 
-  q4(("+"))  
-  
-  q0-->|b|q1  
-  q1-->|"a,b"|q1
-  q0-->|a|q2
-  q2-->|"a,b"|q3
-  q3-->|"a,b"|q4
-  q4-->|a|q3
-  q4-->|b|q2
-```
+![four finals](./img/f4.png)
+
 - ---
 -  L = {`aaa`, `bbb`}
   - ⚠️ any finite languages can be built similarly
 
-```mermaid
-flowchart LR
-  s(("-"))
-  f(("+"))
-  d((" "))
-  s-->|a|a0((" "))
-  a0-->|a|a1((" "))
-  a0-->|b|d
-  a1-->|a|f
-  a1-->|b|d
-  s-->|b|b0((" "))
-  b0-->|b|b1((" "))
-  b0-->|a|d
-  b1-->|b|f
-  b1-->|a|d
-  f-->|"a,b"|d
-  d-->|"a,b"|d
-```
+![a3b3](./img/a3b3.png)
+
 - ---
 - all words containing a triple letter, either `aaa` or `bbb`
 
-```mermaid
-flowchart LR
-  s(("-"))
-  f(("+"))
-  s-->|a|a0((" "))
-  a0-->|a|a1((" "))
-  a0-->|b|b0
-  a1-->|a|f
-  a1-->|b|b0
-  s-->|b|b0((" "))
-  b0-->|b|b1((" "))
-  b0-->|a|a0
-  b1-->|b|f
-  b1-->|a|a0
-  f-->|"a,b"|f
-```
+![ca3b3](./img/ca3b3.png)
 
 ䷼ Theorem
 ---
@@ -255,228 +157,100 @@ flowchart LR
 
 
 - FA1:
-```mermaid
-flowchart LR
-  s(("1-"))
-  f(("4+"))
-  s-->|a|q2((2))
-  q2-->|a|f
-  s-->|b|q3((3))
-  q3-->|b|f
-  q2-->|b|q3
-  q3-->|a|q2
-  f-->|"a,b"|f
-```
+
+![fa1](./img/fa1.png)
+
 - strings have a double letter in them
   - $\mathbf{(a+b)^*(aa+bb)(a+b)^*}$
 
 - ---
 - FA2
-```mermaid
-flowchart LR
-  q1(("1-"))
-  q5(("5+"))
 
-  q1-->|"a,b"|q2((2))
-  q2-->|"a,b"|q3((3))
-  q3-->|a|q4((4))
-  q4-->|"a,b"|q4
-  q3-->|b|q5
-  q5-->|"a,b"|q5
-```
+![fa2](./img/fa2.png)
+
 - words with b as the third letter
   - $\mathbf{(aab+abb+bab+bbb)(a+b)^*}$, or
   - $\mathbf{(a+b)^2b(a+b)^*}$
 
 - ---
 - FA3
-```mermaid
-flowchart LR
-  q1(("-"))
-  q4(("+"))
-  d((" "))
-  q1-->|b|q2((" "))
-  q2-->|a|q3((" "))
-  q3-->|a|q4
-  q1-->|a|d
-  q2-->|b|d
-  q3-->|b|d
-  q4-->|"a,b"|d
-  d-->|"a,b"|d
-```
+
+![fa3](./img/fa3.png)
+
 - L={baa}
 
 - ---
 - FA4
-```mermaid
-flowchart LR
-  s(("-"))
-  f1(("+"))
-  f2(("+"))
-  d(("☠"))
-  d-->|"a,b"|d
-  s-->|a|q11((" "))
-  q11-->|b|f1
-  q11-->|a|d
-  f1-->|"a,b"|d
-  s-->|b|q21((" "))
-  q21-->|b|d
-  q21-->|a|q22((" "))
-  q22-->|a|f2
-  q22-->|b|d
-  f2-->|"a,b"|d
-```
+
+![fa4](./img/fa4.png)
+
 - L={baa,ab}
 
 - ---
 - FA5
-```mermaid
-flowchart LR
-  q1(("1-"))
-  q3(("3+"))
 
-  q1-->|b|q2((2))
-  q1-->|a|q3
-  q2-->|b|q4((4))
-  q2-->|a|q2
-  q3-->|a|q3
-  q3-->|b|q2
-  q4-->|b|q3
-  q4-->|a|q4
-```
-- $\mathbf{a^*(a^*ba^*ba^*ba^*)^*(a + a^*ba^*ba^*ba^*)}$
+![fa5](./img/fa5.png)
+
+- $`\mathbf{a^*(a^*ba^*ba^*ba^*)^*(a + a^*ba^*ba^*ba^*)}`$
   - or, $\mathbf{(a + ba^*ba^*b)^+}$
   - this FA does not accept ϵ
   - to accept ϵ as well, use the FA below
-    - $\mathbf{(a^*ba^*ba^*ba^*)^*}$
-```mermaid
-flowchart LR
-  q1(("±"))
-  q2((" "))
-  q3((" "))
+    - $`\mathbf{(a^*ba^*ba^*ba^*)^*}`$
 
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|a|q2
-  q2-->|b|q3
-  q3-->|a|q3
-  q3-->|b|q1
-```
+![fa5p](./img/fa5p.png)
+
 - ---
 - FA6
-```mermaid
-flowchart LR
-  q1(("±"))
-  q2(("☠"))
 
-  q1-->|"a,b"|q2
-  q2-->|"a,b"|q2
-```
+![fa6](./img/fa6.png)
+
 - L = {ϵ}
 
 - ---
 - FA7
-```mermaid
-flowchart LR
-  q1(("-"))
-  q2(("+"))
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
+![fa7](./img/fa7.png)
+
 - $\mathbf{(a+b)^*a}$
   - has no ϵ
 
 - ---
 - FA8
-```mermaid
-flowchart LR
-  q1(("±"))
-  q2((" "))
 
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+![fa8](./img/fa8.png)
+
 - all words not end in b
   - $\mathbf{(a+b)^*a+ϵ}$
 
 - ---
 - FA9
-```mermaid
-flowchart LR
-  q1(("-"))
-  q2(("+"))
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+![fa9](./img/fa9.png)
+
 - all words with an odd number of a 's
-  - $\mathbf{b^*ab^*(ab^*ab^*)^*}$
+  - $`\mathbf{b^*ab^*(ab^*ab^*)^*}`$
 
 - ---
 - FA10
-```mermaid
-flowchart LR
-  q1(("-"))
-  q2((" "))
-  q3(("+"))
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
+![fa10](./img/fa10.png)
+
 - all words with a double a in them somewhere
-  - $\mathbf{(a + b)^*aa(a + b)^*}$
+  - $`\mathbf{(a + b)^*aa(a + b)^*}`$
 
 - ---
 - FA11
-```mermaid
-flowchart LR
-  q0(("-"))
-  q11((" "))
-  q12(("+"))
-  q21((" "))
-  q22(("+"))
 
-  q0-->|a|q11
-  q11-->|a|q11
-  q11-->|b|q12
-  q12-->|a|q11
-  q12-->|b|q12
-  q0-->|b|q21
-  q21-->|b|q21
-  q21-->|a|q22
-  q22-->|b|q21
-  q22-->|a|q22
-```
+![fa11](./img/fa11.png)
+
 - all words that have different first and last letters
-  - $\mathbf{a(a + b)^*b+b(a + b)^*a}$
+  - $\bm{a(a + b)^*b+b(a + b)^*a}$
 
 - ---
 - FA12
-```mermaid
-flowchart LR
-  q1(("1±"))
-  q2((2))
-  q3((3))
-  q4((4))
-  q1-->|b|q2
-  q1-->|a|q3
-  q2-->|b|q1
-  q2-->|a|q4  
-  q3-->|a|q1
-  q3-->|b|q4
-  q4-->|a|q2
-  q4-->|b|q3  
-```
+
+![fa12](./img/fa12.png)
+
 - EVEN-EVEN: all words with  an even number of a's as well as an even number of b's
   - all words with an even number of b's will stop at state 1 and 3
   - all words with an even number of a's will stop at state 1 and 2
@@ -490,20 +264,5 @@ flowchart LR
 Build a FA that can locate an English word or substring
 ---
 - Locate dog
-```mermaid
-flowchart LR
-  q1(("-"))
-  q2((2))
-  q3((3))
-  q4(("4+"))
 
-  q1-->|"all except d"|q1
-  q1-->|d|q2
-  q2-->|"all except d,o"|q1
-  q2-->|d|q2
-  q2-->|o|q3
-  q3-->|d|q2
-  q3-->|"all except d,g"|q1
-  q3-->|g|q4
-  q4-->|"any letter"|q4
-```
+![fa13](./img/fa13.png)

@@ -161,7 +161,7 @@ Two types of FAs that accept NO languages
 ![fa1](./img/fa1.png)
 
 - strings have a double letter in them
-  - $\mathbf{(a+b)^*(aa+bb)(a+b)^*}$
+  - $`\mathbf{(a+b)^*(aa+bb)(a+b)^*}`$
 
 - ---
 - FA2
@@ -244,7 +244,7 @@ Two types of FAs that accept NO languages
 ![fa11](./img/fa11.png)
 
 - all words that have different first and last letters
-  - $\bm{a(a + b)^*b+b(a + b)^*a}$
+  - $`\mathbf{a(a + b)^*b+b(a + b)^*a}`$
 
 - ---
 - FA12

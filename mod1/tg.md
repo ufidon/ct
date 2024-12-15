@@ -114,7 +114,7 @@ string ϵ
 - ---
 - ② TG accepts only ϵ
   - ![ta](./img/ta.png)
-- no edges for any other string
+  - no edges for any other string
 - Any TG with some start state that is also a final state will always accept ϵ
   - also true for FAs
 - The following TGs also only accept ϵ
@@ -226,7 +226,7 @@ Nondeterminism
 - A machine is nondeterministic if the path through it depends on both the input string and the operator's choice
 - choices are inherent needed below
   - ![ts](./img/ts.png)
-- or in the equivalent one
+  - or in the equivalent one
   - ![tt](./img/tt.png)
 - Another example of equivalence
 

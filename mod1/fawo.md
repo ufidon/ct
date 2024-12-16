@@ -46,21 +46,7 @@ its state transition diagram is
   - a `-` sign
 - no final states, no need for any plus signs
 
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0/1"])
-q1(["q1/0"])
-q2(["q2/0"])
-q3(["q3/1"])
-q0-->|a|q1
-q0-->|b|q3
-q1-->|a|q3
-q1-->|b|q1
-q3-->|a|q3
-q3-->|b|q2
-q2-->|a|q0
-q2-->|b|q3
-```
+![m00](./img/m00.png)
 
 Trace input string `abab` on this machine,
 
@@ -76,21 +62,8 @@ Trace input string `abab` on this machine,
 A Moore machine counts how many times the substring `aab` occurs in a long input string
 - once an `aab` is consumed, a `1` is printed out as the indicator
 
-```mermaid
-flowchart LR
-q0(["-q0/0"])
-q1(["q1/0"])
-q2(["q2/0"])
-q3(["q3/1"])
-q0-->|a|q1
-q0-->|b|q0
-q1-->|a|q2
-q1-->|b|q0
-q3-->|a|q1
-q3-->|b|q0
-q2-->|a|q2
-q2-->|b|q3
-```
+![m01](./img/m01.png)
+
 - mark  q0 = -, q3 = +, then this machine accepts all words that end in `aab`
 - An FA can be turned into a Moore machine by adding printing instructions to print
   - 0 in the start state
@@ -118,21 +91,9 @@ A Mealy machine is a collection of four things:
 🍎 Example 3
 ---
 A Mealy machine
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0"])
-q1(["q1"])
-q2(["q2"])
-q3(["q3"])
-q0-->|"a/0"|q1
-q0-->|"b/0"|q3
-q1-->|"a/1"|q3
-q1-->|"b/1"|q2
-q3-->|'a/1'|q3
-q3-->|"b/1"|q0
-q2-->|"a/0"|q3
-q2-->|"b/1"|q3
-```
+
+![m02](./img/m02.png)
+
 - tracing input string `aaabb` on this machine prints `01110`
 - A Mealy machine outputs string with the same number of characters as the input string has letters
 - As with the Moore machine, the Mealy machine does not define a language by accepting and rejecting input strings, so it has no final states
@@ -148,12 +109,9 @@ q2-->|"a/0, b/1"|q3
 🍎 Example 4
 ---
 A Mealy machine that prints out the 1 's complement of an input bit string
-```mermaid
-flowchart LR
-q2(["q0"])
-q2-->|"0/1,1/0"|q2
-```
-- Given input `001010`, the output is `110101`
+
+- ![m03](./img/m03.png)
+  - Given input `001010`, the output is `110101`
 
 
 🍎 Example 5
@@ -162,17 +120,7 @@ An increment machine implemented by a Mealy machine that
 - adds 1 to a binary string, 
 - operate from right to left,
 - prints out the result from right to left.
-```mermaid
-flowchart LR
-q0(["-start"])
-q1(["no carry"])
-q2(["carry"])
-q0-->|"0/1"|q1
-q1-->|"0/0,1/1"|q1
-q0-->|"1/0"|q2
-q2-->|"1/0"|q2
-q2-->|"0/1"|q1
-```
+- ![m04](./img/m04.png)
 - tracing `11111` on the machine prints `00000`
   - the overflow happens at state `carry`
 - tracing `10011` on the machine 
@@ -184,19 +132,7 @@ q2-->|"0/1"|q1
 ---
 A Mealy machine that recognizes the occurrences of aa or bb in its input string by
 - indicating the nth input letter is the second in a pair of dou­ble letters by printing 1 as the nth output character
-
-```mermaid
-flowchart LR
-q0(["-start"])
-q1(["just<br>read a"])
-q2(["just<br>read b"])
-q0-->|"a/0"|q1
-q0-->|"b/0"|q2
-q1-->|"a/1"|q1
-q1-->|"b/0"|q2
-q2-->|"a/0"|q1
-q2-->|"b/1"|q2
-```
+- ![m05](./img/m05.png)
 - a triple prints `011`
   -  since the second and third letters are both the back end of a pair of double
 
@@ -221,181 +157,43 @@ Prove by construction
 - for each state in the Mo, move the output character to its incoming edges
   - just remove the output character if there is no incoming edges
   - leave the outgoing edges along, they will be relabeled by their destination states
+- ![m06](./img/m06.png)
 
 🍎 Example 1
 ---
 Given a Mo,
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0/1"])
-q1(["q1/0"])
-q2(["q2/0"])
-q3(["q3/1"])
-q0-->|a|q1
-q0-->|b|q3
-q1-->|a|q3
-q1-->|b|q1
-q3-->|a|q3
-q3-->|b|q2
-q2-->|a|q0
-q2-->|b|q3
-```
-Construct the equivalent Me,
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0"])
-q1(["q1"])
-q2(["q2"])
-q3(["q3"])
-q0-->|"a/0"|q1
-q0-->|"b/1"|q3
-q1-->|"a/1"|q3
-q1-->|"b/0"|q1
-q3-->|"a/1"|q3
-q3-->|"b/0"|q2
-q2-->|"a/1"|q0
-q2-->|"b/1"|q3
-```
 
-🍎 Example 2
----
-Given a Mo,
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0/0"])
-q1(["q1/1"])
-q2(["q2/0"])
-q3(["q3/1"])
-q0-->|a|q1
-q0-->|b|q2
-q1-->|a|q3
-q1-->|b|q2
-q3-->|"a,b"|q3
-q2-->|a|q2
-q2-->|b|q3
-```
+- ![m07](./img/m07.png)
+
 Construct the equivalent Me,
-```mermaid
-flowchart LR
-s((" "))-->q0(["-q0"])
-q1(["q1"])
-q2(["q2"])
-q3(["q3"])
-q0-->|"a/1"|q1
-q0-->|"b/0"|q2
-q1-->|"a/1"|q3
-q1-->|"b/0"|q2
-q3-->|"a/1,b/1"|q3
-q2-->|"a/0"|q2
-q2-->|"b/1"|q3
-```
+
+- ![m08](./img/m08.png)
+
 - from Mo to Me, the number of states and number of edges do not change
 
 ---
-- ❶ Given Me, build an equivalent Mo
+
+- ❷ Given Me, build an equivalent Mo
   - three cases:
 
 ① Multiple outputs on the incoming edges: Make copies of state the number of outputs to avoid conflict in the state
-```mermaid
-flowchart LR
-ia0((" "))
-ib0((" "))
-ib1((" "))
-oa1((" "))
-ob0((" "))
-q1(["q"])
 
-ia0-->|"a/0"|q1
-ib0-->|"b/0"|q1
-ib1-->|"b/1"|q1
-q1-->|"a/0"|oa1
-q1-->|"b/0"|ob0
-```
+- ![m09](./img/m09.png)
+
 Here are two types of inputs, separate the inputs into two groups, push the output into the state, and copy everything else
 
-```mermaid
-flowchart LR
-ia0((" "))
-ib0((" "))
-ib1((" "))
-oa1((" "))
-ob0((" "))
-q1(["q₁/0"])
-q2(["q₂/1"])
-
-ia0-->|"a"|q1
-ib0-->|"b"|q1
-q1-->|"a/0"|oa1
-q1-->|"b/0"|ob0
-
-
-ib1-->|"b"|q2
-q2-->|"a/0"|oa1
-q2-->|"b/0"|ob0
-```
+- ![m10](./img/m10.png)
 
 ---
+
 ② single output on the incoming edges, just move the output into the state
 
-```mermaid
-flowchart LR
-ia0((" "))
-ib0((" "))
-ib20((" "))
-oa1((" "))
-ob0((" "))
-q1(["q"])
+- ![m11](./img/m11.png)
 
-ia0-->|"a/0"|q1
-ib0-->|"b/0"|q1
-ib20-->|"b/0"|q1
-q1-->|"a/1"|oa1
-q1-->|"b/0"|ob0
-```
-- →
-```mermaid
-flowchart LR
-ia0((" "))
-ib0((" "))
-ib20((" "))
-oa1((" "))
-ob0((" "))
-q1(["q/0"])
-
-ia0-->|"a"|q1
-ib0-->|"b"|q1
-ib20-->|"b"|q1
-q1-->|"a/1"|oa1
-q1-->|"b/0"|ob0
-```
 ---
 ③  a loop in Me may become two edges in Mo
 - one edge is a loop and the other is not
-
-```mermaid
-flowchart LR
-ia0((" "))
-ob0((" "))
-q1(["q"])
-
-ia0-->|"a/0"|q1
-q1-->|"b/1"|q1
-q1-->|"b/0"|ob0
-```
-- →
-```mermaid
-flowchart LR
-ia0((" "))
-ob0((" "))
-q1(["q₁/0"])
-q2(["q₂/1"])
-
-ia0-->|"a"|q1
-q1-->|"b"|q2
-q2-->|b|q2
-q1-->|"b/0"|ob0
-q2-->|"b/0"|ob0
-```
+- ![m12](./img/m12.png)
 
 
 ④ If there is a state without incoming edges, then it can be assigned any printing instruc­tion
@@ -411,106 +209,16 @@ Note:
 ---
 Create a equivalent Mo for the Me below
 
-```mermaid
-flowchart LR
-q0(("-q0"))
-q1(("q1"))
-q2(("q2"))
-q3(("q3"))
-
-q0-->|"a/1"|q2
-q0-->|"b/0"|q3
-q1-->|"a/0"|q0
-q1-->|"b/1"|q1
-q2-->|"a/1"|q1
-q2-->|"b/0"|q2
-q3-->|"a/0"|q2
-q3-->|"b/1"|q0
-```
+- ![m13](./img/m13.png)
 - handle q0 incoming edges: →
-```mermaid
-flowchart LR
-q00(("-q0/0"))
-q01(("q0/1"))
-q1(("q1"))
-q2(("q2"))
-q3(("q3"))
-
-q00-->|"a/1"|q2
-q00-->|"b/0"|q3
-q01-->|"a/1"|q2
-q01-->|"b/0"|q3
-q1-->|"a"|q00
-q1-->|"b/1"|q1
-q2-->|"a/1"|q1
-q2-->|"b/0"|q2
-q3-->|"a/0"|q2
-q3-->|"b"|q01
-```
+  - ![m15](./img/m15.png)
 - handle q1 incoming edges: →
-```mermaid
-flowchart LR
-q00(("-q0/0"))
-q01(("q0/1"))
-q1(("q1/1"))
-q2(("q2"))
-q3(("q3"))
-
-q00-->|"a/1"|q2
-q00-->|"b/0"|q3
-q01-->|"a/1"|q2
-q01-->|"b/0"|q3
-q1-->|"a"|q00
-q1-->|"b"|q1
-q2-->|"a"|q1
-q2-->|"b/0"|q2
-q3-->|"a/0"|q2
-q3-->|"b"|q01
-```
+  - ![m16](./img/m16.png)
 - handle q3 incoming edges: →
-```mermaid
-flowchart LR
-q00(("-q0/0"))
-q01(("q0/1"))
-q1(("q1/1"))
-q2(("q2"))
-q3(("q3/0"))
-
-q00-->|"a/1"|q2
-q00-->|"b"|q3
-q01-->|"a/1"|q2
-q01-->|"b"|q3
-q1-->|"a"|q00
-q1-->|"b"|q1
-q2-->|"a"|q1
-q2-->|"b/0"|q2
-q3-->|"a/0"|q2
-q3-->|"b"|q01
-```
+  - ![m17](./img/m17.png)
 - handle q2 incoming edges: →
   - ⚠️ pay attention to its loop
-```mermaid
-flowchart LR
-q00(("-q0/0"))
-q01(("q0/1"))
-q1(("q1/1"))
-q20(("q2/0"))
-q21(("q2/1"))
-q3(("q3/0"))
-
-q00-->|"a"|q21
-q00-->|"b"|q3
-q01-->|"a"|q21
-q01-->|"b"|q3
-q1-->|"a"|q00
-q1-->|"b"|q1
-q20-->|"a"|q1
-q21-->|"a"|q1
-q21-->|"b"|q20
-q20-->|"b"|q20
-q3-->|"a"|q20
-q3-->|"b"|q01
-```
+  - ![m18](./img/m18.png)
 
 
 Comparison of Automata

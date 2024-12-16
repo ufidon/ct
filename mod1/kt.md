@@ -55,234 +55,104 @@ Proof of Part ❷:
 Step ➀: uniquefy start and final states
 ---
 - Simplify the start states to be one start state *without incoming edges*
-```mermaid
-flowchart LR
-s1((1-))-->|r1|q2((" "))-->f(("+"))
-s2((2-))-->|r2|q3((" "))-->f(("+"))
-s3((3-))-->|r3|q4((" "))-->f(("+"))
-```
-- is simplified to be
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|s1
-s-->|ϵ|s2
-s-->|ϵ|s3
-s1((1))-->|r1|q2((" "))-->f(("+"))
-s2((2))-->|r2|q3((" "))-->f(("+"))
-s3((3))-->|r3|q4((" "))-->f(("+"))
-```
+  - ![k1](./img/k1.png)
+  - is simplified to be
+  - ![k2](./img/k2.png)
+
 - ---
+
 - Simplify the final states to be one unique final state without outgoing edges
-```mermaid
-flowchart LR
-q1((" "))-->|r1|f1(("f1+"))
-q2((" "))-->|r2|f1
-q3((" "))-->|r3|f2(("f2+"))
-f2-->|r4|f2
-```
-- is simplified to be
-```mermaid
-flowchart LR
-q1((" "))-->|r1|f1(("f1"))
-q2((" "))-->|r2|f1
-q3((" "))-->|r3|f2(("f2"))
-f2-->|r4|f2
-f1-->|ϵ|f(("+"))
-f2-->|ϵ|f(("+"))
-```
+  - ![k3](./img/k3.png)
+  - is simplified to be
+  - ![k4](./img/k4.png)
+- Now the TG has shape
+  - ![k5](./img/k5.png)
+
 - ---
+
 - Simplify combined start and final states
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|f1(("±"))
-f1-->|r2|f1
-f1-->|r3|q3(("3"))
-```
-- is simplified to be
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|f1((" "))
-f1-->|r2|f1
-f1-->|r3|q3(("3"))
-s(("-"))-->|ϵ|f1
-f1-->|ϵ|f(("+"))
-```
+  - ![k6](./img/k6.png)
+  - is simplified to be
+  - ![k7](./img/k7.png)
 
 Step ➁: Unite  parallel edges
 ---
 - loops on a single state
-```mermaid
-flowchart LR
-q1((" "))-->|r1|q1
-q1-->|r2|q1
-q1-->|r3|q1
-```
-- is simplified to be
-```mermaid
-flowchart LR
-q1((" "))-->|"r1+r2+r3"|q1
-```
+  - ![k8](./img/k8.png)
+  - is simplified to be
+  - ![k9](./img/k9.png)
+
 - ---
+
 - unite parallel edges
-```mermaid
-flowchart LR
-q1((" "))-->|r1|q2((" "))
-q1-->|r2|q2
-q1-->|r3|q2
-```
-- to be
-```mermaid
-flowchart LR
-q1((" "))-->|"r1+r2+r3"|q2((" "))
-```
+  - ![ka](./img/ka.png)
+  - to be
+  - ![kb](./img/kb.png)
+
 - ---
 
 Step ➂: eliminate states
 ---
 - concatenate segments on a single path
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|q2(("2"))
-q2-->|r2|q3(("3"))
-```
-- eliminate state 2
-```mermaid
-flowchart LR
-q1(("1"))-->|r1r2|q3(("3"))
-```
+  - ![kc](./img/kc.png)
+  - eliminate state 2
+  - ![kd](./img/kd.png)
+
 - ---
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|q2(("2"))
-q2-->|r2|q2
-q2-->|r3|q3(("3"))
-```
+
+- ![ke](./img/ke.png)
 - eliminate state 2
-```mermaid
-flowchart LR
-q1(("1"))-->|r1r2*r3|q3(("3"))
-```
+- ![kf](./img/kf.png)
+
 - ---
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|q2(("2"))
-q2-->|r2|q2
-q2-->|r3|q3(("3"))
-q2-->|r4|q4(("4"))
-q2-->|r5|q5(("5"))
-```
-- eliminate state 2
-```mermaid
-flowchart LR
-q1(("1"))-->|r1r2*r3|q3(("3"))
-q1-->|r1r2*r4|q4(("4"))
-q1-->|r1r2*r5|q5(("5"))
-```
-- ---
+
 - eliminate a state with multiple incoming edges and outgoing edges
   - consider all passing routes
   - use cartesian product of the incoming edges and outgoing edges
 
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|q1
-s(("-"))-->|ϵ|q3
-q1(("1"))-->|r1|q2(("2"))
-q3(("3"))-->|r3|q2
-q2-->|r2|q2
-q2-->|r4|q4(("4"))
-q2-->|r5|q5(("5"))
-q4-->|ϵ|f(("+"))
-q5-->|ϵ|f
-```
+- ![kg](./img/kg.png)
 - eliminate state 2
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|q1(("1"))
-s(("-"))-->|ϵ|q3(("3"))
-q1-->|r1r2*r4|q4(("4"))
-q1-->|r1r2*r5|q5(("5"))
-q3-->|r3r2*r4|q4(("4"))
-q3-->|r3r2*r5|q5(("5"))
-q4-->|ϵ|f(("+"))
-q5-->|ϵ|f
-```
-- ---
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|q2(("2"))
-q2-->|r2|q2
-q2-->|r4|q1
-q3(("3"))-->|r3|q2
-```
+- ![kh](./img/kh.png)
+
+---
+
+- ![kk](./img/kk.png)
 - eliminate state 2
-```mermaid
-flowchart LR
-q1(("1"))-->|"r1r2*r4"|q1
-q3(("3"))-->|"r3r2*r4"|q1
-```
-- ---
-```mermaid
-flowchart LR
-q1(("1"))-->|r1|q1
-q2(("2"))-->|r2|q2
-q1-->|r12|q2
-q2-->|r21|q1
-q1-->|r13|q3(("3"))
-q3-->|r31|q1
-q2-->|r23|q3
-q3-->|r32|q2
-q3-->|r3|q3
-```
+- ![kl](./img/kl.png)
+
+---
+
+- ![km](./img/km.png)
 - eliminate state 2
-```mermaid
-flowchart LR
-q1(("1"))
-q3(("3"))
-q1-->|"r1+r12r2*r21"|q1
-q1-->|"r13+r12r2*r23"|q3
-q3-->|"r31+r32r2*r21"|q1
-q3-->|"r3+r32r2*r23"|q3
-```
+- ![kn](./img/kn.png)
+
+---
+
+- ![ko](./img/ko.png)
+- eliminate state 2
+- ![kp](./img/kp.png)
+
+---
+
+- ![kq](./img/kq.png)
+- eliminate state 2
+- ![kr](./img/kr.png)
+
+---
+
+- ![k00](./img/k00.png)
+- eliminate state 2
+- ![k01](./img/k01.png)
+
 
 - ---
-```mermaid
-flowchart LR
-q1(("1"))-->|r12|q2(("2"))
-q3(("3"))-->|r32|q2
-q2-->|r2|q2
-q2-->|r23|q3
-q3-->|r3|q3
-q3-->|r31|q1
-q2-->|r24|q4(("4"))
-q4-->|r4|q4
-q4-->|r41|q1
-q2-->|r25|q5(("5"))
-```
-- eliminate state 2
-  - incoming edges from: 1,3
-  - outgoing edges: 3,4,5
-- 1 →2→ 3: r12r2*r23
-- 1 →2→ 4: r12r2*r24
-- 1 →2→ 5: r12r2*r25
-- 3 →2→ 3: r32r2*r23
-- 3 →2→ 4: r32r2*r24
-- 3 →2→ 5: r32r2*r25
-
 
 Step ➃: unite all edges from the start state to the final states
 ---
-```mermaid
-flowchart LR
-q1(("-"))-->|r1|q2(("+"))
-q1-->|r2|q2
-q1-->|r3|q2
-```
+- ![ki](./img/ki.png)
 - becomes
-```mermaid
-flowchart LR
-q1(("-"))-->|"r1+r2+r3"|q2(("+"))
-```
+- ![kj](./img/kj.png)
+
 
 The state-elimination algorithm that derives the RE from an arbitrary TG
 ---
@@ -300,129 +170,47 @@ The state-elimination algorithm that derives the RE from an arbitrary TG
 🍎 find the REs for the following TGs
 ---
 - Example 1
-```mermaid
-flowchart LR
-s(("-"))
-s-->|"aa,bb"|q1((1))
-q1-->|"a,b"|q1
-q1-->|aa|e1(("+"))
-q1-->|bb|e2(("+"))
-```
+  - ![ks](./img/ks.png)
+
 - is simplified to be
-```mermaid
-flowchart LR
-s(("-"))
-s-->|"aa+bb"|q1((1))
-q1-->|"a+b"|q1
-q1-->|aa|e1((" "))
-q1-->|bb|e2((" "))
-e1-->|ϵ|f(("+"))
-e2-->|ϵ|f
-```
-- →
-```mermaid
-flowchart LR
-s(("-"))
-s-->|"aa+bb"|q1((1))
-q1-->|"a+b"|q1
-q1-->|"aa+bb"|f(("+"))
-```
-- →
-```mermaid
-flowchart LR
-s(("-"))
-s-->|"(aa+bb)(a+b)*(aa+bb)"|f(("+"))
-```
+  - ![kt](./img/kt.png)
+
+- → ![ku](./img/ku.png)
+
+- → ![kv](./img/kv.png)
+
+- → ![kw](./img/kw.png)
+
+- → ![kx](./img/kx.png)
+
+- $`\mathbf{(aa+bb)(a+b)^*(aa) + (aa+bb)(a+b)^*(bb)}`$
+  - $`\mathbf{(aa+bb)(a+b)^*(aa+bb)}`$
+
 - ---
+
 - Example 2
-```mermaid
-flowchart LR
-q1(("q1±"))-->|"ab,ba"|q2(("2"))
-q1-->|"aa,bb"|q1
-q2-->|"aa,bb"|q2
-q2-->|"ab,ba"|q1
-```
-- →
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|q1
-q1(("q1"))-->|"ab+ba"|q2(("2"))
-q1-->|ϵ|e(("+"))
-q1-->|"aa+bb"|q1
-q2-->|"aa+bb"|q2
-q2-->|"ab+ba"|q1
-```
-- →
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|q1(("q1"))
-q1-->|ϵ|e(("+"))
-q1-->|"(aa+bb)+(ab+ba)(aa+bb)*(ab+ba)"|q1
-```
-- →
-```mermaid
-flowchart LR
-s(("-"))-->|"((aa+bb)+(ab+ba)(aa+bb)*(ab+ba))*"|e(("+"))
-```
+  - ![ky](./img/ky.png)
+- → ![kz](./img/kz.png)
+- → ![kz2](./img/kz2.png)
+- → ![kz3](./img/kz3.png)
+- → ![kz4](./img/kz4.png)
+
 - ---
-- Example 3
-```mermaid
-flowchart LR
-s(("-"))-->|ϵ|q1(("q1"))
-q1-->|a|q2(("2"))
-q1-->|"b"|q3((3))
-q2-->|b|q2
-q2-->|a|e(("+"))
-q2-->|a|q3
-q3-->|a|q3
-q3-->|b|q2
-q3-->|"ϵ"|e
-```
-- →
-```mermaid
-flowchart LR
-q1(("q1-"))-->|a|q2(("2"))
-q1-->|"b"|q3((3))
-q2-->|b|q2
-q2-->|a|e(("+"))
-q2-->|a|q3
-q3-->|a|q3
-q3-->|b|q2
-q3-->|"ϵ"|e
-```
-- eliminate state 2
-  - incoming edges: 1, 3
-  - outgoing edges: 3, +
-- →
-```mermaid
-flowchart LR
-q1(("q1-"))-->|"ab*a"|e(("+"))
-q1-->|"ab*a"|q3
-q1-->|b|q3
-q3-->|a|q3(("3"))
-q3-->|"bb*a"|q3
-q3-->|"bb*a"|e
-q3-->|"ϵ"|e
-```
-- →
-```mermaid
-flowchart LR
-q1(("q1-"))-->|"ab*a"|e(("+"))
-q1-->|"b+ab*a"|q3
-q3-->|"a+bb*a"|q3(("3"))
-q3-->|"ϵ+bb*a"|e
-```
-- →
-```mermaid
-flowchart LR
-q1(("q1-"))
-e(("+"))
-q1-->|"ab*a+(b+ab*a)(a+bb*a)*(ϵ+bb*a)"|e
-```
+
+- Example 3: eliminate the states in the order 1,2,3
+  - ![k02](./img/k02.png)
+  - → ![k03](./img/k03.png)
+  - → ![k04](./img/k04.png)
+  - → ![k05](./img/k05.png)
+
 
 📝 Practice
 ---
-- Redo example 3 by eliminating state 3
+- Redo example 3 by eliminating states in the order 3,2,1
+  - → ![k06](./img/k06.png)
+  - → ![k07](./img/k07.png)
+  - → ![k08](./img/k08.png)
+- Can you tell the two REs obtained are equivalent?
 
 
 Proof of Part ❸
@@ -436,24 +224,9 @@ Proof of Part ❸
 Step ➀: Build FAs for the seeds
 ---
 - A FA accepts only the empty string ϵ 
-```mermaid
-flowchart LR
-q1(("q1±"))
-d(("☠️")) 
-q1-->|"all σ"|d
-d-->|"all σ"|d
-```
-- A FA accepts only one specified letter σ1∈Σ 
-```mermaid
-flowchart LR
-q1(("q1-"))
-e(("+"))
-d(("☠️")) 
-q1-->|"σ1"|e
-q1-->|"all σ except σ1"|d
-d-->|"all σ"|d
-e-->|"all σ"|d
-```
+  - ![k09](./img/k09.png)
+- A FA accepts only one specified letter x∈Σ 
+  - ![k10](./img/k09.png)
 
 Step ➁: Unite FAs
 ---
@@ -464,35 +237,7 @@ Step ➁: Unite FAs
 ---
 Given FA1 and FA2, build FA3 = FA1+FA2.
 - FA1: all words with a double a in them somewhere
-```mermaid
-flowchart LR
-  q1(("-x1"))
-  q2(("x2"))
-  q3(("+x3"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
-
-- FA2: EVEN-EVEN
-```mermaid
-flowchart LR
-  q1(("±y1"))
-  q2((y2))
-  q3((y3))
-  q4((y4))
-  q1-->|b|q2
-  q1-->|a|q3
-  q2-->|b|q1
-  q2-->|a|q4  
-  q3-->|a|q1
-  q3-->|b|q4
-  q4-->|a|q2
-  q4-->|b|q3  
-```
+  - ![k11](./img/k11.png)
 
 - Transition table of FA1
 
@@ -502,6 +247,10 @@ flowchart LR
 | x2 | x3 | x1 |
 | +x3 | x3 | x3 |
 
+---
+
+- FA2: EVEN-EVEN
+  - ![k12](./img/k12.png)
 - Transition table of FA2
 
 | state\input | a | b |
@@ -537,95 +286,39 @@ flowchart LR
   - end at a final state either on machine FA1 or on machine FA2 
   - Also, any string accepted by ei­ther FA1 or FA2 will be accepted by this FA3
 
+- FA3
+  - ![k13](./img/k13.png)
+
+---
 
 📝 Practice
 ---
 P1: Find the FA3 = FA1 + FA2
 
-- FA1: 
-```mermaid
-flowchart LR
-  q1(("-x1"))
-  q2(("x2"))
-  q3(("+x3"))
+- FA1 and FA2
+  - ![k14](./img/k14.png)
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
-- FA2:
-```mermaid
-flowchart LR
-  q1(("-y1"))
-  q2(("+y2"))
-
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
 - FA3:
   - -z1 = x1 or y1
   - z2 = x2 or y1
   - z3+ = x1 or y2+
   - z4+ = x3+ or y1
   - z5+ = x3+ or y2+
-```mermaid
-flowchart LR
-  z1(("z1-"))-->|a|z2(("z2"))
-  z1-->|b|z3(("z3+"))
-  z2-->|b|z3
-  z3-->|a|z2
-  z3-->|b|z3
-  z2-->|a|z4(("z4+"))
-  z4-->|a|z4
-  z4-->|b|z5(("z5+"))
-  z5-->|b|z5
-  z5-->|a|z4
-```
+
+- ![k15](./img/k15.png)
+
 - ---
 P2: Find the FA3 = FA1 + FA2
 
 - FA1:  all words that end in a
-```mermaid
-flowchart LR
-  q2(("x1-"))
-  q1(("x2+"))
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+  - ![k16](./img/k16.png)
 
 - FA2: all words with an odd number of letters
-```mermaid
-flowchart LR
-  q1(("-y1"))
-  q2(("+y2"))
-  q1-->|"a,b"|q2
-  q2-->|"a,b"|q1
-```
+  - ![k17](./img/k17.png)
 
 - FA3:  all words that either have
 an odd number of letters or end in a
-
-```mermaid
-flowchart LR
-  q11(("z1-=<br>x1- or y1-"))
-  q22(("z2+=<br>x2+ or y2+"))
-  q12(("z3+=<br>x1- or y2+"))
-  q21(("z4+=<br>x2+ or y1-"))
-  q11-->|a|q22
-  q22-->|b|q11
-  q11-->|b|q12
-  q12-->|b|q11
-  q12-->|a|q21
-  q21-->|b|q12
-  q21-->|a|q22
-  q22-->|a|q21
-```
+  - ![k18](./img/k18.png)
 
 - ---
 P3: Find the FA3 = FA1 + FA2
@@ -634,63 +327,20 @@ P3: Find the FA3 = FA1 + FA2
   - ⓶ build all FA3 states beforehand
 
 - FA1:  all words that end in a
-```mermaid
-flowchart LR
-  q2(("x1-"))
-  q1(("x2+"))
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+  - ![k19](./img/k19.png)
 
 - FA2: all words that end in b
-```mermaid
-flowchart LR
-  q1(("-y1"))
-  q2(("+y2"))
-  q1-->|"b"|q2
-  q1-->|a|q1
-  q2-->|"a"|q1
-  q2-->|b|q2
-```
+  - ![k20](./img/k20.png)
 
 - FA3:   all words ending in a or b, that is, all words except ϵ
   - ⓵ a new state in FA3 is built when it's needed
-
-```mermaid
-flowchart LR
-  q11(("z1-=<br>x1- or y1-"))
-  q12(("z2+=<br>x1- or y2+"))
-  q21(("z3+=<br>x2+ or y1-"))
-  q11-->|b|q12
-  q12-->|b|q12
-  q11-->|a|q21
-  q21-->|a|q21
-  q12-->|a|q21
-  q21-->|b|q12
-```
+  - ![k21](./img/k21.png)
 - ---
 - ⓶ All the states in FA3 can also be built beforehand as the Cartesian product of all FA1 states and all FA2 states
   - create all the transitions
   - remove all unreachable states and their edges
     - such as state z4
-
-```mermaid
-flowchart LR
-  q11(("z1-=<br>x1- or y1-"))
-  q12(("z2+=<br>x1- or y2+"))
-  q21(("z3+=<br>x2+ or y1-"))
-  q22(("z4+=<br>x2+ or y2+"))
-  q11-->|b|q12
-  q12-->|b|q12
-  q11-->|a|q21
-  q21-->|a|q21
-  q12-->|a|q21
-  q21-->|b|q12
-  q22-->|a|q21
-  q22-->|b|q12
-```
+  - ![k22](./img/k22.png)
 
 Step ③: Concatenate FAs
 ---
@@ -702,56 +352,16 @@ Step ③: Concatenate FAs
 What could go wrong? 
 
 Given FA1: all words with b as the second letter
-```mermaid
-flowchart LR
-  q1(("q1-"))
-  q2(("q2"))
-  q3(("q3+"))
-  q4(("q4"))
 
-  q1-->|"a,b"|q2
-  q2-->|b|q3
-  q3-->|"a,b"|q3
-  q2-->|a|q4
-  q4-->|"a,b"|q4
-```
+- ![k23](./img/k23.png)
+
 and FA2: all words that have an odd number of a's
-```mermaid
-flowchart LR
-  q1(("-"))
-  q2(("+"))
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+- ![k24](./img/k24.png)
 
 - An intuitive but wrong construction of FA3=FA1FA2:
   - suppose we can jump somehow from q3+ to x1-
-```mermaid
-flowchart LR
-  q1(("q1-"))
-  q2(("q2"))
-  q3(("q3+"))
-  q4(("q4"))
-
-  q1-->|"a,b"|q2
-  q2-->|b|q3
-  q3-->|"a,b"|q3
-  q2-->|a|q4
-  q4-->|"a,b"|q4
-
-  q3-->|"↷"|qs1
-
-  qs1(("x1-"))
-  qs2(("x2+"))
-
-  qs1-->|b|qs1
-  qs1-->|a|qs2
-  qs2-->|b|qs2
-  qs2-->|a|qs1  
-```
+  - ![k25](./img/k25.png)
 
 - Run the strings below on FA3
 - ababbaa = (ab)(abbaa)
@@ -777,33 +387,13 @@ Given FA1:
 
 - all words with a double a in them somewhere
 - $\mathbf{(a + b)^*aa(a + b)^*}$
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3+"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
+- ![k26](./img/k26.png)
 
 and FA2:
+
 - all words end in b
   - $\mathbf{(a+b)^*b}$
-```mermaid
-flowchart LR
-  q1(("y1-"))
-  q2(("y2+"))
-
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+- ![k27](./img/k27.png)
 
 FA3:
 - z1- = x1-
@@ -814,22 +404,9 @@ FA3:
     - from this point, the remained string is running on both FAs
 - z4+ = x3+ or y1- or y2+
   - *pay attention to the y1- again*
-```mermaid
-flowchart LR
-  q1(("z1-"))
-  q2(("z2"))
-  q3(("z3"))
-  q4(("z4+"))
+- ![k28](./img/k28.png)
 
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a"|q3
-  q3-->|b|q4
-  q4-->|a|q3
-  q4-->|b|q4
-```
+---
 
 Algorithm for constructing FA3 = FA1FA2
 ---
@@ -844,53 +421,20 @@ Algorithm for constructing FA3 = FA1FA2
 ---
 Given FA1 and FA2 below, find FA3=FA1FA2
 
-- FA1: all words that start with b
+- FA1: all words that start with b 
   - $\mathbf{b(a+b)^*}$
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|"a,b"|q2
-  q3-->|"a,b"|q3
-```
-
-- FA2: all words that end with b
+- and FA2: all words that end with b
   - $\mathbf{(a+b)^*b}$
-```mermaid
-flowchart LR
-  q1(("y1-"))
-  q2(("y2+"))
+- ![k29](./img/k29.png)
 
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|b|q2
-  q2-->|a|q1
-```
+
 - FA3 = FA1FA2: all words begin with b and end with b
   - z1 = x1-
   - z2 = x2
   - z3 = x3 or y1
   - z4 = x3 or y1 or y2
+- ![k30](./img/k30.png)
 
-```mermaid
-flowchart LR
-  q1(("z1-"))
-  q2(("z2"))
-  q3(("z3"))
-  q4(("z4+"))
-
-  q1-->|b|q3
-  q1-->|a|q2
-  q2-->|"a,b"|q2
-  q3-->|"a"|q3
-  q3-->|b|q4
-  q4-->|a|q3
-  q4-->|b|q4
-```
 - ---
 
 - FA3' = FA2FA1: all words with a double b in them
@@ -901,79 +445,25 @@ flowchart LR
 - z5 = y2+ or x1- or x2
 - z6 = y1- or x2 or x3+
 - z7 = y2 or x1- or x2 or x3+
- 
-```mermaid
-flowchart LR
-  q1(("z1-"))
-  q2(("z2"))
-  q3(("z3"))
-  q4(("z4+"))
-  q5(("z5"))
-  q6(("z6+"))
-  q7(("z7+"))
+- ![k31](./img/k31.png) 
 
-  q1-->|b|q2
-  q1-->|a|q1
-  q2-->|"b"|q4
-  q2-->|a|q3
-  q3-->|"a"|q3
-  q3-->|b|q5
-  q5-->|a|q3
-  q5-->|b|q7
-  q4-->|a|q6
-  q4-->|b|q4
-  q6-->|b|q7
-  q6-->|a|q6
-  q7-->|a|q6
-  q7-->|b|q7
-```
+---
+
 
 📝 Practice
 ---
 Given FA1 and FA2 below, find FA3=FA1FA2
 
 - FA1: all words that do not contain the substring aa.
-
-```mermaid
-flowchart LR
-  q1(("x1±"))
-  q2(("x2+"))
-  q3(("x3"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
+  - ![k32](./img/k32.png)
 - FA2:  all words with an odd number of letters
-```mermaid
-flowchart LR
-  q1(("y1-"))
-  q2(("y2+"))
-  q1-->|"a,b"|q2
-  q2-->|"a,b"|q1
-```
+  - ![k33](./img/k33.png)
 - FA3 = FA1FA2:  all words but ϵ
   - if  a word w has an odd number of letters, factor it as (ϵ)(w)
     - ϵ ∈ FA1, w ∈ FA2
   - if w has an even (>0) number of letters, factor its as (first letter)(the rest)
     - first letter ∈ FA1, the rest ∈ FA2
-```mermaid
-flowchart LR
-  q1(("z1-=<br>x1 or y1"))
-  q2(("z2+=<br>x2 or y1 or y2"))
-  q3(("z3+=<br>x1 or y1 or y2"))
-  q4(("z4+=<br>x3 or y1 or y2"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q4
-  q2-->|b|q3
-  q3-->|"a"|q2
-  q3-->|"b"|q3
-  q4-->|"a,b"|q4
-```
+  - ![k34](./img/k34.png)
 
 Step ④: Star-close FAs
 ---
@@ -984,20 +474,7 @@ Step ④: Star-close FAs
 ---
 ❶ Given the language L defined by $\mathbf{r=a^*+aa^*b}$ is all strings of only a ' s and the strings of some (not 0) a 's ending in a single b, FA1 below accepts L:
 
-```mermaid
-flowchart LR
-  q1(("x1±"))
-  q2(("x2+"))
-  q3(("x3+"))
-  q4(("x4"))
-
-  q1-->|a|q2
-  q1-->|b|q4
-  q2-->|a|q2
-  q2-->|b|q3
-  q3-->|"a,b"|q4
-  q4-->|"a,b"|q4
-```
+- ![k35](./img/k35.png)
 
 - Build FA2 accepts $\mathbf{r^*=(a^*+aa^*b)^*}$:
   - `z1± = x1±` (**Case 1: x1 is a ± state**)
@@ -1012,25 +489,9 @@ flowchart LR
   - **key point 1**: each time we reach a final state it is possible that we have to
 start over again at x1
 
-```mermaid
-flowchart LR
-  q1(("z1±=<br>x1±"))
-  q2(("z2=<br>x4"))
-  q3(("z3+=<br>x1± or x2+"))
-  q4(("z4+=<br>x1± or x3+ or x4"))
-  q5(("z5+=<br>x1± or x2+ or x4"))
+![k36](./img/k36.png)
 
-  q1-->|a|q3
-  q1-->|b|q2
-  q3-->|a|q3
-  q3-->|b|q4
-  q2-->|"a,b"|q2
-  q4-->|b|q2
-  q4-->|a|q5
-  q5-->|a|q5
-  q5-->|b|q4
-```
-
+---
 
 __Algorithm: build FA*__
 
@@ -1048,21 +509,7 @@ Given an RE: $\mathbf{r=aa^*bb^*}$ that defines the language of all words where 
 
 One FA1 that accepts this language is
 
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q2
-  q2-->|b|q4
-  q3-->|"a,b"|q3
-  q4-->|a|q3
-  q4-->|b|q4
-```
+![k37](./img/k37.png)
 
 Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ ,
 - z1± = x1- (**case 2: the start state x1 has NO incoming edges**)
@@ -1072,27 +519,7 @@ Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ ,
 - z5 = x2 or x3
 - z6+ = x1 or x3 or x4+
 
-```mermaid
-flowchart LR
-  q1(("z1±=<br>x1-"))
-  q2(("z2=<br>x2"))
-  q3(("z3=<br>x3"))
-  q4(("z4+=<br>x1- or x4+"))
-  q5(("z5=<br>x2 or x3"))
-  q6(("z6+=<br>x1- or x3 or x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q2
-  q2-->|b|q4
-  q3-->|"a,b"|q3
-  q4-->|a|q5
-  q4-->|b|q6
-  q5-->|a|q5
-  q5-->|b|q6
-  q6-->|a|q5
-  q6-->|b|q6
-```
+- ![k38](./img/k39.png)
 
 - ---
 **Case 3: For an FA NOT accepting ϵ and its x1 has incoming edges**, to build its FA*, two separate start states are needed,
@@ -1103,65 +530,23 @@ flowchart LR
 ---
 Given FA1 that accepts the language of all words with an odd number of b's
 
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-
-  q1-->|a|q1
-  q1-->|b|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
+![k40](./img/k40.png)
 
 Build FA1*, which accepts all words but not words of only a's
 - z1± = x1- and a final state
 - z2 = x1- and a nonfinal state
 - z3+ = x1- or x2+
 
-```mermaid
-flowchart LR
-  q1(("z1±=<br>x1-"))
-  q2(("z2=<br>x1-"))
-  q3(("z3+=<br>x1- or x2+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|a|q2
-  q2-->|b|q3
-  q3-->|"a,b"|q3
-```
+![k41](./img/k41.png)
 
 - ---
 
 ❷ Find the FA* for the below FA that accepts all strings that end in a 
 
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
+![k42](./img/k42.png)
 
 - build the FA*
-
-```mermaid
-flowchart LR
-  q0(("z1±"))
-  q1(("z2=<br>x1-"))
-  q2(("z3+=<br>x1- or x2+"))
-
-  q0-->|b|q1
-  q0-->|a|q2
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|a|q2
-  q2-->|b|q1
-```
+  - ![k43](./img/k43.png)
 
 - **key point 2**: always begin the FA *-machine with a `special ± start state` that exists in addition to all the states that are subsets of x's
   - This start state should have exit­ing a- and b-edges going to the same x's that the old start state did
@@ -1195,139 +580,32 @@ Nondeterministic finite automaton (NFA)
 ---
 Three NFAs,
 
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3+"))
+![k44](./img/k44.png)
 
-  q1-->|"a,b"|q1
-  q1-->|a|q2
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3+"))
-  q4(("x4"))
-
-  q1-->|"a"|q2
-  q1-->|b|q4
-  q2-->|a|q3
-  q2-->|"a,b"|q2
-  q4-->|"a,b"|q4
-  q4-->|b|q3
-```
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-  q3(("x3"))
-  q4(("x4"))
-  q5(("x5+"))
-
-  q1-->|"a"|q2
-  q1-->|a|q3
-  q1-->|a|q4
-  q4-->|a|q5
-```
+---
 
 🍎 Example
 ---
 One possible use of the NFA is to eliminate all loop states in a given FA:
 
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-  q3(("x3"))
-  q4(("x4"))
-  q5(("x5+"))
-  q6(("x6"))
-  q7(("x7"))
+![k45](./img/k45.png)
 
-  q1-->q4
-  q2-->q4
-  q3-->q4
-  q4-->|a|q4
-  q4-->q5
-  q4-->q6
-  q4-->q7
-```
 - after the loop is removed
-  - the new state x4' introduced indicates the looping occurred
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2+"))
-  q3(("x3"))
-  q4(("x4"))
-  q4p(("x4'"))
-  q5(("x5+"))
-  q6(("x6"))
-  q7(("x7"))
+  - the new state 7' introduced indicates the looping occurred
+- ![k46](./img/k46.png)
 
-  q1-->q4
-  q2-->q4
-  q3-->q4
-  q4-->|a|q4p
-  q4p-->|a|q4
-  q4-->q5
-  q4-->q6
-  q4-->q7
-  q4p-->q5
-  q4p-->q6
-  q4p-->q7  
-```
-
+---
 
 🍎 Example
 ---
-- An NFA accepts all words with a double a followed by a double b
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4"))
-  q5(("x5+"))
+- An NFA accepts all words with a triple a followed by a triple b
+  - ![k47](./img/k47.png)
+  - ambiguity: a triple a followed by a triple b can occur at state 1, 4, 7 as well
 
-  q1-->|"a,b"|q1
-  q1-->|a|q2
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-  q3-->|b|q4
-  q4-->|b|q5
-  q5-->|"a,b"|q5
-```
-- ambiguity: a double a followed by a double b can occur at state 1, 3, 5 as well
+- A more strict language: all words begin with a triple a followed by a triple b:
+  - ![k48](./img/k48.png)
 
-A more strict language: all words begin with a double a followed by a double b:
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4"))
-  q5(("x5+"))
-  p1(("y1"))
-  p2(("y2"))
-
-  q1-->|a|q2
-  q1-->|"b"|p1
-  q2-->|a|q3
-  q2-->|b|p1
-  p1-->|a|q2
-  p1-->|b|p2
-  q3-->|"a,b"|q3
-  q3-->|b|q4
-  q4-->|b|q5
-  q5-->|"a,b"|q5
-```
+---
 
 ䷀ Theorem
 ---
@@ -1353,151 +631,32 @@ Proof 2:
 🍎 Examples
 ---
 - ➀ convert the NFA below
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|b|q4
-  q3-->|a|q4
-```
+  - ![k49](./img/k49.png)
 - to an FA
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
-  d((Φ))
-
-  q1-->|a|q2
-  q1-->|b|q3
-  q2-->|b|q4
-  q3-->|a|q4
-  q2-->|a|d
-  q3-->|b|d
-  q4-->|"a,b"|d
-  d-->|"a,b"|d
-```
+  - ![k50](./img/k50.png)
 
 - ---
 
 - ➁ convert the NFA that accepts the language {bb,bbb}  below
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
-
-  q1-->|b|q2
-  q2-->|b|q3
-  q2-->|b|q4
-  q3-->|b|q4
-```
-- to an FA
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3 or x4+"))
-  q4(("x4+"))
-  d((Φ))
-
-  q1-->|b|q2
-  q2-->|b|q3
-  q3-->|b|q4
-  q1-->|a|d
-  q2-->|a|d
-  q3-->|a|d
-  q4-->|a|d  
-  d-->|"a,b"|d
-```
+  - ![k51](./img/k51.png)
+  - to an FA
+  - ![k52](./img/k52.png)
 
 - ---
 
 - ➂ convert the NFA that accepts all inputs with a bb in them below
-
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3+"))
-
-  q1-->|b|q2
-  q1-->|"a,b"|q1
-  q2-->|b|q3
-  q3-->|"a,b"|q3
-```
-- to an FA
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(["x1 or x2"])
-  q3(["x2 or x3+<br>+"])
-
-  q1-->|b|q2
-  q1-->|a|q1
-  q2-->|b|q3
-  q2-->|a|q1
-  q3-->|"a,b"|q3
-```
+  - ![k53](./img/k53.png)
+  - to an FA
+  - ![k54](./img/k54.png)
 
 - ---
 
 - ➃ convert the NFA that accepts all inputs with a triple letter below
+  - ![k55](./img/k55.png)
+  - to an FA
+  - ![k56](./img/k56.png)
 
-```mermaid
-flowchart LR
-  q1(("1-"))
-  q2(("2"))
-  q3(("3"))
-  q4(("4+"))
-  q5(("5"))
-  q6(("6"))
-
-  q1-->|a|q2
-  q1-->|"a,b"|q1
-  q1-->|b|q5
-  q2-->|a|q3
-  q3-->|a|q4
-  q4-->|"a,b"|q4
-  q5-->|b|q6
-  q6-->|b|q4
-```
-- to an FA
-
-```mermaid
-flowchart LR
-  q1(("1-"))
-  q2(["1 or 2"])
-  q3(["1 or 2 or 3"])
-  q4(["1 or 2 or 3<br>+"])
-  q5(["1 or 5"])
-  q6(["1 or 3 or 6"])
-  q7(["1 or 4<br>+"])
-
-  q1-->|a|q2
-  q1-->|b|q5
-  q2-->|a|q3
-  q2-->|b|q5
-  q3-->|a|q4
-  q3-->|b|q5
-  q4-->|"a,b"|q4
-  q5-->|a|q2
-  q5-->|b|q6
-  q6-->|a|q2
-  q6-->|b|q7
-  q7-->|"a,b"|q7
-```
+---
 
 NFAs and Kleene's theorem Part ❸
 ---
@@ -1507,17 +666,9 @@ The proofs that FA1+FA2, FA1FA2, and FA1* are all equivalent to other FAs can be
 Step ➀: Build NFAs for the seeds
 ---
 - A NFA accepts only the empty string ϵ 
-```mermaid
-flowchart LR
-q1(("q1±"))
-```
+  - ![k57](./img/k57.png)
 - A NFA accepts only the specified letter σ∈Σ 
-```mermaid
-flowchart LR
-q1(("-"))
-e(("+"))
-q1-->|"σ1"|e
-```
+  - ![k58](./img/k58.png)
 
 Step ➁: Unite NFAs
 ---
@@ -1532,63 +683,11 @@ Step ➁: Unite NFAs
 ---
 Given FA1 and FA2 below,
 
-- FA1
-```mermaid
-flowchart LR
-  q1(("x1-"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
-
-  q1-->|a|q2
-  q1-->|b|q4
-  q2-->|b|q2
-  q2-->|a|q3
-  q3-->|a|q4
-  q3-->|b|q2
-  q4-->|b|q4
-  q4-->|a|q1
-```
-- FA2
-```mermaid
-flowchart LR
-  p1(("y1-"))
-  p2(("y2+"))
-
-  p1-->|a|p1
-  p1-->|b|p2
-  p2-->|"a,b"|p2
-```
+![k59](./img/k59.png)
 
 Construct a NFA = FA1+FA2,
-```mermaid
-flowchart LR
-  q1(("x1"))
-  q2(("x2"))
-  q3(("x3"))
-  q4(("x4+"))
 
-  q1-->|a|q2
-  q1-->|b|q4
-  q2-->|b|q2
-  q2-->|a|q3
-  q3-->|a|q4
-  q3-->|b|q2
-  q4-->|b|q4
-  q4-->|a|q1
-
-  p1(("y1"))
-  p2(("y2+"))
-
-  p1-->|a|p1
-  p1-->|b|p2
-  p2-->|"a,b"|p2
-
-  s(("-"))-->|a|p1
-  s-->|b|p2
-  s-->|a|q2
-  s-->|b|q4
-```
+![k60](./img/k60.png)
 
 ---
 - Optional

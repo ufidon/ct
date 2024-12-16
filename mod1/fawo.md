@@ -99,12 +99,7 @@ A Mealy machine
 - As with the Moore machine, the Mealy machine does not define a language by accepting and rejecting input strings, so it has no final states
   - even though it can do so as well by answering questions by its output.
 - the two same-direction edges between q2 and q3 can be simplified to be
-```mermaid
-flowchart LR
-q2(["q2"])
-q3(["q3"])
-q2-->|"a/0, b/1"|q3
-```
+  - ![m2](./img/m2.png)
 
 🍎 Example 4
 ---

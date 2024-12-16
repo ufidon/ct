@@ -1,0 +1,6 @@
+digraph FA {
+    rankdir=LR;
+    node [shape=circle]; q3;
+    node [shape=circle];
+    q2 -> q3 [label="a/0, b/1"];
+}

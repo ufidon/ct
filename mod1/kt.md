@@ -386,7 +386,7 @@ Another idea.
 Given FA1: 
 
 - all words with a double a in them somewhere
-- $\mathbf{(a + b)^*aa(a + b)^*}$
+- $`\mathbf{(a + b)^*aa(a + b)^*}`$
 - ![k26](./img/k26.png)
 
 and FA2:
@@ -476,7 +476,7 @@ Step ④: Star-close FAs
 
 - ![k35](./img/k35.png)
 
-- Build FA2 accepts $\mathbf{r^*=(a^*+aa^*b)^*}$:
+- Build FA2 accepts $`\mathbf{r^*=(a^*+aa^*b)^*}`$:
   - `z1± = x1±` (**Case 1: x1 is a ± state**)
   - z2 = x4
   - z3+ = x1± or x2+
@@ -505,13 +505,13 @@ Given an FA whose states are x1, x2, ... , the FA* can be built as follows:
 
 🍎 Example
 ---
-Given an RE: $\mathbf{r=aa^*bb^*}$ that defines the language of all words where all the a's (of which there is at least one) come before all the b's (of which there is at least one).
+Given an RE: $`\mathbf{r=aa^*bb^*}`$ that defines the language of all words where all the a's (of which there is at least one) come before all the b's (of which there is at least one).
 
 One FA1 that accepts this language is
 
 ![k37](./img/k37.png)
 
-Build an FA1* that accepts $\mathbf{r^*=(aa^*bb^*)^*}$ ,
+Build an FA1* that accepts $`\mathbf{r^*=(aa^*bb^*)^*}`$ ,
 - z1± = x1- (**case 2: the start state x1 has NO incoming edges**)
 - z2 = x2
 - z3 = x3
@@ -561,9 +561,9 @@ Build FA1*, which accepts all words but not words of only a's
 
 🍎 Example
 ---
-Build FA($\mathbf{(ab)^*a(ab + a^*)^*}$) top-down then bottom-up
-- FA($\mathbf{(ab)^*a(ab + a^*)^*}$) = FA1($\mathbf{(ab)^*a}$)FA2($\mathbf{(ab + a^*)^*}$)
-- FA2($\mathbf{(ab + a^*)^*}$) = FA3($\mathbf{(ab + a^*)}$)*
+Build FA($`\mathbf{(ab)^*a(ab + a^*)^*}`$) top-down then bottom-up
+- FA($`\mathbf{(ab)^*a(ab + a^*)^*}`$) = FA1($`\mathbf{(ab)^*a}`$)FA2($`\mathbf{(ab + a^*)^*}`$)
+- FA2($`\mathbf{(ab + a^*)^*}`$) = FA3($`\mathbf{(ab + a^*)}`$)*
 - etc.
 
 

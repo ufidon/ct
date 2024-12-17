@@ -100,7 +100,7 @@ flowchart LR
 - mark the start state
 ```mermaid
 flowchart LR
-  q1(("—"))
+  q1(("—1"))
   q2((" "))
   q3((" "))
   q4((" "))

@@ -181,15 +181,7 @@ x-->|"ab,ba"|s
 ```
 - which is EVEN-EVEN RE3: $`\mathbf{(aa+bb + (ab+ba)(aa+bb)^*(ab+ba))^*}`$
 
-④ 📝 Find the FA and RE for RG4
-- S → aA | bB
-- A → aS | a
-- B → bS | b
-
-- ![g01](./img/g01.png)
-- $`\mathbf{aa+bb}^{+}`$ 
-
-
+---
 
 Eliminating ϵ-productions
 ---

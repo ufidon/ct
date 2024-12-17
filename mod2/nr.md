@@ -87,7 +87,7 @@ Show L = {aⁿbⁿ, n=0,1,2,3,...} is not a regular language.
 Show language EQUAL =  all words with the same total number of a's and b's is nonregular.
 - EQUAL={ε,ab, ba, aabb, abab, ...}
 - prove by contradiction
-  - ∵ {aⁿbⁿ} = $\mathbf{a^*b^*}$ ∩ EQUAL
+  - ∵ {aⁿbⁿ} = $`\mathbf{a^*b^*}`$ ∩ EQUAL
   - if EQUAL is regular, then {aⁿbⁿ} is regular.
   - but {aⁿbⁿ} is nonregular, ∴ EQUAL must be nonregular.
 

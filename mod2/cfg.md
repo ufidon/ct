@@ -129,7 +129,7 @@ Context-free language (CFL)
   - ❸ S → a
   - ❹ S → b
 - the CFL3 generated from CFG3
-  - apply ❶ and ❷ in any order and any number of times: S ⇒ $\mathbf{(a+b)^+}$S
+  - apply ❶ and ❷ in any order and any number of times: S ⇒ $`\mathbf{(a+b)^+}`$S
   - then apply ❸ or ❹: S ⇒ $\mathbf{(a+b)^+(a+b)}$
   - $\mathbf{(a+b)^+}$ can be generated
   -  no words other than $\mathbf{(a+b)^+}$ can be generated
@@ -171,10 +171,10 @@ Context-free language (CFL)
   - ❸ X → bX
   - ❹ X → ε
 - the CFL6 generated from CFG6
-  - apply ❷ and ❸ in any order and any number of times: X ⇒ $\mathbf{(a+b)^+}$X
+  - apply ❷ and ❸ in any order and any number of times: X ⇒ $`\mathbf{(a+b)^+}`$X
   - with ❹: X ⇒ $\mathbf{(a+b)^*}$
   - then apply ❶
-- ∴ CFL6 = $\mathbf{(a+b)^*aa(a+b)^*}$
+- ∴ CFL6 = $`\mathbf{(a+b)^*aa(a+b)^*}`$
 
 ---
 
@@ -187,13 +187,13 @@ Context-free language (CFL)
   - ❻ Y → Yb
   - ❼ Y → a
 - the CFL7 generated from CFG7
-  - apply ❷ and ❸ in any order and any number of times: X ⇒ $\mathbf{(a+b)^+}$X
-  - then apply ❹: X ⇒ $\mathbf{(a+b)^+}$a
-  - apply ❺ and ❻ in any order and any number of times: Y ⇒ Y$\mathbf{(a+b)^+}$
-  - then apply ❼: Y ⇒ a$\mathbf{(a+b)^+}$
-  - then apply ❶: S ⇒ $\mathbf{(a+b)^+}$aa$\mathbf{(a+b)^+}$
+  - apply ❷ and ❸ in any order and any number of times: X ⇒ $`\mathbf{(a+b)^+}`$X
+  - then apply ❹: X ⇒ $`\mathbf{(a+b)^+}`$a
+  - apply ❺ and ❻ in any order and any number of times: Y ⇒ Y$`\mathbf{(a+b)^+}`$
+  - then apply ❼: Y ⇒ a$`\mathbf{(a+b)^+}`$
+  - then apply ❶: S ⇒ $`\mathbf{(a+b)^+}`$aa$`\mathbf{(a+b)^+}`$
   - together with ❶❹❼: aa
-- ∴ CFL7 = $\mathbf{(a+b)^*aa(a+b)^*}$
+- ∴ CFL7 = $`\mathbf{(a+b)^*aa(a+b)^*}`$
 
 ---
 
@@ -208,9 +208,9 @@ Context-free language (CFL)
   - ❽ U → ab
   - ❾ U → ba
 - the CFL8 generated from CFG8
-  - S ⇒ $\mathbf{aa|bb|(ab+ba)(aa+bb)^*(ab+ba)}$
+  - S ⇒ $`\mathbf{aa|bb|(ab+ba)(aa+bb)^*(ab+ba)}`$
   - ❶❹: S ⇒ S*
-- ∴ CFL8 = EVEN-EVEN = $\mathbf{[aa+bb+(ab+ba)(aa+bb)^*(ab+ba)]^*}$
+- ∴ CFL8 = EVEN-EVEN = $`\mathbf{[aa+bb+(ab+ba)(aa+bb)^*(ab+ba)]^*}`$
 
 ---
 
@@ -379,52 +379,79 @@ flowchart TB
 - `S→AA`
 - `A→AAA|bA|Ab|a`
 
-(p1) Find a parse tree for word `bbaaaab`
+Find a parse tree for word `bbaaaab`
 
+![c00](./img/c00.png)
+
+---
+
+③ Terminals only
+
+![c01](./img/c01.png)
+
+---
 
 Lukasiewicz notation
 ---
 - also called Polish notation, including
-  - operator prefix notation
-  - operator postfix notation
+  - operator `prefix` notation
+  - operator `postfix` notation
 - used to remove the the ambiguity in AE such as
   - `3+4*5` generated from
 - the CFG AMB
   - `S → S + S | S * S | number`
   - `3+4*5` could be `(3+4)*5`
   - or `3+(4*5)` without further information such as operator priority
-- this can be fixed with parentheses in CFG INFIX
+
+| ⓐ `((3+4)*5)` | ⓑ `(3+(4*5))` |
+|:---:|:---:|
+| ![c02a](./img/c02a.png) | ![c02b](./img/c02b.png) | 
+| ![c03a](./img/c03a.png) | ![c03b](./img/c03b.png) |
+
+
+- 📝 How to evaluate these parse trees?
+  - Replace each nonterminal by the terminal or the calculation result it produces
+
+- The `ambiguity` problem above can be fixed with parentheses in CFG INFIX
   - `S → (S + S) | (S * S) | number`
   - `((3+4)*5)` or `(3+(4*5))`
-  - called operator infix notation
+    - 📝 show the derivation
+  - called operator `infix` notation
 
+---
 
 Operator prefix notation
 ---
+- used to remove the burdensome `parentheses` of infix notations
 - generated with the CFG PREFIX below
   - `S → + | * | number`
   - `+ → ++ | +* |+number|*+|**|*number|number+|number*|number number`
   - `* → ++ | +* |+number|*+|**|*number|number+|number*|number number`
-- (p2) generates the CFL: operator prefix notation such as
-  - `+ 3 * 4 5` for `((3+4)*5)`
-  - `* + 3 4 5` for `(3+(4*5))`
+- generates the CFL: operator prefix notation such as
 
+| ⓐ `+ 3 * 4 5` for `((3+4)*5)` | ⓑ `* + 3 4 5` for `(3+(4*5))` |
+|:---:|:---:|
+| ![c04a](./img/c04a.png) | ![c02b](./img/c04b.png) | 
+
+---
 
 🍎 Example 6
 ---
 Convert infix notation to prefix notation:
 - `(( 1 + 2) * (3 + 4) + 5 ) * 6`
-- steps (p4)
+- steps
   - draw its parse tree following CFG INFIX
+  - ![c05](./img/c05.png)
   - read around this tree depth-first to get the equivalent prefix notation expression
-  - `* + * + 1 2 + 3 4 5 6`
+    - `* + * + 1 2 + 3 4 5 6`
+    - 📝 How to evaluate it?
 
 
 Ambiguity
 ---
 - A CFG is called `ambiguous` if 
-  - for at least one word in the language that it generates 
-  - there are two possible derivations of the word that correspond to different syntax trees 
+  - for `at least one word` in the language that it generates 
+  - there are `two possible derivations` of the word that correspond to `different syntax trees` 
 - If a CFG is not ambiguous, it is called unambiguous
 
 
@@ -434,23 +461,33 @@ Ambiguity
   - ❶ S → AB
   - ❷ A → a
   - ❸ B → b
-- (p5) i.e. the order of applying optional rules does not matter
+- i.e. the order of applying optional rules does not matter
   - ❶ ❷ ❸ = ❶ ❸ ❷  = ab
   - the syntax tree of ❶ ❷ ❸ is the same as that of ❶ ❸ ❷
 
+| ⓐ ❶ ❷ ❸ | ⓑ ❶ ❸ ❷ |
+|:---:|:---:|
+| ![c06](./img/c06.png) | ![c06](./img/c06.png) | 
+
 ---
 
-- (p6) CFG2 for PALINDROME below is unambiguous
+- CFG2 for PALINDROME below is unambiguous
   - S → aSa | bSb | a | b | ε
+- e.g. `S ⇒ aSa ⇒ aaSaa ⇒ aabaa` has only one possible derivation
+- ![c07](./img/c07.png)
 
 ---
 
 - CFG3 for the language of all non-null strings of a 's  below is ambiguous
   - S → aS | Sa | a 
-  - (p7) find the four different trees of a³
-- (p8) CFG4 for the same language but unambiguous
+  - 📝 find the four different trees of a³
+  - ![c08](./img/c08.png)
+- CFG4 for the same language but unambiguous
   - s → aS | a
+  - In which, a³ can only be generated by
+  - ![c09](./img/c09.png)
   - or CFG5: s → Sa | a
+    - 📝 find the derivation tree for a³
 
 
 The total language tree (TLT)
@@ -468,34 +505,42 @@ The total language tree (TLT)
   - X → ab | b
 - CFL1 has only 7 different words. 
 - Four of its words (abb, aabb, abab,aabab) have two different possible derivations
-  - (p9①) because they appear as terminal nodes in this TLT in two different places
-  - (p9②) However, the words are not generated by two dif­ferent derivation trees 
+  - ① because they appear as terminal nodes in this TLT in two different places
+    - by different derivation orders
+    - ![c10](./img/c10.png)
+  - ② However, the words are not generated by two dif­ferent derivation trees 
+    - e.g. `aabb` can only be generated by
+      - ![c11](./img/c11.png)
     - ∴ the grammar is unambiguous
 
 ---
 
-- (p10) draw the `total language tree` of the CFG2 below
+- Draw the `total language tree` of the CFG2 below
   - S → aSb | bS | a
+- ![c12](./img/c12.png)
 - CFL2 is infinite so its TLT
   - CFL2 = {a,ba,aab,bba,...}
 
 
 ---
 
-- (p11) draw the `total language tree` of the CFG3 below
+- Draw the `total language tree` of the CFG3 below
   - S → SAS | b
   - A → ba | b
+- ![c13](./img/c13.png)
 - Every string with some S's and some A 's has many possible productions that apply to it
   - two for each S and two for each A
 
 ---
 
-- (p12) draw the `total language tree` of the CFG4 below
+- Draw the `total language tree` of the CFG4 below
   - S → X | b | a
   - X → aX
+- ![c14](./img/c14.png)
 - X is a bad mistake; it leads to no words 
 - the TLT is infinite causing by X
-  - but the language has only finitely many words 
+  - but the language has only finitely many words
+  - only `a` and `b` 
 
 
 # References

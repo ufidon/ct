@@ -1,0 +1,21 @@
+digraph G {
+  rankdir=LR;
+  node [shape=circle];
+
+  z1 [label="z1-"];
+  z2 [label="z2+"];
+  z3 [label="z3"];
+  z4 [label="z4+"];
+  z5 [label="z5+"];
+
+  z1 -> z2 [label="a"];
+  z1 -> z3 [label="b"];
+  z2 -> z2 [label="a"];
+  z2 -> z4 [label="b"];
+  z3 -> z5 [label="a"];
+  z3 -> z3 [label="b"];
+  z4 -> z2 [label="a"];
+  z4 -> z4 [label="b"];
+  z5 -> z5 [label="a"];
+  z5 -> z3 [label="b"];
+}

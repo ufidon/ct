@@ -24,141 +24,43 @@ Proof 2 by TGs
 ---
 - Let TG1 accept L1 and TG2 accept L2,
   - suppose or make TG1 and TG2 each have a unique start state and a unique separate final state
-```mermaid
-flowchart LR
-p1(("-"))-.-|TG1|p2(("+"))
-p1-.-p2
-q1(("-"))-.-|TG2|q2(("+"))
-q1-.-q2
-```
 
 - TS = TG1+TG2
-```mermaid
-flowchart LR
-s(("-"))-->|ε|p1((" "))
-s-->|ε|q1((" "))
-p1-.-|TG1|p2(("+"))
-p1-.-p2
-q1-.-|TG2|q2(("+"))
-q1-.-q2
-```
+  - ![sum](./img/r00.png)
+
 - TC = TG1TG2
-```mermaid
-flowchart LR
-p1(("-"))
-q1(("2"))
-p1-.-|TG1|p2(("1"))
-p1-.-p2
-q1-.-|TG2|q2(("+"))
-q1-.-q2
-p2-->|ε|q1
-```
+  - ![pro](./img/r01.png)
+
 - TK = TG1*
-```mermaid
-flowchart LR
-p1(("-"))
-p1-->|ε|p2
-p1-.-|TG1|p2(("+"))
-p1-.-p2
-p2-->|ε|p1
-```
+  - ![clo](./img/r02.png)
 
 
 🍎 Example 1
 ---
 Let Σ={a,b} and
 - L1 = all words of two or more letters that begin and end with the same letter
-  - $\mathbf{r1 = a(a+b)^*a+b(a+b)^*b}$
+  - $`\mathbf{r1 = a(a+b)^*a+b(a+b)^*b}`$
 - L2 = all words that contain the substring aba
-  - $\mathbf{r2 = (a+b)^*aba(a+b)^*}$
+  - $`\mathbf{r2 = (a+b)^*aba(a+b)^*}`$
 - their TGs are shown below
   - TG(L1) on the top and TG2(L2) on the bottom
 
-```mermaid
-flowchart LR
-p1(("1-"))
-p2(("2"))
-p3(("3+"))
-p4(("4"))
-p1-->|a|p2
-p2-->|"a,b"|p2
-p1-->|b|p4
-p2-->|a|p3
-p4-->|b|p3
-p4-->|"a,b"|p4
+![sum pro clo](./img/r03.png)
 
-q1(("1-"))
-q1-->|"a,b"|q1
-q2(("2+"))
-q2-->|"a,b"|q2
-q1-->|"aba"|q2
-```
 ---
-- L1+L2 in REs: $\mathbf{r1+r2 = [a(a+b)^*a+b(a+b)^*b] + [(a+b)^*aba(a+b)^*]}$
-- in TG
-```mermaid
-flowchart LR
-s(("-"))
-s-->|ε|p1
-s-->|ε|q1
-p1(("1"))
-p2(("2"))
-p3(("3+"))
-p4(("4"))
-p1-->|a|p2
-p2-->|"a,b"|p2
-p1-->|b|p4
-p2-->|a|p3
-p4-->|b|p3
-p4-->|"a,b"|p4
+- L1+L2 in REs: $`\mathbf{r1+r2 = [a(a+b)^*a+b(a+b)^*b] + [(a+b)^*aba(a+b)^*]}`$
+- in TG: ![sum](./img/r04.png)
 
-q1(("1'"))
-q1-->|"a,b"|q1
-q2(("2'+"))
-q2-->|"a,b"|q2
-q1-->|"aba"|q2
-```
 ---
-- L1L2 in REs: $\mathbf{r1r2 = [a(a+b)^*a+b(a+b)^*b] [(a+b)^*aba(a+b)^*]}$
-- in TG
-```mermaid
-flowchart LR
-p1(("1-"))
-p2(("2"))
-p3(("3"))
-p4(("4"))
-p1-->|a|p2
-p2-->|"a,b"|p2
-p1-->|b|p4
-p2-->|a|p3
-p4-->|b|p3
-p4-->|"a,b"|p4
-p3-->|ε|q1
-q1(("1'"))
-q1-->|"a,b"|q1
-q2(("2'+"))
-q2-->|"a,b"|q2
-q1-->|"aba"|q2
-```
----
-- L1* in REs: $\mathbf{r1^* = [a(a+b)^*a+b(a+b)^*b]^*}$
-- in TG
-```mermaid
-flowchart LR
-p1(("1-"))
-p2(("2"))
-p3(("3"))
-p4(("4"))
-p1-->|ε|p3
-p1-->|a|p2
-p2-->|"a,b"|p2
-p1-->|b|p4
-p2-->|a|p3
-p4-->|b|p3
-p4-->|"a,b"|p4
-p3-->|ε|p1
-```
+- L1L2 in REs: $`\mathbf{r1r2 = [a(a+b)^*a+b(a+b)^*b] [(a+b)^*aba(a+b)^*]}`$
+- in TG: ![pro](./img/r05.png)
 
+---
+
+- L1* in REs: $`\mathbf{r1^* = [a(a+b)^*a+b(a+b)^*b]^*}`$
+- in TG: ![clo](./img/r06.png)
+
+---
 
 Complements and intersections
 ---
@@ -176,36 +78,14 @@ Complements and intersections
     - ∴ L' is also a regular language
 
 
-🍎 Example 2
+🍎 Example 2: Find the FA' of a given FA
 ---
-- A FA accepts only `aa`:
-```mermaid
-flowchart LR
-p1(("1-"))
-p2(("2"))
-p3(("3+"))
-p4(("4"))
-p1-->|a|p2
-p2-->|a|p3
-p3-->|"a,b"|p4
-p1-->|b|p4
-p2-->|b|p4
-p4-->|"a,b"|p4
-```
-- FA' accepts all words except `aa`:
-```mermaid
-flowchart LR
-p1(("1±"))
-p2(("2+"))
-p3(("3"))
-p4(("4+"))
-p1-->|a|p2
-p2-->|a|p3
-p3-->|"a,b"|p4
-p1-->|b|p4
-p2-->|b|p4
-p4-->|"a,b"|p4
-```
+- A FA accepts only `aba` and `abb`:
+  - ![r07](./img/r07.png)
+- FA' accepts all words except `aba` and `abb`:
+  - ![r08](./img/r08.png)
+
+---
 
 ☯ Theorem 3: regular languages are closed under intersection
 ---
@@ -213,148 +93,53 @@ p4-->|"a,b"|p4
 - L1, L2 are REs → L1 ∩ L2 is also a regular language
 - prove by DeMorgan's law: L1 ∩ L1 = (L1'+L2')'
 
+![r09](./img/r09.png)
+
+---
+
 🍎 Example 3
 ---
 Given Σ = {a,b} and
 - L1 = all strings with a double a
-  - $\mathbf{r_1 = (a+b)^*aa(a+b)^*}$
+  - $`\mathbf{r_1 = (a+b)^*aa(a+b)^*}`$
 - L2 = all strings with an even number of a's
-  - $\mathbf{r_2 = b^*(ab^*ab^*)^*}$
+  - $`\mathbf{r_2 = b^*(ab^*ab^*)^*}`$
 
 - There are FA1(L1) at the top and FA2(L2) at the bottom:
-```mermaid
-flowchart LR
-p1(("x1-"))
-p2(("x2"))
-p3(("x3+"))
-p1-->|a|p2
-p1-->|b|p1
-p2-->|a|p3
-p2-->|b|p1
-p3-->|"a,b"|p3
+  - ![r10](./img/r10.png)
 
-q1(("y1±"))
-q2(("y2"))
-
-q1-->|a|q2
-q1-->|b|q1
-q2-->|a|q1
-q2-->|b|q2
-```
 ---
+
 ❶ Find L1 ∩ L2
 - ① by De Morgan's Law (L1' ∪ L2')'
   - FA1' at the top and FA2' at the bottom:
-```mermaid
-flowchart LR
-p1(("x1±"))
-p2(("x2+"))
-p3(("x3"))
-p1-->|a|p2
-p1-->|b|p1
-p2-->|a|p3
-p2-->|b|p1
-p3-->|"a,b"|p3
+  - ![r11](./img/r11.png)
 
-q1(("y1-"))
-q2(("y2+"))
-
-q1-->|a|q2
-q1-->|b|q1
-q2-->|a|q1
-q2-->|b|q2
-```
 - ② Simplify FA1' by Kleene's theorem
-  - drop the rejecting state x3
-```mermaid
-flowchart LR
-p1(("x1±"))
-p2(("x2+"))
-p1-->|a|p2
-p1-->|b|p1
-p2-->|b|p1
-```
-- Drag out the - and + →
-```mermaid
-flowchart LR
-s(("-"))
-e(("+"))
-p1(("x1"))
-p2(("x2"))
-s-->|ϵ|p1
-p1-->|a|p2
-p1-->|b|p1
-p2-->|b|p1
-p1-->|ϵ|e
-p2-->|ϵ|e
-```
-- Eliminate x2 →
-```mermaid
-flowchart LR
-s(("-"))
-e(("+"))
-p1(("x1"))
-s-->|ϵ|p1
-p1-->|"b+ab"|p1
-p1-->|"a+ϵ"|e
-```
-- ∴ $\mathbf{r_1'=(b+ab)^*(a+ϵ)}$
+  - Drag out the - and + →
+  - ![r12](./img/r12.png)
+
+- drop the rejecting state x3 then eliminate x2 →
+  - ![r13](./img/r13.png)
+- ∴ $`\mathbf{r_1'=(b+ab)^*(a+ϵ)}`$
 
 ---
-- ③ simplify FA2'
 
-```mermaid
-flowchart LR
-s(("-"))
-e(("+"))
-q1(("y1"))
-q2(("y2"))
-s-->|ϵ|q1
-q1-->|a|q2
-q1-->|b|q1
-q2-->|a|q1
-q2-->|b|q2
-q2-->|ϵ|e
-```
+- ③ simplify FA2' similarly
+  - Drag out the - and + →
+  - ![r14](./img/r14.png)
 - eliminate state 2 →
-```mermaid
-flowchart LR
-s(("-"))
-e(("+"))
-q1(("y1"))
-s-->|ϵ|q1
-
-q1-->|"b+ab*a"|q1
-q1-->|"ab*"|e
-```
-- ∴ $\mathbf{r_2'=(b+ab^*a)^*(ab^*)}$
-- $\mathbf{r_1'+r_2'=(b+ab)^*(a+ϵ)+(b+ab^*a)^*(ab^*)}$
-- From which, its is challenging to build an FA = $\mathbf{(r_1'+r_2')'}$ 
+  - ![r15](./img/r15.png)
+- ∴ $`\mathbf{r_2'=(b+ab^*a)^*(ab^*)}`$
+- $`\mathbf{r_1'+r_2'=(b+ab)^*(a+ϵ)+(b+ab^*a)^*(ab^*)}`$
+- From which, its is challenging to build an FA = $`\mathbf{(r_1'+r_2')'}`$ 
   - even though it can be done with Kleene's theorem
   - and the state flipping technique above
 ---
 ❷ Find FA1'+FA2' without RE as the intermediary
 - from FA1' and FA2' below
+  - ![r16](./img/r16.png)
 
-```mermaid
-flowchart LR
-p1(("x1±"))
-p2(("x2+"))
-p3(("x3"))
-p1-->|a|p2
-p1-->|b|p1
-p2-->|a|p3
-p2-->|b|p1
-p3-->|"a,b"|p3
-
-q1(("y1-"))
-q2(("y2+"))
-
-q1-->|a|q2
-q1-->|b|q1
-q2-->|a|q1
-q2-->|b|q2
-```
 - combined states
   - z1+ = x1± or y1-
   - z2+ = x1± or y2+
@@ -375,86 +160,20 @@ q2-->|b|q2
 | z6+ | z5 | z6 |
 
 - FA1'+FA2'
-```mermaid
-flowchart LR
-z1(("z1±"))
-z2(("z2+"))
-z3(("z3+"))
-z4(("z4+"))
-z5(("z5"))
-z6(("z6+"))
-
-z1-->|a|z4
-z1-->|b|z1
-z2-->|a|z3
-z2-->|b|z2
-z3-->|a|z6
-z3-->|b|z1
-z4-->|a|z5
-z4-->|b|z2
-z5-->|a|z6
-z5-->|b|z5
-z6-->|a|z5
-z6-->|b|z6
-```
+  - ![r17](./img/r17.png)
 - flip the states in FA1'+FA2', we get
   - FA1 ∩ FA2, i.e. L1 ∩ L2
-
-```mermaid
-flowchart LR
-z1(("z1-"))
-z2(("z2"))
-z3(("z3"))
-z4(("z4"))
-z5(("z5+"))
-z6(("z6"))
-
-z1-->|a|z4
-z1-->|b|z1
-z2-->|a|z3
-z2-->|b|z2
-z3-->|a|z6
-z3-->|b|z1
-z4-->|a|z5
-z4-->|b|z2
-z5-->|a|z6
-z5-->|b|z5
-z6-->|a|z5
-z6-->|b|z6
-```
+  - ![r18](./img/r18.png)
 - simplify FA1 ∩ FA2 with Kleene's theorem
 - eliminate z2 and z6
-```mermaid
-flowchart LR
-z1(("z1-"))
-z3(("z3"))
-z4(("z4"))
-z5(("z5+"))
-
-z1-->|a|z4
-z1-->|b|z1
-z3-->|b|z1
-z3-->|"ab*a"|z5
-z4-->|a|z5
-z4-->|"bb*a"|z3
-z5-->|"b+ab*a"|z5
-```
+  - ![r19](./img/r19.png)
 - eliminate z3
-```mermaid
-flowchart LR
-z1(("z1-"))
-z4(("z4"))
-z5(("z5+"))
-
-z1-->|a|z4
-z1-->|"b+abb*ab"|z1
-z4-->|"a+bb*aab*a"|z5
-z5-->|"b+ab*a"|z5
-```
+  - ![r20](./img/r20.png)
 - ∴ the RE defines L1∩L2 is
-  - $\mathbf{(b + abb^*ab)^*a(a + bb^*aab^*a)(b + ab^*a)^*}$
+  - $`\mathbf{(b + abb^*ab)^*a(a + bb^*aab^*a)(b + ab^*a)^*}`$
   - all words with an even num­ber of a's and a double a somewhere in it
 
+---
 
 Prove theorem 3 directly by constructing FA
 ---
@@ -467,35 +186,10 @@ To construct FA3=FA1 ∩ FA2, follow the way of building FA1 ∪ FA2,
 ---
 Given FA1 and FA2, build FA3 = FA1 ∩ FA2.
 - FA1: all words with a double a in them somewhere
-```mermaid
-flowchart LR
-  q1(("-x1"))
-  q2(("x2"))
-  q3(("+x3"))
-
-  q1-->|b|q1
-  q1-->|a|q2
-  q2-->|b|q1
-  q2-->|a|q3
-  q3-->|"a,b"|q3
-```
+- ![fa1](./img/ca2.png)
 
 - FA2: EVEN-EVEN
-```mermaid
-flowchart LR
-  q1(("±y1"))
-  q2((y2))
-  q3((y3))
-  q4((y4))
-  q1-->|b|q2
-  q1-->|a|q3
-  q2-->|b|q1
-  q2-->|a|q4  
-  q3-->|a|q1
-  q3-->|b|q4
-  q4-->|a|q2
-  q4-->|b|q3  
-```
+- ![fa2](./img/ee.png)
 
 - Transition table of FA1
 
@@ -536,6 +230,7 @@ flowchart LR
 | z11| +x3 or y4 | z8 | z7 |
 | z12| x2 or ±y1 | z7 | z3 |
 
+- ![r21](./img/r21.png)
 - Here, the intersection machine FA1 ∩ FA2 is identical to [the union machine FA1 ∪ FA2](./kt.md) except that it has only one final state
 
 
@@ -543,25 +238,7 @@ flowchart LR
 ---
 Rework example 2 with the shorter way as Example 4
 
-```mermaid
-flowchart LR
-p1(("x1-"))
-p2(("x2"))
-p3(("x3+"))
-p1-->|a|p2
-p1-->|b|p1
-p2-->|a|p3
-p2-->|b|p1
-p3-->|"a,b"|p3
-
-q1(("y1±"))
-q2(("y2"))
-
-q1-->|a|q2
-q1-->|b|q1
-q2-->|a|q1
-q2-->|b|q2
-```
+![r22](./img/r22.png)
 
 - the transition table of FA3 = FA1 ∩ FA2
 
@@ -576,58 +253,25 @@ q2-->|b|q2
 - ⚠️ Here z5+ = x3+ `or` y1± ≡ accepted by FA1 `and` FA2
 
 - FA3 = FA1 ∩ FA2
-```mermaid
-flowchart LR
-z1(("z1-"))
-z2(("z2"))
-z3(("z3"))
-z4(("z4"))
-z5(("z5+"))
-z6(("z6"))
 
-z1-->|a|z4
-z1-->|b|z1
-z2-->|a|z3
-z2-->|b|z2
-z3-->|a|z6
-z3-->|b|z1
-z4-->|a|z5
-z4-->|b|z2
-z5-->|a|z6
-z5-->|b|z5
-z6-->|a|z5
-z6-->|b|z6
-```
+![r23](./img/r23.png)
+
 
 🍎 Example 5
 ---
 Given FA1 and FA2, 
 - FA1: all words that begin with an a
-  - $\mathbf{a(a+b)^*}$
+  - $`\mathbf{a(a+b)^*}`$
 - FA2: all words that end with an a
-  - $\mathbf{(a+b)^*a}$
+  - $`\mathbf{(a+b)^*a}`$
 
 build FA3 = FA1 ∩ FA2,
 - all words that begin and end with the letter a
-  - $\mathbf{a(a+b)^*+a}$
+  - $`\mathbf{a(a+b)^*+a}`$
 
-```mermaid
-flowchart LR
-p1(("x1-"))
-p2(("x2+"))
-p3(("x3"))
-p1-->|a|p2
-p1-->|b|p3
-p2-->|"a,b"|p2
-p3-->|"a,b"|p3
-
-q1(("y1-"))
-q2(("y2+"))
-q1-->|a|q2
-q1-->|b|q1
-q2-->|b|q1
-q2-->|a|q2
-```
+| FA1 | FA2 |
+|:---: |:---: |
+| ![r24a](./img/r24a.png) | ![r24b](./img/r24b.png) |
 
 - the transition table of FA3 = FA1 ∩ FA2
 
@@ -640,43 +284,8 @@ q2-->|a|q2
 | z5 = x3 or y2+  | z5 | z3 |
 
 - FA3 = FA1 ∩ FA2
-```mermaid
-flowchart LR
-z1(("z1-"))
-z2(("z2+"))
-z3(("z3"))
-z4(("z4"))
-z5(("z5"))
+  - ![r25](./img/r25.png)
 
-z1-->|a|z2
-z1-->|b|z3
-z2-->|a|z2
-z2-->|b|z4
-z3-->|a|z5
-z3-->|b|z3
-z4-->|a|z2
-z4-->|b|z4
-z5-->|a|z5
-z5-->|b|z3
-```
 - FA3 = FA1 ∪ FA2
   - put `+` at any state with `x2 or y2`:
-```mermaid
-flowchart LR
-z1(("z1-"))
-z2(("z2+"))
-z3(("z3"))
-z4(("z4+"))
-z5(("z5+"))
-
-z1-->|a|z2
-z1-->|b|z3
-z2-->|a|z2
-z2-->|b|z4
-z3-->|a|z5
-z3-->|b|z3
-z4-->|a|z2
-z4-->|b|z4
-z5-->|a|z5
-z5-->|b|z3
-```
+  - ![r26](./img/r26.png)

@@ -16,11 +16,11 @@ Decidability problems and decision proce­dures
 🍎 Example
 ---
 Are two REs equivalent?
-- $\mathbf{a(a + b)^*}$  and  $\mathbf{(b + \boldsymbol{ε})(baa + ba^*)^*}$
+- $`\mathbf{a(a + b)^*}`$  and  $`\mathbf{(b + \boldsymbol{ε})(baa + ba^*)^*}`$
   - No
-- $\mathbf{(aa + ab + ba + bb)^*}$ and $\mathbf{((ba + ab)^*(aa + bb)^*)^*}$
+- $`\mathbf{(aa + ab + ba + bb)^*}`$ and $`\mathbf{((ba + ab)^*(aa + bb)^*)^*}`$
   - Both define the language of all strings with an even number of letters
-- $\mathbf{((b^*a)^*ab^*)^*}$ and $\mathbf{ϵ + a(a + b)^* + (a + b)^*aa(a + b)^*}$
+- $`\mathbf{((b^*a)^*ab^*)^*}`$ and $`\mathbf{ϵ + a(a + b)^* + (a + b)^*aa(a + b)^*}`$
   - Both define the language of all words that either start with an a or else have a double a in them somewhere or else are null
 
 
@@ -50,7 +50,7 @@ Determine whether an FA accepts any words Method 1
 ---
 Determine an RE defines some words:
 
-$(a + ϵ)(ab^* + ba^*)^*(ϵ + b^*)^*$
+$`(a + ϵ)(ab^* + ba^*)^*(ϵ + b^*)^*`$
 
 - delete all stars
   - $(a + ϵ)(ab + ba)(ϵ + b)$
@@ -78,12 +78,12 @@ Determine whether an FA accepts any words Method 2
 ---
 ```mermaid
 flowchart LR
-  q1(("-"))
+  q1(("—"))
   q2((" "))
   q3((" "))
   q4((" "))
   q5((" "))
-  q6(("+"))
+  q6(("十"))
 
   q1-->|a|q3
   q1-->|b|q2
@@ -100,12 +100,12 @@ flowchart LR
 - mark the start state
 ```mermaid
 flowchart LR
-  q1(("-1"))
+  q1(("—"))
   q2((" "))
   q3((" "))
   q4((" "))
   q5((" "))
-  q6(("+"))
+  q6(("十"))
 
   q1-->|a|q3
   q1-->|b|q2
@@ -127,7 +127,7 @@ flowchart LR
   q3(("3"))
   q4((" "))
   q5((" "))
-  q6(("+"))
+  q6(("十"))
 
   q2-->|"a,b"|q3
   q3-->|a|q3
@@ -147,7 +147,7 @@ flowchart LR
   q3(("3"))
   q4(("4"))
   q5((" "))
-  q6(("+"))
+  q6(("十"))
 
   q4-->|b|q3
   q4-->|a|q4
@@ -164,7 +164,7 @@ flowchart LR
   q3(("3"))
   q4(("4"))
   q5((" "))
-  q6(("+"))
+  q6(("十"))
 
   q5-->|a|q4
   q5-->|b|q6
@@ -197,7 +197,7 @@ Determine whether an FA accepts any words Method 3
 🍎 Example
 ---
 Decide the equivalence of the two REs
-- $\mathbf{r_1=a^*}$ and $\mathbf{r_2=ϵ + aa^*}$
+- $`\mathbf{r_1=a^*}`$ and $`\mathbf{r_2=ϵ + aa^*}`$
 
 - Build the FAs that accepts the REs
 ```mermaid

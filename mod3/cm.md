@@ -30,7 +30,8 @@ Encoding numbers
 
 🍎 Example
 ---
-- (p1) an ADDER accepts input aⁿbaᵐ representing n+m
+- an ADDER accepts input aⁿbaᵐ representing n+m
+- ![c01](./img/c01.png)
   - inputs other than aⁿbaᵐ crashes the TM
   - n, m ∈ ℕ
 - the result is aⁿ⁺ᵐ representing n+m
@@ -43,13 +44,17 @@ Build a TM that
 - leaves the answer on the TAPE in binary notation
 
 through
-- (p2❶) an incrementer that accepts $(0+1)* representing n
+- an incrementer that accepts $(0+1)* representing n
+- ![c02a](./img/c02a.png)
   - leaves n+1 in $(0+1)* notation
-- (p2❷) a decrementer that accepts $(0+1)* representing n
+- a decrementer that accepts $(0+1)* representing n
+- ![c02b](./img/c02b.png)
   - leaves n-1 in $(0+1)* notation
-- (p3) the binary ADDER that accepts $(0+1)*$(0+1)* representing n+m
+- the binary ADDER that accepts $(0+1)*$(0+1)* representing n+m
+- ![c03](./img/c03.png)
   - leaves n+m in $0*$(n+m) in binary
   - 🏃 trace `$10$0110` which leaves `$00$1000` on the tape
+-![c04](./img/c04.png)
 
 
 Computer
@@ -71,14 +76,56 @@ Any operation that is defined on `all sequences of K numbers` (K≥1) and that c
 ---
 The following operations are computable
 - addition: x+y
-- (p5) simple subtraction: x ∸ y = x-y if x≥ y else 0
-- (p6-9) MAX(x,y) = x if x≥y else y
-- (p10.t) IDENTITY(n) = n
-- (p10.b) SUCCESSOR(n)=n+1
-- (p11) select-the-iᵗʰ-out-of-n-numbers function: SELECT/i/n(a₁,a₂,⋯,aᵢ,⋯,aₙ)
-- (p12-16) multiplication: n×m=nm
-- (p17) SQRT
+- simple subtraction: x ∸ y = x-y if x≥ y else 0
+  - ![c05](./img/c05.png)
+- MAX(x,y) = x if x>y else y
+  - ![c06](./img/c06.png)
+  - state 4 indicates x>y
+    - ![c07a](./img/c07a.png)
+  - trace `aaabaa`, i.e. MAX(3,2) = 3
+    - ![c07ax](./img/c07ax.png)
+  - state 9 indicates x≤y
+    - ![c07b](./img/c07b.png)
+  - trace `aabaaa`, i.e. MAX(2,3) = 3
+    - ![c07bx](./img/c07bx.png)
+- IDENTITY(n) = n, ∀ n ≥ 0
+  - ![c10a](./img/c10a.png)
+- SUCCESSOR(n)=n+1, ∀ n ≥ 0
+  - ![c10b](./img/c10b.png)
+- select-the-iᵗʰ-out-of-n-numbers function: SELECT/i/n(a₁,a₂,⋯,aᵢ,⋯,aₙ), i≤n
+  - ex. SELECT/2/4(8,7,1,5) = 7
+  - SELECT/4/9(2,0,4,1,3,7,5,5,6) = 1
+  - on the TM below, ex. let's encode SELECT/3/5(r,s,t,u,v) as $`a^rba^sba^tba^uba^v`$
+  - ![c11](./img/c11.png)
+    - 📝 trace `aaababaabaaaaba`, get `*ΔΔΔΔΔΔaaΔΔΔΔΔΔΔ`
+- multiplication: n×m=nm, n>0, m>0
+  - $`a^mba^n→a^{mn}`$
+  - idea: ex. 3×2, 
+    - `aaabaa→baaabaa#→bΔaabaa#aa→bΔΔabaa#aaaa→bΔΔΔbaa#aaaaaa→bΔΔΔΔΔΔΔaaaaaa`
+  - construct the TM MPY:
+    - ❶ check the input, place the initial b and the # 
+    - ![c12a](./img/c12a.png)
+    - ❷ go back find the first a in aᵐ and convert it into a Δ
+    - ![c12b](./img/c12b.png)
+    - ❸ find the first letter of aⁿ
+    - ![c12c](./img/c12c.png)
+    - ❹ turn each a in aⁿ into A and copy it to the other side of the #
+    - ![c12d](./img/c12d.png)
+    - ❺ change those A's back to a's then look for the next a in aᵐ
+    - ![c12e](./img/c12e.png)
+    - ❻ erase aⁿ
+    - ![c12f](./img/c12f.png)
+- SQRT calculates the square root of n: n ↦ ⌊√n⌋ for simplicity
+  - ![c17](./img/c17.png)
 
+📝 Trace 2×2 on MPY
+---
+- ![c18a](./img/c18a.png)
+- ![c18b](./img/c18b.png)
+- ![c18c](./img/c18c.png)
+
+
+---
 
 Church's thesis
 ---

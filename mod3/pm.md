@@ -8,53 +8,81 @@ Post machine (PM)
 a 5-element tuple (Σ, QUEUE, START, READ, ADD):
 - `Σ`: the alphabet of input letters and a `special symbol #`
 - `QUEUE or STORE`: 
-  - (p1④) a FIFO linear storage, 
+  - a FIFO linear storage, 
     - letters go into it from its `tail` and out from its `head` one letter a time
       - by default, head on the left and tail on the right
     - initially contains the input string
+    - ![p00d](./img/p00d.png) converts an empty STORE to `abb`
   - the `queue or store` alphabet `Γ` contains all characters can be used in the QUEUE
-- (p1①) `READ` states remove the `QUEUE head character` and branch accordingly
+- `READ` states remove the `QUEUE head character` and branch accordingly
+  - ![p00a](./img/p00a.png)
   - PMs are deterministic, so no two edges from the READ have the same label
     - nondeterministic PMs (nPMs) can be defined if two or more edges from the READ have the same label
       - it is proved that nPM ≡ PM
   - There may be a branch for every character in Σ or Γ
   - the `ε or Λ` branch means an empty QUEUE was read
-- (p1②) `ADD` states concatenate a character to the string in the QUEUE through its tail
+- `ADD` states concatenate a character to the string in the QUEUE through its tail
+  - ![p00b](./img/p00b.png)
   - No branching can take place at an ADD state
   - There may be a branch for every character in Σ or Γ
-- (p1③) `An unenterable START` state and `0 or more halt states` called `ACCEPT` and `REJECT`
+- `An unenterable START` state and `0 or more halt states` called `ACCEPT` and `REJECT`
+  - ![p00c](./img/p00c.png)
   - a read character in a READ state without outgoing edges crashes the PM
   - this is equivalent to taking a labeled edge into a REJECT state
   - ∴ PMs can be drawn with or without REJECT states
 
+---
 
 🍎 Example 1
 ---
 ❶ A PM that accepts {aⁿbⁿ | n=0,1,2,3,⋯}
-- (p2)
-- trace `aaabbb` (p3)
-- ---
+- ![p01a](./img/p01a.png)
+- trace `aaabbb`
+- ![p01b](./img/p01b.png)
+
+---
 
 ❷ A PM that accepts {aⁿbⁿaⁿ | n=0,1,2,3,⋯}
-- (p2)
-- trace `aaabbb` (p4)
+- ![p02a](./img/p02a.png)
+- 📝 trace `aaabbb`
 
+---
 
 ☯ Theorem 1
 ---
 Any language that can be accepted by a PM can be accepted by some TM.
 
 Proof by simulating a PM on a TM.
-- (p5) keep track of the PM QUEUE by the TM TAPE
-- (p6) duplicate PM ADD and READ on the TM TAPE
+- keep track of the PM QUEUE by the TM TAPE
 
+| PM QUEUE | TM TAPE |
+|:---:|:---:|
+| x₁x₂x₃x₄x₅ | ![p03a](./img/p03a.png) |
+| READ→ADD a→READ→ADD a→ADD b→READ | ![p03b](./img/p03b.png) |
+
+- by duplicating PM ADD and READ on the TM TAPE
+
+| PM Operation | TM Tape change | TM program |
+|:---:|:---:|:---:|
+| ADD y | ![p03c](./img/p03c.png) |  ![p03d](./img/p03d.png) |
+| ![p03e](./img/p03e.png) | | ![p03f](./img/p03f.png) |
+| ![p03g](./img/p03g.png) | | ![p03h](./img/p03h.png) |
+
+---
 
 🍎 Example 2
 ---
-- Simulate PM P (p7) by a TM T (p8)
+- Simulate PM P by a TM T 
   - the PM accepts {aⁿbⁿ | n=0,1,2,3,⋯}
-- their corresponding states (p9)
-- trace `aabb` on T (p10)
+
+| PM P | TM T |
+|:---:|:---:|
+| ![p04a](./img/p04a.png)| ![p04b](./img/p04b.png) |
+
+- their corresponding states
+- ![p04c](./img/p04c.png)
+- trace `aabb` on T 
+- ![p04d](./img/p04d.png)
 - a short notation is applied
   - (a,b,c,d,e;=,D) stands for the instructions
     - (a,a,D)(b,b,D)(c,c,D)(d,d,D)(e,e,D)
@@ -64,26 +92,59 @@ Proof by simulating a PM on a TM.
 ☯ Theorem 2
 ---
 There are subprograms that enable a PM to 
-- (p11) add a character to the head of the string in the QUEUE 
-- (p12-13) read the character off of the tail of the string
+- 1️⃣ add a character to the head of the string in the QUEUE
+  - `ADD FRONT b`:
+  - ![p05a](./img/p05a.png)
+  - ex. `ADD FRONT b` to  `pqr`
+    - ![p05b](./img/p05b.png)
+- 2️⃣ read the character off of the tail of the string
+  - `SHIFT-RIGHT CYCLICALLY`:
+  - ![p05c](./img/p05c.png)
+  - ![p05d](./img/p05d.png)
 
+---
 
 ☯ Theorem 3
 ---
 Any language that can be accepted by a TM can be accepted by some PM.
 
 Proof by constructing a PM equivalent to a given TM:
-- (p14) track the TM TAPE
+- track the TM TAPE
+  - ![p06a](./img/p06a.png)
+  - by
+  - ![p06b](./img/p06b.png)
+  - with
+  - ![p06c](./img/p06c.png)
   -  a correspondence between `#` and the position of the `TAPE HEAD`
-- (p15) the TM converts `cat` into `dog`
-- (p16-17) simulate a left move
-- (p18) simulate initial state
+- the TM converts `cat` into `dog`
+  - ![p06d](./img/p06d.png)
+- simulate a left move
+
+| TM Operation | TM TAPE | PM QUEUE | PM Operation | 
+|:---:|:---:|:---:|:---:|
+| (X₄,Y,L) | ![p06e](./img/p06e.png) | `X₃YX₅X₆X₇X₈#X₁X₂` | ![p06f](./img/p06f.png)  |
+
+- Corner situation:
+  - Crash of (X₁,Y,L) on ![p06g](./img/p06g.png)
+  - which can be simulated by adding a test to see whether the first symbol in the QUEUE has become `#` in every PM simulation of a leftward TM move:
+  - ![p06i](./img/p06i.png)
+ 
+- A rightward TM move can be simulated symmetrically
+- simulate initial state
+
+| TM TAPE | PM QUEUE | PM initial sequence |
+|:---:|:---:|:---:|
+| ![p06i1](./img/p06i1.png) | ![p06i2](./img/p06i2.png) | ![p06i3](./img/p06i3.png) |
+
 
 
 🍎 Example 3
 ---
-- Given a TM T (p19) that accepts all strings starting with a
-  - build a PM (p20) equivalent to T
+- Given a TM T:
+  - ![p07a](./img/p07a.png)
+  - that accepts all strings starting with a
+- build a PM equivalent to T
+  - ![p07b](./img/p07b.png)
 
 
 ☯ Theorem 4

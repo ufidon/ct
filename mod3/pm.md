@@ -11,8 +11,7 @@ a 5-element tuple (Σ, QUEUE, START, READ, ADD):
   - a FIFO linear storage, 
     - letters go into it from its `tail` and out from its `head` one letter a time
       - by default, head on the left and tail on the right
-    - initially contains the input string
-    - ![p00d](./img/p00d.png) converts an empty STORE to `abb`
+    - initially contains the input string 
   - the `queue or store` alphabet `Γ` contains all characters can be used in the QUEUE
 - `READ` states remove the `QUEUE head character` and branch accordingly
   - ![p00a](./img/p00a.png)
@@ -25,6 +24,8 @@ a 5-element tuple (Σ, QUEUE, START, READ, ADD):
   - ![p00b](./img/p00b.png)
   - No branching can take place at an ADD state
   - There may be a branch for every character in Σ or Γ
+  - e.g. the following PM operation sequence converts an `empty` STORE to `abb`
+    - ![p00d](./img/p00d.png)
 - `An unenterable START` state and `0 or more halt states` called `ACCEPT` and `REJECT`
   - ![p00c](./img/p00c.png)
   - a read character in a READ state without outgoing edges crashes the PM

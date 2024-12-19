@@ -14,8 +14,10 @@ _ict chapter 21_
 
 🍎 Example 1
 ---
-(p1) A 2PDA that accepts {aⁿbⁿaⁿ | n=1,2,3,⋯}
-- (p2) trace `aahhaa`
+A 2PDA that accepts {aⁿbⁿaⁿ | n=1,2,3,⋯}
+- ![m00](./img/m00.png)
+- trace `aahhaa`
+- ![m01](./img/m01.png)
 
 
 ☯ Theorem 1

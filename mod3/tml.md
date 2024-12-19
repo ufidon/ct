@@ -45,8 +45,9 @@ The union and intersection of two recursively enumerable languages is recursivel
 
 The encoding of TMs
 ---
-- (p1) A TM can be completely described by a summary table
-  - each row is a 5-element tuple (from, to, read, write, move)
+- A TM can be completely described by a summary table
+- ![l00](./img/l00.png)
+  - each row is a 5-element tuple `(from, to, read, write, move)`
   - `from` and `to` are state numbers
   - `read` and `write` are characters, # or Δ
   - `move` is a direction, either L or R

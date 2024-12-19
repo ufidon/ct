@@ -129,7 +129,8 @@ Deterministic context-free languages
 
 The six classes of languages
 ---
-- (p1) Regular languages ⊂ Deterministic context-free languages {aⁿbⁿ} ⊂ Context-free languages {aⁿbⁿaⁿ}' ⊂ Context-sensitive languages {aⁿbⁿaⁿ} ⊂ Recursive languages L ⊂ Recursively enumerable languages MATHISON ⊂ ALAN
+- Regular languages ⊂ Deterministic context-free languages {aⁿbⁿ} ⊂ Context-free languages {aⁿbⁿaⁿ}' ⊂ Context-sensitive languages {aⁿbⁿaⁿ} ⊂ Recursive languages L ⊂ Recursively enumerable languages MATHISON ⊂ ALAN
+- ![c00](./img/c00.png)
   - {aⁿbⁿ} is deterministic context-free but not regular
   - {aⁿbⁿaⁿ}' is a CFL, but it cannot be accepted by a DPDA
   - {aⁿbⁿaⁿ} is context-sensitive but not context-free

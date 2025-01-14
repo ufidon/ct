@@ -68,8 +68,8 @@ Formal languages
 - Type mathematics
   - use equation editor in [Canvas](https://lx.uts.edu.au/collections/building-your-canvas-course/resources/canvas-math-editor/)
   - [write equations in Word](https://support.microsoft.com/en-us/office/write-an-equation-or-formula-1d01cabc-ceb1-458d-bc70-7f9737722702)
-  - use [$\LaTeX$](https://en.wikibooks.org/wiki/LaTeX) on website [Overleaf](https://www.overleaf.com/)
-  - Further reference [The Not So Short Introduction to $\LaTeX$ 2ε](https://mirror.mwt.me/ctan/info/lshort/english/lshort.pdf)
+  - use [$`\LaTeX`$](https://en.wikibooks.org/wiki/LaTeX) on website [Overleaf](https://www.overleaf.com/)
+  - Further reference [The Not So Short Introduction to $`\LaTeX`$ 2ε](https://mirror.mwt.me/ctan/info/lshort/english/lshort.pdf)
 
 
 💡 Demo
@@ -128,14 +128,14 @@ The power operation on languages
 - Given $L=\{a,ϵ\}$, find $L^k$ for k=0,1,2,3
 - Is $L^+ = L^*$?
   - ans: Yes. If $L$ contains $ϵ$
-- Is $L^* = (L^*)^* = L^{**}$ true for any language $L$?
+- Is $`L^* = (L^*)^* = L^{**}`$ true for any language $L$?
   - ans: Yes. It is a theorem
 
 
 
 💡 Demo
 ---
-- Prove $L^* = (L^*)^* = L^{**}$ holds for any language $L$?
+- Prove $`L^* = (L^*)^* = L^{**}`$ holds for any language $L$?
 - prove by construction
   - any word in $L^{**}$ is concatenated from words in $L^*$
     - $L^*$ contains all concatenations of its own words
@@ -152,7 +152,7 @@ The power operation on languages
   - $L^1 = L = \{x,y\}$
   - $L^2 = L^1L = \{ x,y \}×\{ x,y \} = \{xx,xy,yx,yy\}$
   - $L^3 = L^2L = \{xx,xy,yx,yy\}×\{ x,y \}=\{xxx,xyx,yxx,yyx,xxy,xyy,yxy,yyy\}$
-    - =$\{xxx,xxy,xyx,xyy,yxx,yxy,yyx,yyy\}$ in *lexicographical order*
+    - =$`\{xxx,xxy,xyx,xyy,yxx,yxy,yyx,yyy\}`$ in *lexicographical order*
 - Given $L=\{u,v,ϵ\}$, find $L^k$ for k=0,1,2,3
   - $L^0 = \{ϵ\}$
   - $L^1 = L = \{ϵ,u,v\}$
@@ -244,16 +244,16 @@ Factoring of strings in $S^*$
   - this factoring is unique
 - $S_3=\{xx,xxx\}, S_3^*$=
   - {ϵ and all strings of more than one x} 
-  - {$x^n$ for $n=0,2,3,4,5,⋯$}
+  - {$`x^n`$ for $n=0,2,3,4,5,⋯$}
   - {ϵ, xx, xxx, xxxx,xxxxx,xxxxxx,⋯}
 
 
 💡Demo
 ---
-- Factoring xxxxxx=$x^6 ∈ S_3^*$
+- Factoring xxxxxx=$`x^6 ∈ S_3^*`$
   - the factoring is non-unique
-    - (xx)(xx)(xx)=$x^2x^2x^2$
-    - (xxx)(xxx)=$x^3x^3$
+    - (xx)(xx)(xx)=$`x^2x^2x^2`$
+    - (xxx)(xxx)=$`x^3x^3`$
   - prove $S_3^*$ contains string of x's except one x
     - by constructive algorithm and strong induction
 

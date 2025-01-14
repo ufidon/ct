@@ -68,7 +68,7 @@ Formal languages
 - Type mathematics
   - use equation editor in [Canvas](https://lx.uts.edu.au/collections/building-your-canvas-course/resources/canvas-math-editor/)
   - [write equations in Word](https://support.microsoft.com/en-us/office/write-an-equation-or-formula-1d01cabc-ceb1-458d-bc70-7f9737722702)
-  - use [$`\LaTeX`$](https://en.wikibooks.org/wiki/LaTeX) on website [Overleaf](https://www.overleaf.com/)
+  - use [ $`\LaTeX`$ ](https://en.wikibooks.org/wiki/LaTeX) on website [Overleaf](https://www.overleaf.com/)
   - Further reference [The Not So Short Introduction to $`\LaTeX`$ 2ε](https://mirror.mwt.me/ctan/info/lshort/english/lshort.pdf)
 
 

@@ -53,7 +53,7 @@ Regular expression (re) of a language
 
 💡 Demo
 ---
-Given $Σ=\{a,b,c\}$,
+Given $`Σ=\{a,b,c\}`$,
 - $L_3=\{a,c,ab,cb,abb,cbb, abbb,cbbb, ⋯\}$, it can be described in  
   - re: $`L_3 = L(\mathbf{ab^*+cb^*}) = L(\mathbf{(a+c)b^*})`$
   - plain English: $L_3$ = language{either a or c followed by some b's}
@@ -64,7 +64,7 @@ Given $Σ=\{a,b,c\}$,
 
 ❓ Questions
 ---
-Given $Σ=\{a,b\}$, 
+Given $`Σ=\{a,b\}`$, 
 - describe the languages defined by the following re's in plain description
 - list the first shortest 10 words of each language if it has
   - $`\mathbf{(a+b)^*, (a+b)^5, a(a+b)^*, a(a+b)^*b}`$
@@ -111,7 +111,7 @@ The set of REs over $Σ$ is defined by
 Describe the languages defined by the following REs:
 
 - $`\mathbf{(a+b)^*a(a+b)^*}`$
-  - the set of all words over the alphabet $Σ=\{a,b\}$ that have a factor `a`
+  - the set of all words over the alphabet $`Σ=\{a,b\}`$ that have a factor `a`
     - does not have word $ϵ=b^0$ or b's, i.e. all words without a
       - the RE is $\mathbf{b^*}$
   - all words = (all words with an a) + (all words without an a)
@@ -187,7 +187,7 @@ The regular language $L(\mathbf{r})$ associated with RE $\mathbf{r}$ over alphab
 
 Rewrite *,+ and ? in REs
 ---
-Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$:
+Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $`Σ=\{a_1,a_2,\cdots,a_n\}`$:
 
 - $\displaystyle L^* = L^0∪L^1∪L^2∪⋯ = ∪_{k=0}^∞L^k$ in REs
   - $\displaystyle \mathcal{R}(L^0)=\mathbf{ϵ}$
@@ -211,7 +211,7 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
 
 💡 Demo
 ---
-- Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
+- Given alphabet $`Σ=\{a,b\}`$, write the following language (word pattern) in RE:
   - denote the total number of words of length $l$ as $N_l$
     - $N_l = |Σ|^l$
   - the words of length 0 ($N_0=2^0=1$): 
@@ -238,7 +238,7 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
 
 📝 Practice
 ---
-- Given alphabet $Σ=\{a\}$, write the following language (word pattern) in RE:
+- Given alphabet $`Σ=\{a\}`$, write the following language (word pattern) in RE:
   - denote the total number of words of length $l$ as $N_l$
     - $N_l = |Σ|^l$
   - the words of length 0 ($N_0=1^0=1$): 
@@ -250,8 +250,8 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
   - the words of length 3 ($N_0=1^3=1$):
     - $\displaystyle \mathcal{R}(Σ^3)=\mathbf{a^3=aaa}$
   - all words over $Σ$
-    - $\displaystyle \mathcal{R}(Σ^*)=\mathbf{a^*}$
-      - =$\mathbf{a^0+a^1+a^2+a^3+⋯+a^n+⋯+a^∞}$
+    - $`\displaystyle \mathcal{R}(Σ^*)=\mathbf{a^*}`$
+      - =$`\mathbf{a^0+a^1+a^2+a^3+⋯+a^n+⋯+a^∞}`$
       - = $\mathbf{ϵ+a+aa+aaa+⋯}$
     - $\displaystyle \mathcal{R}(Σ^+)=\mathbf{a^+=a+aa+aaa+⋯}$
     - $\displaystyle \mathcal{R}(Σ^?)=\mathbf{a^0+a^1=ϵ+a}$
@@ -263,7 +263,7 @@ Given language $L=\{w_1,w_2,⋯, w_n\}$ and alphabet $Σ=\{a_1,a_2,\cdots,a_n\}$
 
 💡 Demo
 ---
-Given alphabet $Σ=\{a,b\}$, write the following language (word pattern) in RE:
+Given alphabet $`Σ=\{a,b\}`$, write the following language (word pattern) in RE:
   - all words begin with two a's
     - $\mathbf{aa(a+b)^*}$
   - all words end with a double such as aa, bb

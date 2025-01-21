@@ -193,11 +193,11 @@ Two types of FAs that accept NO languages
 
 ![fa5](./img/fa5.png)
 
-- $`\mathbf{a^*(a^*ba^*ba^*ba^*)^*(a + a^*ba^*ba^*ba^*)}`$
-  - or, $\mathbf{(a + ba^*ba^*b)^+}$
+- $`\mathbf{(a + ba^*ba^*b)(a + ba^*ba^*b)^*}`$
+  - or, $`\mathbf{(a + ba^*ba^*b)^+}`$
   - this FA does not accept ϵ
   - to accept ϵ as well, use the FA below
-    - $`\mathbf{(a^*ba^*ba^*ba^*)^*}`$
+    - $`\mathbf{(a + ba^*ba^*b)^*}`$
 
 ![fa5p](./img/fa5p.png)
 

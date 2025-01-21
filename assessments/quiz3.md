@@ -1,9 +1,9 @@
-Fig1
+Fig1 
 ---
 ```mermaid
 flowchart LR
-  q1(("-"))
-  q2(("+"))
+  q1(("—"))
+  q2(("＋"))
   q1-->|a|q2
   q1-->|b|q2
   q2-->|"a,b"|q2
@@ -21,7 +21,7 @@ Fig3
 ---
 ```mermaid
 flowchart LR
-  q1(("-"))
+  q1(("—"))
   q2((" "))
   q1-->|a|q2
   q1-->|b|q2
@@ -62,8 +62,8 @@ Fig10
 - FA
 ```mermaid
 flowchart LR
-  q1(("-"))
-  q2(("+"))
+  q1(("—"))
+  q2(("＋"))
   q1-->|a|q1
   q1-->|b|q2
   q2-->|a|q1
@@ -72,8 +72,8 @@ flowchart LR
 - TG
 ```mermaid
 flowchart LR
-  q1(("-"))
-  q2(("+"))
+  q1(("—"))
+  q2(("＋"))
   q1-->|"a,b"|q1
   q1-->|b|q2
 ```

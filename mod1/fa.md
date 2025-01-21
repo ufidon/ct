@@ -86,7 +86,8 @@ The transition function can be represented with the *transition graphs* below in
 ![conv4](./img/c4.png)
 
 - Run the FA with `aaaabba, bbaabbbb`
-- This FA accepts $`\mathbf{(a+b)^*b(a+b)^*}`$
+- This FA accepts $`\mathbf{(a+b)^*b(a+b)^*}`$, or $`\mathbf{a^*b(a+b)^*}`$
+  - 📝 prove their equivalence with RE laws
 
 🍎 Building FAs given REs or languages
 ---

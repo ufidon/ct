@@ -1,6 +1,12 @@
 __Regular expressions__
 
 _ict chapter 4_
+---
+- 🔭 Explore [regular expressions](https://regex101.com/) in popular programming languages
+- Determine the patterns or regular expressions for
+  - all words begin with letter `o`
+  - the structure of `zip codes`, `phone numbers`
+  - the pattern of `people's names`
 
 Regular expression (re) of a language
 ---
@@ -158,7 +164,7 @@ Represent the languages below with REs
 - All words with at least two a's
   - $`\mathbf{(a+b)^*ab^*ab^*}`$, or
   - $`\mathbf{b^*a(a+b)^*ab^*}`$
-  - Are they equivalent?
+  - Are they equivalent? Yes. 📝 Prove with RE laws.
 - All words with exactly two a's
   - $`\mathbf{b^*ab^*ab^*}`$
 - The language of words that are all b's or an a followed by some b's
@@ -343,6 +349,12 @@ Complex REs
   - the number of a's and b's do not have to be the same
 - first several words
   - {ϵ, aa, bb, aaaa, aabb,abab, abba, baab, baba, bbaa,bbbb, aaaaaa,aaaabb,aaabab, ⋯}
+
+---
+
+📝 Summarize the REs representing all words.
+
+---
 
 # References
 - [regex simplifier](https://ivanzuzak.info/noam/webapps/regex_simplifier/)

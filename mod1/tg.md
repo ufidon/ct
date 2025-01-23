@@ -178,7 +178,7 @@ Challenges with TG
 
 - the ϵ edges can be removed without changing the capability of the TG
   - they are reserved only for generalization
-- another equivalent TG accepts only ab
+- another equivalent TG accepts only `aa`
   - ![tm](./img/tm.jpg)
 
 - A TG whose ϵ edges cannot be removed
@@ -192,10 +192,10 @@ Generalizing TG
 ![to](./img/to.png)
 
 - the edge is generalized from a string to any string of a language
-  - this language will be limited to regular language only
+  - this language will be `limited to regular` language only
 
 
-generalized transition graph (GTG)
+Generalized transition graph (GTG)
 ---
 A GTG is a collection of three things
 - A finite set of states
@@ -213,17 +213,17 @@ A GTG is a collection of three things
 
 ---
 
-- there is no difference between the Kleene star closure for regular expressions and a loop in TGs or FAs, compare the FA
+- there is no difference between the `Kleene star closure` for regular expressions and a `loop` in TGs or FAs, compare the FA
   - ![tq](./img/tq.png)
 - and the GTG
   - ![tr](./img/tr.png)
 - In the FA, we may loop in the middle state as many times as we want or `go straight to the third state`
-- In the GTG, to not loop corresponds to taking the ϵ choice from the b*
+- In the GTG, to `not loop` corresponds to taking the `ϵ choice from the b*`
 
 
 Nondeterminism
 ---
-- A machine is nondeterministic if the path through it depends on both the input string and the operator's choice
+- A machine is `nondeterministic` if the path through it depends on both the input string and the `operator's choice`
 - choices are inherent needed below
   - ![ts](./img/ts.png)
   - or in the equivalent one

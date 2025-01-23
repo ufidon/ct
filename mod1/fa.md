@@ -265,6 +265,6 @@ Two types of FAs that accept NO languages
 
 Build a FA that can locate an English word or substring
 ---
-- Locate dog
+- Locate `cat`
 
 ![fa13](./img/fa13.png)

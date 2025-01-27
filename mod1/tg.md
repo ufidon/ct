@@ -164,7 +164,7 @@ Challenges with TG
 ![tk](./img/tk.png)
 
 - Does the TG above accept `abbbabbbabba`?
-  - Yes, in 3 way
+  - Yes, [in 3 way](../assessments/sols.md)
 - ② There are infinite ways of grouping the let­ters of an input string if ϵ-edges allowed
   - (a)(b)
   - (a)ϵ(b)

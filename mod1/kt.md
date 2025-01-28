@@ -226,7 +226,7 @@ Step ➀: Build FAs for the seeds
 - A FA accepts only the empty string ϵ 
   - ![k09](./img/k09.png)
 - A FA accepts only one specified letter x∈Σ 
-  - ![k10](./img/k09.png)
+  - ![k10](./img/k10.png)
 
 Step ➁: Unite FAs
 ---

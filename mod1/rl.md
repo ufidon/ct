@@ -91,7 +91,8 @@ Complements and intersections
 ---
 - The intersection of two regular languages is also a regular language
 - L1, L2 are REs → L1 ∩ L2 is also a regular language
-- prove by DeMorgan's law: L1 ∩ L1 = (L1'+L2')'
+- prove by DeMorgan's law: L1 ∩ L2 = (L1'+L2')'
+  - L1, L2 are RLs ⇒ L1', L2' are RLs ⇒ L1'+L2' is RL ⇒ (L1'+L2')' is RL
 
 ![r09](./img/r09.png)
 

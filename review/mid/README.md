@@ -20,7 +20,7 @@ Comparison of Automata
 
 Q2
 ---
-- Given a language L, when will $L^*=L^+$?
+- Given a language L, when will $`L^*=L^+`$?
 
 Q3
 ---
@@ -32,17 +32,17 @@ Q3
 Q4 RE laws
 ---
 - Two REs are equivalent if their regular languages are equal
-  - $L(\mathbf{r_1})=L(\mathbf{r_2}) → \mathbf{r_1}=\mathbf{r_2}$
-- Denote $L(\mathbf{r_1})⊆L(\mathbf{r_2})$  with $\mathbf{r_1≤r_2}$
+  - $`L(\mathbf{r_1})=L(\mathbf{r_2}) → \mathbf{r_1}=\mathbf{r_2}`$
+- Denote $`L(\mathbf{r_1})⊆L(\mathbf{r_2})$  with $\mathbf{r_1≤r_2}`$
 
 | law | equation |
 |:--:|:--:|
-| basic | $\mathbf{r+Φ = r}$<br>$\mathbf{r+r=r}$<br>$\mathbf{ϵr=rϵ=r}$<br>$\mathbf{Φr=rΦ=Φ}$<br>$\mathbf{rr^*=r^*r=r^+}$<br>$\mathbf{ϵ+r^+=r^*}$ <br> $\underbrace{\mathbf{rr⋯r}}_{n\mathbf{r}'s}=\mathbf{r^n}$ <br>$\mathbf{r^0=ϵ}$ <br> $\mathbf{(r^*)^*=r^*r^*=r^*}$ |
-| communication | $\mathbf{r_1+r_2=r_2+r_1}$ |
-| association | $\mathbf{r_1+(r_2+r_3)=(r_1+r_2)+r_3}$<br>$\mathbf{r_1(r_2r_3)=(r_1r_2)r_3}$ |
-| distribution | $\mathbf{r_1(r_2+r_3)=r_1r_2+r_1r_3}$<br>$\mathbf{(r_1+r_2)r_3=r_1r_3+r_2r_3}$ |
-| subset | $\mathbf{r_1≤r_2 → r_1+r_2=r_2}$ <br> $\mathbf{r_2+r_1r_3≤r_3→r_1^*r_2≤r_3}$<br>$\mathbf{r_2+r_3r_1≤r_3→r_2r_1^*≤r_3}$ |
-| derived | $\mathbf{(r_1r_2)^*r_1=r_1(r_2r_1)^*}$<br>$\mathbf{(r_1^*r_2)^*r_1^*=(r_1+r_2)^*}$ <br> $\mathbf{r_1^*(r_2r_1^*)^*=(r_1+r_2)^*}$<br>$\mathbf{(r_1^*r_2^*)^*=(r_1+r_2)^*}$<br>$\mathbf{(ϵ+r)^*=r^*}$ |
+| basic | $`\mathbf{r+Φ = r}`$<br>$`\mathbf{r+r=r}`$<br>$`\mathbf{ϵr=rϵ=r}`$<br>$`\mathbf{Φr=rΦ=Φ}`$<br>$`\mathbf{rr^*=r^*r=r^+}`$<br>$`\mathbf{ϵ+r^+=r^*}`$ <br> $`\underbrace{\mathbf{rr⋯r}}_{n\mathbf{r}'s}=\mathbf{r^n}`$ <br>$`\mathbf{r^0=ϵ}`$ <br> $`\mathbf{(r^*)^*=r^*r^*=r^*}`$ |
+| communication | $`\mathbf{r_1+r_2=r_2+r_1}`$ |
+| association | $`\mathbf{r_1+(r_2+r_3)=(r_1+r_2)+r_3}`$<br>$`\mathbf{r_1(r_2r_3)=(r_1r_2)r_3}`$ |
+| distribution | $`\mathbf{r_1(r_2+r_3)=r_1r_2+r_1r_3}`$<br>$`\mathbf{(r_1+r_2)r_3=r_1r_3+r_2r_3}`$ |
+| subset | $`\mathbf{r_1≤r_2 → r_1+r_2=r_2}`$ <br> $`\mathbf{r_2+r_1r_3≤r_3→r_1^*r_2≤r_3}`$<br>$`\mathbf{r_2+r_3r_1≤r_3→r_2r_1^*≤r_3}`$ |
+| derived | $`\mathbf{(r_1r_2)^*r_1=r_1(r_2r_1)^*}`$<br>$`\mathbf{(r_1^*r_2)^*r_1^*=(r_1+r_2)^*}`$ <br> $`\mathbf{r_1^*(r_2r_1^*)^*=(r_1+r_2)^*}`$<br>$`\mathbf{(r_1^*r_2^*)^*=(r_1+r_2)^*}`$<br>$`\mathbf{(ϵ+r)^*=r^*}`$ |
 
 Q5 Kleene's theorem
 ---
@@ -63,17 +63,17 @@ Q7
 ---
 Find regular expressions for the following languages over Σ={a,b}. For each language, list out the first 5 simplest words.
 - All words with at least one b: 
-  - $\mathbf{(a+b)^*b(a+b)^*}$
+  - $`\mathbf{(a+b)^*b(a+b)^*}`$
 - All words with exactly one b:
-  - $\mathbf{a^*ba^*}$
+  - $`\mathbf{a^*ba^*}`$
 - All words with at least one a OR at least one b
-  - $\mathbf{(a+b)^*(a+b)(a+b)^*}$
+  - $`\mathbf{(a+b)^*(a+b)(a+b)^*}`$
 - All words without a AND without b
-  - $\boldsymbol{ε}$
+  - $`\boldsymbol{ε}`$
 - All words with at least one a AND at least  one b
-  - $\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+(a+b)^*b(a+b)^*a(a+b)^*}$
+  - $`\mathbf{(a+b)^*a(a+b)^*b(a+b)^*+(a+b)^*b(a+b)^*a(a+b)^*}`$
 - All words without a OR without b
-  - $\mathbf{a^* + b^*}$
+  - $`\mathbf{a^* + b^*}`$
 
 Q8
 ---
@@ -121,13 +121,13 @@ Q10
 Using Kleene's theorem, find the regular expressions and English description for the following TGs:
 ```mermaid
 flowchart LR
-  p1(("-"))
-  p2(("+"))
+  p1(("/sx"))
+  p2(("＋"))
   p1-->|a|p2
   p1-->|b|p2
   p2-->|"a,b"|p2
 ```
-- $\mathbf{(a+b)(a+b)^*}$
+- $`\mathbf{(a+b)(a+b)^*}`$
 - All words except ε
 - ---
 ```mermaid
@@ -138,7 +138,7 @@ flowchart LR
 ```mermaid
 flowchart LR
   p1(("±"))
-  p2(("+"))
+  p2(("＋"))
   p1-->|a|p2
   p1-->|b|p2
   p2-->|"a,b"|p2
@@ -146,8 +146,8 @@ flowchart LR
 ```mermaid
 flowchart LR
   p1(("±"))
-  p2(("+"))
-  p3(("+"))
+  p2(("＋"))
+  p3(("＋"))
   p1-->|a|p2
   p1-->|b|p3
   p2-->|"a,b"|p2
@@ -158,10 +158,10 @@ flowchart LR
 - ---
 ```mermaid
 flowchart LR
-  m(("-"))
+  m(("－"))
   p1((" "))
   p2((" "))
-  f1(("+"))
+  f1(("＋"))
   m-->|a|p1
   m-->|b|p2
   p1-->|"a,b"|p1
@@ -169,14 +169,14 @@ flowchart LR
   p1-->|b|f1
   p2-->|a|f1
 ```
-- $\mathbf{a(a+b)^*b+b(a+b)^*a}$
+- $`\mathbf{a(a+b)^*b+b(a+b)^*a}`$
 - All words have different first and last letters
 
 - ---
 ```mermaid
 flowchart LR
   p1(("±"))
-  p2(("+"))
+  p2(("＋"))
   p1-->|"a,b"|p1
   p1-->|aa|p2
   p2-->|bb|p1
@@ -186,10 +186,10 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  s(("-"))
+  s(("－"))
   p1(("1"))
   p2(("2"))
-  f(("+"))
+  f(("＋"))
   s-->|ε|p1
   p1-->|"a+b"|p1
   p1-->|aa|p2
@@ -248,15 +248,15 @@ Given two FAs below, using Kleene's theorem, find:
 
 ```mermaid
 flowchart LR
-  p1(("-"))
-  p2(("+"))
+  p1(("－"))
+  p2(("＋"))
   p1-->|a|p1
   p1-->|b|p2
   p2-->|a|p1
   p2-->|b|p2
 
-  q1(("-"))
-  q2(("+"))
+  q1(("－"))
+  q2(("＋"))
   q1-->|"a,b"|q2
   q2-->|"a,b"|q1
 ```

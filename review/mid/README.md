@@ -33,7 +33,7 @@ Q4 RE laws
 ---
 - Two REs are equivalent if their regular languages are equal
   - $`L(\mathbf{r_1})=L(\mathbf{r_2}) → \mathbf{r_1}=\mathbf{r_2}`$
-- Denote $`L(\mathbf{r_1})⊆L(\mathbf{r_2})$  with $\mathbf{r_1≤r_2}`$
+- Denote $`L(\mathbf{r_1})⊆L(\mathbf{r_2})`$  with $`\mathbf{r_1≤r_2}`$
 
 | law | equation |
 |:--:|:--:|

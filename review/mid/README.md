@@ -121,7 +121,7 @@ Q10
 Using Kleene's theorem, find the regular expressions and English description for the following TGs:
 ```mermaid
 flowchart LR
-  p1(("/sx"))
+  p1(("－"))
   p2(("＋"))
   p1-->|a|p2
   p1-->|b|p2

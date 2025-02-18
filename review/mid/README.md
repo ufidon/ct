@@ -219,6 +219,7 @@ flowchart LR
   p2-->|"bb(a+b)*"|f
 ```
 - remove or bypass state 2 →
+  - ⚠️ mermaid DOES NOT render correctly, check source code
 ```mermaid
 flowchart LR
   s(("s-"))
@@ -227,7 +228,7 @@ flowchart LR
   s-->|"(a+b)*"|f
   s-->|"[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"|f
 ```
--  →
+-  → ⚠️ mermaid DOES NOT render correctly, check source code
 ```mermaid
 flowchart LR
   s(("s-"))

@@ -199,11 +199,11 @@ flowchart LR
   p2-->|ε|f
 ```
 - remove or bypass state 1 →
-  - two in s and 2, two out 2 and f passing through 1
-  - s2: `ε(a+b)*aa=(a+b)*aa`
-  - sf: `ε(a+b)*ε=(a+b)*`
-  - 22: `bb(a+b)*aa`
-  - 2f: `bb(a+b)*ε=bb(a+b)*`
+  - two in's s and 2, two out's 2 and f passing through 1
+  - s-1-2: `ε(a+b)*aa=(a+b)*aa`
+  - s-1-f: `ε(a+b)*ε=(a+b)*`
+  - 2-1-2: `bb(a+b)*aa`
+  - 2-1-f: `bb(a+b)*ε=bb(a+b)*`
 
 ```mermaid
 flowchart LR
@@ -213,29 +213,35 @@ flowchart LR
 
   s-->|"(a+b)*aa"|p2
   s-->|"(a+b)*"|f
-  p2-->|"a+b"|p2
-  p2-->|"bb(a+b)*aa"|p2
+  p2-->|"(a+b)+(bb(a+b)*aa)"|p2
   p2-->|ε|f
   p2-->|"bb(a+b)*"|f
 ```
 - remove or bypass state 2 →
+  - ![removed state 2](./imgs/m1.png)
+
+<!--
   - ⚠️ mermaid DOES NOT render correctly, check source code
 ```mermaid
 flowchart LR
   s(("s-"))
   f(("f+"))
 
-  s-->|"(a+b)*"|f
-  s-->|"[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"|f
+  s-.->|"(a+b)*"|f
+  s-.->|"[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"|f
 ```
+
 -  → ⚠️ mermaid DOES NOT render correctly, check source code
 ```mermaid
 flowchart LR
   s(("s-"))
   f(("f+"))
 
-  s-->|"(a+b)*+[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"|f
+  s-.->|"(a+b)*+[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"|f
 ```
+-->
+
+
 - Can we describe it in plain English?
 
 Q11

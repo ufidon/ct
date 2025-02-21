@@ -1,0 +1,7 @@
+digraph G {
+  rankdir=LR;
+  s [label="s-", shape="circle"];
+  f [label="f+", shape="circle"];
+  s -> f [label="(a+b)*"];
+  s -> f [label="[(a+b)*aa][(a+b)+bb(a+b)*aa]*[ε+bb(a+b)*]"];
+}

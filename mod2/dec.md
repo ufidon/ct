@@ -183,14 +183,15 @@ flowchart LR
 
 **Proof**
 - The shortest path `p` from - to +  cannot contain a circuit
-- `p` can visit each state at most one time
-- ∴ `p` can have at most N edges and the corresponding word can have at most N letters
+- if `p` can visit each state at most one time
+  - ⚠️ visit a state one time ≡ enter it one time
+- then `p` can visit at most N states with N-1 edges and the corresponding word can have at most N-1 letters
 
 
 Determine whether an FA accepts any words Method 3
 ---
-- Test all words with no longer than N letters by running them on the FA
-  - the number of such words is $|Σ|^N$
+- Test all words with fewer than N letters by running them on the FA
+  - the number of such words is $`\displaystyle ∑_{i=0}^{N-1}|Σ|^i`$
 -  If the FA accepts none of them, then it accepts no words at all
 
 

@@ -190,8 +190,8 @@ Context-free language (CFL)
   - apply ❷ and ❸ in any order and any number of times: X ⇒ $`\mathbf{(a+b)^+}`$X
   - then apply ❹: X ⇒ $`\mathbf{(a+b)^+}`$a
   - apply ❺ and ❻ in any order and any number of times: Y ⇒ Y$`\mathbf{(a+b)^+}`$
-  - then apply ❼: Y ⇒ a$`\mathbf{(a+b)^+}`$
-  - then apply ❶: S ⇒ $`\mathbf{(a+b)^+}`$aa$`\mathbf{(a+b)^+}`$
+  - then apply ❼: Y ⇒ a $`\mathbf{(a+b)^+}`$
+  - then apply ❶: S ⇒ $`\mathbf{(a+b)^+}`$ aa $`\mathbf{(a+b)^+}`$
   - together with ❶❹❼: aa
 - ∴ CFL7 = $`\mathbf{(a+b)^*aa(a+b)^*}`$
 

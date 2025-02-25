@@ -57,16 +57,16 @@ A generative grammar for AE
 - AE → -(AE)
 - AE → NUMBER
 - NUMBER → FIRST-DIGIT
-- FIST-DIGIT → FIST-DIGIT OTHER-DIGIT
-- FIST-DIGIT → 1|2|3|4|5|6|7|8|9
+- FIRST-DIGIT → FIRST-DIGIT OTHER-DIGIT
+- FIRST-DIGIT → 1|2|3|4|5|6|7|8|9
 - OTHER-DIGIT → 0|1|2|3|4|5|6|7|8|9 
 
 
 🍎 Example 1
 ---
 Generate a number with the above AE grammar
-- FIST-DIGIT ⇒ FIST-DIGIT OTHER-DIGIT
-- FIST-DIGIT ⇒ 69
+- FIRST-DIGIT ⇒ FIRST-DIGIT OTHER-DIGIT
+- FIRST-DIGIT ⇒ 69
 
 
 Generations and productions

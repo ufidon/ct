@@ -5,6 +5,9 @@ _ict chapter 12_
 
 Generative grammars
 ---
+- $`\displaystyle\frac{\frac{1}{2} + 9}{4 + \frac{8}{21} + \frac{5}{3 + \frac{1}{2}}}`$
+  - or: `((1/2) +9)/(4+ (8/21) + (5/(3 + (1/2))))`
+
 Recursive definition is one of the generative grammars:
 - arithmetic expression (AE)
   - seeds:  Any number is an AE

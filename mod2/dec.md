@@ -1,4 +1,4 @@
-__Decidability__
+__Regular Language Decidability__
 
 _ict chapter 11_
 
@@ -181,11 +181,14 @@ flowchart LR
 - If F is an FA with N states and accepts any words at all, 
 - then it accepts some word with N or fewer letters.
 
+
 **Proof**
 - The shortest path `p` from - to +  cannot contain a circuit
 - if `p` can visit each state at most one time
   - ⚠️ visit a state one time ≡ enter it one time
 - then `p` can visit at most N states with N-1 edges and the corresponding word can have at most N-1 letters
+  - the proof shows the shortest word must have at most N-1 letters
+  - ∴ N-1 is a stricter bound than N
 
 
 Determine whether an FA accepts any words Method 3
@@ -292,7 +295,9 @@ There is an effective procedure to decide whether:
 - ❶ L is infinite if and only if
 - ❷ F accepts an input string w such that N ≤ length(w) < 2N
 -  prove ❶ → ❷ as proving the pumping lemma
+   - |L|=∞ → ∃ a circuit in the FA, we are able to find a path 𝓅, N≤|𝓅|<2N
 -  prove ❷ → ❶ by the strong pumping lemma
+   - if w∈L and |w|≥N → ∃ x,y,z: w=xyz, and xyⁿz ∈ L, n∈ℕ
 
 
 ☯ The finiteness of an FA is decidable

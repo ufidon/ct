@@ -167,6 +167,12 @@ L is regular if and only if ˜L has a finite number of equivalence classes.
     - the start state is [ε]
   - state transitions are `σ: [x]→[xσ]` for each letter σ∈Σ
 
+The Myhill-Nerode theorem statement 2
+---
+- Language L divides all strings $`Σ^*`$ into mutually exclusive classes, finite or infinite.
+- string x and y are in the same class ≡ for any string z, xz and yz are either both in L or both not.
+- ☯ L if `regular` ↔ L creates `finite` number of classes
+
 
 🍎 Example
 ---

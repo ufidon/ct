@@ -404,7 +404,7 @@ Lukasiewicz notation
   - `3+4*5` could be `(3+4)*5`
   - or `3+(4*5)` without further information such as operator priority
 
-| ⓐ `((3+4)*5)` | ⓑ `(3+(4*5))` |
+| ⓐ `(3+(4*5))` | ⓑ `((3+4)*5)` |
 |:---:|:---:|
 | ![c02a](./img/c02a.png) | ![c02b](./img/c02b.png) | 
 | ![c03a](./img/c03a.png) | ![c03b](./img/c03b.png) |
@@ -430,7 +430,7 @@ Operator prefix notation
   - `* → ++ | +* |+number|*+|**|*number|number+|number*|number number`
 - generates the CFL: operator prefix notation such as
 
-| ⓐ `+ 3 * 4 5` for `((3+4)*5)` | ⓑ `* + 3 4 5` for `(3+(4*5))` |
+| ⓐ `+ 3 * 4 5` for `(3+(4*5))` | ⓑ `* + 3 4 5` for `((3+4)*5)` |
 |:---:|:---:|
 | ![c04a](./img/c04a.png) | ![c02b](./img/c04b.png) | 
 

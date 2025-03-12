@@ -23,7 +23,7 @@ Prove by constructing a CFG for any given FA:
   - X → bX for (x,b,x) ![g00b](./img/g00b.png)
 - ③ F → ϵ for every final state f
 
-Then show ❶ and ❷:
+Then show ❶ `FA ⊆ CFG` and ❷ `CFG ⊆ FA`:
 - ❶ every word w=σ₁σ₂⋯σₙ⋯σₑ accepted by the FA can be generated from the CFG
   - there is a `semiword` for every `semipath`
     - `semiword` = $`(terminal)^*(nonterminal)`$

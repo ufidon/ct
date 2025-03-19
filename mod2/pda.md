@@ -33,8 +33,8 @@ A `new pictorial` representation for FA
     - transformed to `READ` states
     - ![p04](./img/p04.png)
   - that `Δ` is read means out of input letters and the processing of the input string is done. The Δ-edge will leads to
-    - ACCEPT is the stopped state is a `final` state
-    - REJECT is the stopped state is `NOT` a final state
+    - ACCEPT if the stopped state is a `final` state
+    - REJECT if the stopped state is `NOT` a final state
 - this merely new pictorial representation for an FA has not altered the power of the FA
 
 
@@ -310,7 +310,7 @@ A PDA
   - ![p31c](./img/p31c.png)
 - ❓ Question
   - is this PDA useful?
-  - revise this PDA to accepts all words
+  - revise this PDA to accept all words
 
 ---
 

@@ -140,10 +140,10 @@ Prove by construction in several steps:
 PDA conversion form
 ---
 A PDA is in `conversion form` if it meets all the following conditions:
-- There is only `one ACCEPT` state and `zero REJECT` state
+- ➀ There is only `one ACCEPT` state and `zero REJECT` state
   - ❶ merge all `ACCEPT` states into one
   - ❷ erase all `REJECT` states and their incoming edges
-- Every `READ` or `HERE` is followed immediately by a POP
+- ➁ Every `READ` or `HERE` is followed immediately by a `POP`
   - A `HERE` state is a `marker state` --- a state without status
     - does not read the TAPE nor pop the STACK
     - used to describe `being on the edge as being in a state`
@@ -157,13 +157,13 @@ A PDA is in `conversion form` if it meets all the following conditions:
     - To ![e08b](./img/e08b.png)
 
 
-- POPs must be separated by READs or HEREs
+- ➂ POPs must be separated by READs or HEREs
   - ❹ insert a HERE state if needed
   - From ![e09a](./img/e09a.png)
   - to ![e09b](./img/e09b.png)
 
 
-- All `branching`, deterministic, or nondeterministic, occurs at `RoH` states, none at POP states, and `every edge` has `only one` label (no multiple labels)
+- ➃ All `branching`, deterministic, or nondeterministic, occurs at `RoH` states, none at POP states, and `every edge` has `only one` label (no multiple labels)
   -  ❺ convert all branching at POP states into branching at its incoming RoH states
 - `❺ case 1`: 
   - ![e10a](./img/e10a.png)
@@ -176,7 +176,7 @@ A PDA is in `conversion form` if it meets all the following conditions:
 - the `deterministic branching at POPᵢ` has been replaced by `nondeterministic branching at RoHᵢ`→
   - ![e11b](./img/e11b.png)
 
-- Even before we get to START, a "bottom of STACK" symbol, `$`, is placed on the STACK 
+- ➄ Even before we get to START, a "bottom of STACK" symbol, `$`, is placed on the STACK 
   - If this symbol is ever popped in the processing, it must be replaced immedi­ately 
   - The STACK is never popped beneath this symbol
   - Right before entering ACCEPT, this symbol is popped out and left out
@@ -188,9 +188,9 @@ A PDA is in `conversion form` if it meets all the following conditions:
 |\$|
 |Δ|
 
-- The PDA must begin with the sequence below
+- ➅ The PDA must begin with the sequence below
   - ![e11c](./img/e11c.png)
-- The entire input string must be read before the machine can accept the word
+- ➆ The entire input string must be read before the machine can accept the word
 
 
 🍎 Example 4
@@ -204,8 +204,8 @@ Convert the PDA below that accepts {a²ⁿbⁿ, n=1,2,3,⋯}
 ![e13](./img/e13.png)
 
 - the nondeterministic branch `POP6 - PUSH $ - PUSH a` will  
-   - be taken the first time out of READ1 and only once
-   - add an `a` to the STACK
+   - be taken the `first time` out of READ1 and `only once`
+   - to keep `$` at the bottom add an `a` to the STACK
 
 
 Joints and path segments
@@ -216,14 +216,15 @@ Joints and path segments
 
 | From | To | READ | POP | PUSH |
 |:--:|:--:|:--:|:--:|:--:|
-|START<br>or READ<br>or HERE|READ<br>or HERE<br>or ACCEPT|{0,1} σ's|{1} γ|Γ⁺|
+|START<br>or READ<br>or HERE|READ<br>or HERE<br>or ACCEPT|zero or one input letter|one STACK letter|any string onto the STACK|
 
 - The states `START, READ, HERE, and ACCEPT` are called the `joints` of the machine
-  - Be­tween two consecutive joints on a path, exactly `one` character is popped and any arbitrary number can be pushed
-  - the PDA 🅰 can be drawn as a set of joints with "arcs" (path segments) between them much like a TG
+  - Be­tween two consecutive joints on a path, exactly `one character is popped and any arbitrary number can be pushed`
+  - the PDA 🅰 can be drawn as a `set of joints with "arcs" (path segments)` between them much like a TG
   - ![e15](./img/e15.png)
 - a PDA is in conversion form can be described by its `summary table` 
-  - the list of all the its `path segments`
+  - the list of all its `path segments`
+  - `each path segment` corresponds to `one row`
 
 
 The summary table of PDA 🅰
@@ -256,12 +257,16 @@ The row language R(PDA) of a PDA
 ---
 - the set of all `valid sequences` of rows of the PDA summary table with
   - `Σ = {Row₁, Row₂, ⋯, Rowᵢ, ⋯, Rowₙ}`
-- A valid sequence of rows must be
+- A `valid sequence of rows` must be
   - `joint-consistent`: the rows meet up end to end
   - `STACK-consistent`: the character to be popped by a row must be right at the top of the STACK
-  - and corresponds to an accepting path of an acceptable string
+  - and corresponds to an `accepting path` of an `acceptable string`
     - from START to ACCEPT
-- e.x. `row(5,5,3,6)` ∉ R
+- e.x. `row(5,5,3,6)` ∉ R(PDA)
+
+
+Determine CFG(R)
+---
 - A `nonterminal in R` has the form of: `Net(Jᵢ, Jₖ, γ)`
   - `Jᵢ, Jₖ` can be any joint: START, READ, HERE, or ACCEPT
   - `γ` is  any char­acter from the STACK alphabet Γ currently at the top of the STACK
@@ -275,10 +280,8 @@ The row language R(PDA) of a PDA
       - which try to pop `b` from what's unknown below `γ`
       - it will crash the PDA if what under `γ` is NOT `b`
 
-
-Determine CFG(R)
----
 Create productions of the CFG(R):
+
 - Rule ❶ For all PDAs
   - `S → Net(START, ACCEPT, $)`
 - Rule ❷ For every row of the summary table that has `no PUSH` entry, such as

@@ -224,7 +224,7 @@ Prove language L = {aⁿbⁿaⁿ, n=1,2,3,⋯} is non-context-free
   - `exhaust all partition schemes` of w = uvxyz
   - but uv²xy²z ∉ L which `breaks the general word structure`
 - the structure characteristics in the general word aⁿbⁿaⁿ
-  - ❶ there is exactly on substring `ab`, and `ba`
+  - ❶ there is exactly one substring `ab`, and `ba`
     - if either v or y contains `ab` or `ba`
     - uv²xy²z has one more such substring broken ❶ 
   - ❷ there are twice a's of b's with all b's in the middle and equal number of a's on each side of those b's

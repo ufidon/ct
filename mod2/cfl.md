@@ -38,10 +38,19 @@ Prove by construction 🅰:
 
 - 🍎 Example
     - try running `(baabbb)(aa)`
+    - ⚠️ It will not work if we did NOT clear the tape and stack before leave from PDA₁
+    - This PDA₃ accepts words contain `aaa` only
 
 | PDA₁ |  | PDA₂ |  | PDA₃ |
 |:--:|:--:|:--:|:--:|:--:|
 | ![f02a](./img/f02a.png) | `×` | ![f02b](./img/f02b.png) | `=` | ![f02c](./img/f02c.png) |
+
+- 💡 Corrected version
+  - modify PDA₁ to clear the tape and stack before leave
+
+| PDA₁ |  | PDA₂ |  | PDA₃ |
+|:--:|:--:|:--:|:--:|:--:|
+| ![f02a](./img/f02ar.png) | `×` | ![f02b](./img/f02b.png) | `=` | ![f02c](./img/f02cr.png) |
 
 
 - for `❸L₁*`, add
@@ -231,3 +240,4 @@ The result PDA:
 
 Prove by contradiction:
 - if DOUBLEWORD were a CFL, then when we inter­sect it with any regular language, we must get a context-free language.
+- $`DOUBLEWORD ∩ a^+b^+a^+b^+ = a^nb^ma^nb^m`$

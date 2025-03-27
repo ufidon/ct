@@ -296,7 +296,7 @@ Show language L = {aⁿbᵐaⁿbᵐ}, n and m are both positive integers, is `no
 ---
 Show the language DOUBLEWORD
 - = {ss, s is  any string of a 's and b's}
-- = {ε,aa, bb, aaaa, abba, baba, bbbb, ⋯} 
+- = {ε,aa, bb, aaaa, abab, baba, bbbb, ⋯} 
 
 is `non-context-free`.
 

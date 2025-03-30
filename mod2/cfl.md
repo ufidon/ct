@@ -46,6 +46,7 @@ Prove by construction 🅰:
 - 💡 How many ways does the operator have to run `(baabbb)(aa)`?
   - All ways will crash PDA₃. Why? 
     - PDA₂ works on `corrupted tape and nonempty stack` because we did NOT clean the tape and stack before leave from PDA₁
+      - How about `(abbabaa)(abba)`?
     - This PDA₃ accepts words contain `aaa` only
   - Corrected version
     - modify PDA₁ to clean the tape and stack before leave

@@ -38,15 +38,18 @@ Prove by construction 🅰:
 
 - 🍎 Example
     - try running `(baabbb)(aa)`
-    - ⚠️ It will not work if we did NOT clear the tape and stack before leave from PDA₁
-    - This PDA₃ accepts words contain `aaa` only
 
 | PDA₁ |  | PDA₂ |  | PDA₃ |
 |:--:|:--:|:--:|:--:|:--:|
 | ![f02a](./img/f02a.png) | `×` | ![f02b](./img/f02b.png) | `=` | ![f02c](./img/f02c.png) |
 
-- 💡 Corrected version
-  - modify PDA₁ to clear the tape and stack before leave
+- 💡 How many ways does the operator have to run `(baabbb)(aa)`?
+  - All ways will crash PDA₃. Why? 
+    - ∵ we did NOT clean the tape and stack before leave from PDA₁
+  - This PDA₃ accepts words contain `aaa` only
+  - Corrected version
+    - modify PDA₁ to clean the tape and stack before leave
+    - Do we need to clean PDA₂ as well?
 
 | PDA₁ |  | PDA₂ |  | PDA₃ |
 |:--:|:--:|:--:|:--:|:--:|

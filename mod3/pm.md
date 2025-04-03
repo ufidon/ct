@@ -2,6 +2,17 @@ __Post machines__
 
 _ict chapter 20_
 
+Universal Algorithm Machine
+---
+- An algorithm is a `detailed, finite procedure`, 
+  - but its definition is vague due to the unclear term "procedure."
+- Algorithms can use `basic operations or vague actions`, 
+  - prompting questions about valid steps.
+- Early 20th-century goal: 
+  - a `"universal algorithm machine"` with minimal operations to run any algorithm.
+- Emil Post's 1936 `Post machine` aimed to recognize all human-defined languages, exceeding simpler models.
+- `Post and Turing's machines` tested if all math problems could be solved algorithmically, possibly self-programming.
+
 
 Post machine (PM)
 ---

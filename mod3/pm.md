@@ -23,7 +23,7 @@ a 5-element tuple (Σ, QUEUE, START, READ, ADD):
 - `ADD` states concatenate a character to the string in the QUEUE through its tail
   - ![p00b](./img/p00b.png)
   - No branching can take place at an ADD state
-  - There may be a branch for every character in Σ or Γ
+    - There may be an ADD state for every character in Σ or Γ
   - e.g. the following PM operation sequence converts an `empty` STORE to `abb`
     - ![p00d](./img/p00d.png)
 - `An unenterable START` state and `0 or more halt states` called `ACCEPT` and `REJECT`

@@ -21,7 +21,7 @@ Encoding numbers
   - this is called `unary encoding` because it uses one symbol
 - If Σ={a,b}, then every word in Σ* can be interpreted as a sequence of numbers (strings of a's) separated internally by b's
   - ex. babbaaa = (0 a)b(1 a)b(0 a)b(3 a's) represents 0,1,0,3
-  - he we assume that there is a group of a's at the beginning of the string and at the end even though these may be groups of `0 a`
+  - we assume that there is a group of a's at the beginning of the string and at the end even though these may be groups of `0 a` or no a's
 - in this way, a TM can work as a calculator
   - `input numbers` represented by a string in Σ*
   - `calculation` represented by a TM program

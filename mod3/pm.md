@@ -40,7 +40,7 @@ a 5-element tuple (Σ, QUEUE, START, READ, ADD):
 - `An unenterable START` state and `0 or more halt states` called `ACCEPT` and `REJECT`
   - ![p00c](./img/p00c.png)
   - a read character in a READ state without outgoing edges crashes the PM
-  - this is equivalent to taking a labeled edge into a REJECT state
+    - this is equivalent to taking a labeled edge into a REJECT state
   - ∴ PMs can be drawn with or without REJECT states
 
 ---
@@ -125,12 +125,16 @@ Proof by constructing a PM equivalent to a given TM:
   - ![p06a](./img/p06a.png)
   - by
   - ![p06b](./img/p06b.png)
-  - with
+    - with a correspondence between `#` and the position of the `TAPE HEAD`
+  - then TM instruction (X₄,Y,R) turns the TM TAPE to
+  - ![p06a2](./img/p06a2.png)
+  - which is represented by the PM STORE
+  - ![p06b2](./img/p06b2.png)
+  - achieved by
   - ![p06c](./img/p06c.png)
-  -  a correspondence between `#` and the position of the `TAPE HEAD`
-- the TM converts `cat` into `dog`
+- 🍎 the TM converts `cat` into `dog`
   - ![p06d](./img/p06d.png)
-- simulate a left move
+- simulate a `left move`
 
 | TM Operation | TM TAPE | PM QUEUE | PM Operation | 
 |:---:|:---:|:---:|:---:|
@@ -141,7 +145,9 @@ Proof by constructing a PM equivalent to a given TM:
   - which can be simulated by adding a test to see whether the first symbol in the QUEUE has become `#` in every PM simulation of a leftward TM move:
   - ![p06i](./img/p06i.png)
  
-- A rightward TM move can be simulated symmetrically
+- A `rightward` TM move can be simulated symmetrically
+  - corner case: test after READ-ADD to see whether the STORE starts with a #. 
+    - If it does, instead of crashing, we replace the # and ADD FRONT Δ.
 - simulate initial state
 
 | TM TAPE | PM QUEUE | PM initial sequence |

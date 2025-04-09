@@ -144,7 +144,7 @@ A TM T that accepts the non-context-free language {aⁿbⁿaⁿ | n=0,1,2,3,⋯}
 - ![t06b](./img/t06b.png)
 - when T halts
   - the TAPE will hold as many *'s as there were b's in the input
-  - the TAPE HEAD will be in cell (n + 1) when the machine halts
+  - the TAPE HEAD will be in cell (n + 1, indexed from 0) when the machine halts
 
 ---
 

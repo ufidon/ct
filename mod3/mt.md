@@ -96,6 +96,22 @@ Proof by showing that the operations of 2PDA can be done by TM (2PDA ⇉ TM), an
    - ![ADDX](./img/m10.png)
 - Accept/Reject: Directly mapped to 2PDA’s accept/reject states. 
 
+🍎 Example
+---
+- Convert the 2PDA that accepts all words beginning with a into a TM
+
+| Machine | Pictorial Description |
+|---|---|
+| 2PDA | ![2PDA](./img/m11a.png) |
+| TM | ![TM](./img/m11b.png) |
+
+- Convert the 2PDA that accepts language EQUAL into a TM
+
+| Machine | Pictorial Description |
+|---|---|
+| 2PDA | ![2PDA](./img/m12a.png) |
+| TM | ![TM](./img/m12b.png) |
+
 
 ☯ Theorem 2
 ---

@@ -77,7 +77,7 @@ Proof by showing that the operations of 2PDA can be done by TM (2PDA ⇉ TM), an
 - Acceptance: When the 2PDA accepts, the TM halts and accepts. 
 
 
-2️⃣ TM ⇇ 2PDA
+2️⃣ TM ⇉ 2PDA
 ---
 - Idea (via PM)
   - Input copied to Stack 1 via Stack 2.  

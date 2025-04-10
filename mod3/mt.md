@@ -77,10 +77,10 @@ Proof by showing that the operations of 2PDA can be done by TM (2PDA ⇉ TM), an
 - Acceptance: When the 2PDA accepts, the TM halts and accepts. 
 
 
-2️⃣ TM ⇉ 2PDA
+2️⃣ TM ⇉ PM ⇉ 2PDA
 ---
-- Idea (via PM)
-  - Input copied to Stack 1 via Stack 2.  
+- Idea (via PM, which has the input in its STORE: PM input = 2PDA input)
+  - 2PDA input copied to Stack 1 via Stack 2.  
   - `READ` = `POP1`.  
   - `ADD X` = Reverse stack, push `X`, reverse back.  
 - Initialization:  

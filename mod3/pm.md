@@ -77,8 +77,8 @@ Proof by simulating a PM on a TM.
 | PM Operation | TM Tape change | TM program |
 |:---:|:---:|:---:|
 | ADD y | ![p03c](./img/p03c.png) |  ![p03d](./img/p03d.png) |
-| ![p03e](./img/p03e.png) | | ![p03f](./img/p03f.png) |
-| ![p03g](./img/p03g.png) | | ![p03h](./img/p03h.png) |
+| READ | ![p03e](./img/p03e.png) | ![p03f](./img/p03f.png) |
+| READ <br> including a empty STORE and branch | ![p03g](./img/p03g.png) | ![p03h](./img/p03h.png) |
 
 ---
 
@@ -160,7 +160,7 @@ Proof by constructing a PM equivalent to a given TM:
 ---
 - Given a TM T:
   - ![p07a](./img/p07a.png)
-  - that accepts all strings starting with a
+  - that accepts all strings starting with a, and turns the input into all a's
 - build a PM equivalent to T
   - ![p07b](./img/p07b.png)
 

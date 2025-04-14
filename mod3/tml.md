@@ -5,7 +5,7 @@ _ict chapter 23_
 
 Recursively enumerable language
 ---
-A language L over the alphabet Σ is called `recursively enumerable` if there is a TM T that 
+A language L over the alphabet Σ is called `recursively enumerable (r.e.)` if there is a TM T that 
 - accepts every word in L  
   - `ACCEPT(T)=L`
 - either rejects (crashes) or loops forever for every word in the complement of L
@@ -37,21 +37,24 @@ Given a TM T = a PM P = a 2PDA A, then
 
 ☯ Theorem 3
 ---
-The union and intersection of two recursively enumerable languages is recursively enu­merable
-- the set of recursively enumerable languages is closed under union and intersection
+The `union and intersection` of two recursively enumerable languages is recursively enu­merable
+- the set of recursively enumerable languages is `closed under union and intersection`
 - Given two TMs T₁ and T₂, then there exist a TM T₃ such that
-  - `ACCEPT(T₃)=ACCEPT(T₁)+ACCEPT(T₂)`
+  - union: `ACCEPT(T₃)=ACCEPT(T₁) + ACCEPT(T₂)`
+  - intersection: `ACCEPT(T₃)=ACCEPT(T₁) ∩ ACCEPT(T₂)`
 
 
 The encoding of TMs
 ---
-- A TM can be completely described by a summary table
+- A TM can be completely described by a `summary table`
+  - Each state is encoded as a positive number
+    - with START as 1 and HALT as 2
 - ![l00](./img/l00.png)
   - each row is a 5-element tuple `(from, to, read, write, move)`
   - `from` and `to` are state numbers
   - `read` and `write` are characters, # or Δ
   - `move` is a direction, either L or R
-- then this table can be encoded as words of a regular language
+- then this table can be `encoded as words of a regular language`
 
 - For a general row 
 
@@ -60,7 +63,8 @@ The encoding of TMs
 | x₁ | x₂ | x₃ | x₄ | x₅ |
 
 - `(from, to)`can be encoded as
-  - $a^{x_1} b a^{x_2}b$, b is used as separator here
+  - $`a^{x_1} b a^{x_2}b`$, b is used as separator here
+  - $`a^{x_i}`$ means a string of `xᵢ a's`
 - `(read, write)` can be encoded as
 
 | x₃, x₄ | Code |
@@ -77,25 +81,29 @@ The encoding of TMs
 | L | a |
 | R | b |
 
-- then this row can be encoded as a word of ${\mathbf{a^+ba^+b(a+b)^5}}$
+- then this row can be encoded as a word of $`{\mathbf{a^+ba^+b(a+b)^5}}`$
   - every word defined by this regular expression can be interpreted as a row of a TM summary table 
     - with one exception: We cannot leave a HALT state
-    - ∴ e(HALT)e(states other than HALT)e(read)e(write)e(move) defines a forbidden sublanguage
-    - e(x) means the encode of x
+    - ∴ `e(HALT)e(states other than HALT)e(read)e(write)e(move)` defines a `forbidden sublanguage`
+      - e(x) means the encode of x
 - any row of a TM summary table can be encoded into a string
 - the whole summary table can also be encoded into one long string by concatenating the strings that represent the rows
-- code word language (CWL) = the language defined by ${\mathbf{(a^+ba^+b(a+b)^5)^*}}$
+- code word language (CWL) = the language defined by $`{\mathbf{(a^+ba^+b(a+b)^5)^*}}`$
   - every TM corresponds to a word in CWL
   - but the contrary is NOT true, such as the forbidden sublanguage
+- ❓ What could happen when we feed each TM its own code word as input data?
+  - Sometimes it will crash, sometimes loop, sometimes accept.
 
 
-The language ALAN
+The language `ALAN`
 ---
 - has all the words in CWL 
-   -  that are not accepted by the TMs they represent 
-   -  or that do not represent any TM
-- is not recursively enumerable
-
+   -  that are `not accepted by the TMs they represent` 
+   -  or that do `not represent any TM`
+- is `not recursively enumerable`
+- 🍎
+  - TM accepts "aa" → Code has "aa" → Accepts itself → Code ∉ ALAN.  
+  - TM accepts palindromes → Code isn't palindrome → Rejects itself → Code ∈ ALAN.
 
 ☯ Theorem 4
 ---

@@ -17,7 +17,7 @@ TM Variants
 | **2D-tape multi-head TM** | 2D tape with `multiple independent heads` moving in 4 directions.| $`δ: Q × Γᵏ → Q × Γᵏ × \{L, R, U, D\}ᵏ`$ <br>(k = #heads)| Parallel 2D computation | 
 | **Nondeterministic variants**| Any of the above (multi-head, multi-tape, 2D, etc.) with `nondeterminism`. | δ returns a set of possible transitions | Branching in complex setups| 
 
-- Theorem 0: All TM variants are `EQUALLY capable`.
+- **☯ Theorem 0**: All TM variants are `EQUALLY capable`.
 
 
 ☯ Theorem 1

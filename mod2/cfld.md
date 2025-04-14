@@ -209,7 +209,7 @@ Given a CFG G and a string x in the same alphabet, we can decide whether or not 
   - factor x into substrings `s` each of length ℓ
   - find all nonterminals that produce each `s`
     - add them to the row `s` of Pₗ, denoted as Pₗ(s)
-- if ${ S∈P_{|x|} }$, then x is producible by G otherwise it is not.
+- if $`{ S∈P_{|x|} }`$, then x is producible by G otherwise it is not.
 
 
 🍎 Example 4
@@ -236,7 +236,7 @@ Decide x=`babaa` ∈ L.
 
 ℓ=2
 - for each xᵢxᵢ₊₁, it can factored into (xᵢ)(xᵢ₊₁)
-- lookup each string S of P₁(xᵢ)P₁(xᵢ₊₁) in the RHS of each product p in G 
+- lookup each string ∈ P₁(xᵢ)P₁(xᵢ₊₁) in the RHS of each product p in G 
 - add the LHS(p) to P₂(xᵢxᵢ₊₁) if S=RHS(p)
 
 | substring | all producing nonterminals (P₂) |
@@ -249,9 +249,9 @@ Decide x=`babaa` ∈ L.
 ℓ=3
 - for each xᵢxᵢ₊₁xᵢ₊₂, it can be factored into all possible TWO factors since the right side of CNF product has exactly two nonterminals
   - (xᵢ)(xᵢ₊₁xᵢ₊₂), (xᵢxᵢ₊₁)(xᵢ₊₂)
-  - for each (xᵢ)(xᵢ₊₁xᵢ₊₂), lookup each string S of P₁(xᵢ)P₂(xᵢ₊₁xᵢ₊₂) in the RHS of each product p in G
+  - for each (xᵢ)(xᵢ₊₁xᵢ₊₂), lookup each string ∈ P₁(xᵢ)P₂(xᵢ₊₁xᵢ₊₂) in the RHS of each product p in G
     - add the LHS(p) to P₃(xᵢxᵢ₊₁xᵢ₊₂) if S=RHS(p)
-  - for each (xᵢxᵢ₊₁)(xᵢ₊₂), lookup each string S of P₂(xᵢxᵢ₊₁)P₁(xᵢ₊₂) in the RHS of each product p in G
+  - for each (xᵢxᵢ₊₁)(xᵢ₊₂), lookup each string ∈ P₂(xᵢxᵢ₊₁)P₁(xᵢ₊₂) in the RHS of each product p in G
     - add the LHS(p) to P₃(xᵢxᵢ₊₁xᵢ₊₂) if S=RHS(p)
 
 | substring | all producing nonterminals (P₃) |
@@ -263,7 +263,7 @@ Decide x=`babaa` ∈ L.
 ℓ=4
 - for each xᵢxᵢ₊₁xᵢ₊₂xᵢ₊₃, it can be factored into all possible two factors
   - (xᵢ)(xᵢ₊₁xᵢ₊₂xᵢ₊₃), (xᵢxᵢ₊₁)(xᵢ₊₂xᵢ₊₃), (xᵢxᵢ₊₁xᵢ₊₂)(xᵢ₊₃)
-  - for each factoring, lookup each string S of the product of the respective lower P sets in the RHS of each product p in G
+  - for each factoring, lookup each string ∈ the product of the respective lower P sets in the RHS of each product p in G
     - add the LHS(p) to P₄(xᵢxᵢ₊₁xᵢ₊₂xᵢ₊₃) if S=RHS(p)
 
 
@@ -275,7 +275,7 @@ Decide x=`babaa` ∈ L.
 ℓ=5
 - x₁x₂x₃x₄x₅ can be factored into all possible two factors
   - (x₁)(x₂x₃x₄x₅), (x₁x₂)(x₃x₄x₅), (x₁x₂x₃)(x₄x₅), (x₁x₂x₃x₄)(x₅)
-  - for each factoring, lookup each string S of the product of the respective lower P sets in the RHS of each product p in G
+  - for each factoring, lookup each string ∈ the product of the respective lower P sets in the RHS of each product p in G
     - add the LHS(p) to P₅(x₁x₂x₃x₄x₅) if S=RHS(p)
 
 | substring | all producing nonterminals (P₅) |

@@ -69,8 +69,7 @@ The PSG over Σ={a,b} below generates the non-context-free language {aⁿbⁿa�
 Type 0
 ---
 A phrase-structure grammar is called `type 0` if each production is of the form
-- nonempty string of nonterminals - any string of terminals and nonterminals
-
+- nonempty string of nonterminals → any string of terminals and nonterminals
 
 ☯ Theorem 2
 ---
@@ -112,7 +111,7 @@ The Chomsky Hierarchy of Grammars
 | Type | Name of the language generated | Production restrictions<br> L → R | Acceptor |
 |:--:|:--:|:--:|:--:|
 | 0 | phrase-structure<br>=recursively enumerable | L = any string with nonterminals<br> R = any string | TM |
-| 1 | context-sensitive | L = any string with nonterminals<br> R = any string as long as or longer than L | TMs with bounded (not infinite) TAPE, called li near-bounded automata LBAs* |
+| 1 | context-sensitive | L = any string with nonterminals<br> R = any string as long as or longer than L | TMs with bounded (not infinite) TAPE, called linear-bounded automata LBAs* |
 | 2 | context-free | L = one nonterminal<br> R = any string | PDA |
 | 3 | regular | L = one nonterminal<br> R = tN or R = t | FA |
 
@@ -156,8 +155,8 @@ r.e. ≡ type 0
 Context-sensitive grammars
 ---
 - also called type 1 grammar
-- a generative grammar in which the left side of each production is not longer than the right side
-- presumed to be the model fo r all human languages
+- a generative grammar in which the `left side of each production` is `not longer` than `the right side`
+- presumed to be the model for all human languages
 
 
 ☯ Theorem 5

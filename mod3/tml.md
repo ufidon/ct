@@ -110,12 +110,14 @@ The language `ALAN`
 - Not all languages are recursively enumerable
 
 
-universal TM (UTM)
+🎏 universal TM (UTM) ⭐
 ---
-- a TM that can be fed as input a string composed of two parts:
-  - ❶ the encoded `program` of any TM T followed by a marker
-  - ❷ a string that will be called `data`
-- operates on the data as if it were T
+- `Universal TM (UTM)`: Simulates any TM 𝑇 given its `encoded program` + `a marker` + `input data`.
+  - ![UTM input](./img/n20.png)
+  - Acts as a general-purpose interpreter for all TMs.
+- `Behavior`: Mirrors 𝑇 exactly (accepts/rejects/crashes/loops identically).  
+- `Output`: Leaves 𝑇's encoded program, marker, and final tape contents on its own tape.  
+ 
 
 
 ☯ Theorem 5
@@ -125,16 +127,21 @@ universal TM (UTM)
 
 ☯ Theorem 6
 ---
-MATHISON is recursively enumerable.
 - MATHISON is the language of all CWL words that do represent TMs and are accepted by the very machines they represent
+- `MATHISON is r.e.` – A modified UTM with a prescreening step accepts it.  
+  - The TM that accepts MATHISON loads its tape with
+  - ![MATHISON TM input](./img/n25.png)
+- `Prescreening` – Checks if input is a valid *deterministic* TM code (rejects invalid/nondeterministic ones).  
+- `UTM simulation` – Runs the verified TM on itself; halts iff the TM accepts its own code.  
+- `Halting condition` – Input is in `MATHISON` iff the encoded TM accepts itself. 
 
 
-☯ Theorem 7
+☯ Theorem 7: (r.e.)' may NOT be r.e.
 ---
 The complement of a recursively enumerable language might not be recursively enumerable.
 
 
-☯ Theorem 8
+☯ Theorem 8: there are non-recursive r.e.
 ---
 There are recursively enumerable languages that are not recursive
 
@@ -144,25 +151,25 @@ The halting problem for TMs
 Given an input string w and a TM T. Can we tell whether or not T halts on w?
 
 
-☯ Theorem 9
+☯ Theorem 9: the `halting problem` is undecidable
 ---
 There is no TM that can accept `any string w and any coded TM T` and always decide correctly whether T halts on w. 
 - In other words, the halting problem cannot be decided by a TM
 
 
-☯ Theorem 10
+☯ Theorem 10: the `blank tape problem` is undecidable
 ---
 There is no TM that can decide, for every TM T fed into it in encoded form, whether or not T accepts the word ϵ.
 - This is sometimes called the `blank tape problem`
 
 
-☯ Theorem 11
+☯ Theorem 11: the `emptiness question for r.e. languages` is undecidable
 ---
 There is no TM that, when fed the code word for an arbitrary TM, can always decide
 whether the encoded TM accepts any words. 
 - In other words, the `emptiness question for r.e. languages` cannot be decided by TM
 
 
-☯ Theorem 12
+☯ Theorem 12: the `finiteness of TM language` is undecidable
 ---
 There does not exist a TM that can decide, for any encoded TM T fed into it, whether or not the language of T is finite or infinite.

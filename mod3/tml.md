@@ -128,7 +128,7 @@ The language `ALAN`
 ☯ Theorem 6
 ---
 - MATHISON is the language of all CWL words that do represent TMs and are accepted by the very machines they represent
-- `MATHISON is r.e.` – A modified UTM with a prescreening step accepts it.  
+- `MATHISON is r.e.` – proved by A modified UTM with a prescreening step accepts it.  
   - The TM that accepts MATHISON loads its tape with
   - ![MATHISON TM input](./img/n25.png)
 - `Prescreening` – Checks if input is a valid *deterministic* TM code (rejects invalid/nondeterministic ones).  

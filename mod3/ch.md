@@ -128,13 +128,14 @@ Deterministic context-free languages
 
 The six classes of languages
 ---
-- Regular languages ⊂ Deterministic context-free languages {aⁿbⁿ} ⊂ Context-free languages {aⁿbⁿaⁿ}' ⊂ Context-sensitive languages {aⁿbⁿaⁿ} ⊂ Recursive languages L ⊂ Recursively enumerable languages MATHISON ⊂ ALAN
 - ![c00](./img/c00.png)
   - {aⁿbⁿ} is deterministic context-free but not regular
   - {aⁿbⁿaⁿ}' is a CFL, but it cannot be accepted by a DPDA
   - {aⁿbⁿaⁿ} is context-sensitive but not context-free
   - L stands for a language that is recursive but not context-sensitive
   - MATHISON is recursively enumerable but not recursive
+  - ALAN is NOT r.e.
+  - MATHISON ∪ ALAN = CWL = $`{\mathbf{(a^+ba^+b(a+b)^5)^*}}`$ (book encoding)
 
 
 ☯ Theorem 3

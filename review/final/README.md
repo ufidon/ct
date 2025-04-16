@@ -1,8 +1,8 @@
 Final review
 ---
-- Covers chapter 10-19
+- Covers chapter 10-25
   - mod 2 All chapters
-  - mod 3 chapter 19: Turing machine
+  - mod 3 All chapters
 
 
 Q0: summary of languages and machines
@@ -186,3 +186,20 @@ Q12
 - How to find the 
   - Union and product of two CFLs?
   - Kleene star of a CFL?
+
+Q13
+---
+- Computing capability
+  - FA = NFA = TG = 0PDA < dPDA = 1dPDA < 1nPDA = PDA < 2dPDA = 2⁺dPDA = 2⁺nPDA = PM = nPM = TM = nTM = all TM variants
+- TM variants
+  - TM with one-way tape = TM with two-way tape = Move-in-state TM = Stay-option TM = k-track TM = Single-tape, multi-head TM = Multi-tape TM = 2D-tape TM = 2D-tape multi-head TM = Nondeterministic variants
+
+Q14
+---
+- The Chomsky Hierarchy of Grammars
+- The six classes of languages
+
+Q15
+---
+- Computable functions
+- Uncomputable functions

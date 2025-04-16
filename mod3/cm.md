@@ -9,7 +9,7 @@ Input & output
 - Transducers, such as  Mealy and Moore machines, have output capabilities
 - PDAs are not only language-acceptors
   - but also transducers by considering what is put into, popped from, or left in the STACK as output
-- TMs always have as a natural output whatever is left on its TAP
+- TMs always have as a natural output whatever is left on its TAPE
   - when the processing of the TM terminates
 
 

@@ -322,6 +322,14 @@ The CFG for FORTRAN identifier:
 Parse trees
 ---
 - also called `syntax` trees,`generation` trees, `production` trees, or `derivation` trees
+  - each node is a character
+    - each internal node is a nonterminal
+    - each leaf node is a terminal
+  - for `each replacement` of a nonterminal by a string,
+    - draw a line from the `nonterminal to each character` in the string
+  - order matters: keep order `consistent`, e.x.
+    - replacement = topdown
+    - characters order as they appear in the string = leftright
 - used to analyze the syntax of words of a CFL by its CFG
 - for example, given a CFG
   - S → AA
@@ -494,9 +502,13 @@ Ambiguity
 The total language tree (TLT)
 ---
 - derivation trees help resolve ambiguity
-- all the words in the language of a CFG can be simultaneously depicted in 
-  - one big (possibly infinite) tree
-  - called the `total language tree` of the CFG
+- all the `words` in the language of a CFG can be simultaneously depicted in 
+  - one big (possibly infinite) tree, called the `total language tree` of the CFG
+  - nodes are `working strings` of terminals and nonterminals
+    - each internal node has at least one nonterminal
+    - each leaf node has only terminals
+  - The descendants of each internal node are `all the pos­sible results` of applying every applicable production to the working string
+    - one at a time in a separate branch
 
 
 🍎 Example 8
